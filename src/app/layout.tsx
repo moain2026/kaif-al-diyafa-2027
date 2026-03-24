@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_Arabic, Tajawal, Amiri } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Tajawal, Amiri, Cairo } from "next/font/google";
 import "@/styles/globals.css";
 import {
   generateLocalBusinessSchema,
@@ -30,6 +30,14 @@ const amiri = Amiri({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-amiri",
+  preload: true,
+});
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-cairo",
   preload: true,
 });
 
@@ -142,7 +150,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`scroll-smooth ${ibmPlexArabic.variable} ${tajawal.variable} ${amiri.variable}`}
+      className={`scroll-smooth ${ibmPlexArabic.variable} ${tajawal.variable} ${amiri.variable} ${cairo.variable}`}
     >
       <head>
         {/* Organization Schema */}
@@ -167,7 +175,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#0f0f0f] text-[#F5F5DC] antialiased">
+      <body className="bg-luxury-black text-cream antialiased">
         {/* Skip to main content - Accessibility */}
         <a
           href="#main-content"

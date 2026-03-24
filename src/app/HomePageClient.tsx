@@ -93,9 +93,9 @@ export function HomePageClient() {
             sizes="100vw"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/60 via-luxury-deep/25 to-luxury-rich" />
-        <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/40 via-transparent to-transparent" />
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(184,134,11,0.06) 0%, transparent 65%)" }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-deep/40 to-luxury-rich" />
+        <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%)" }} />
         <Particles />
         
         {/* Golden Glassmorphism Container */}
