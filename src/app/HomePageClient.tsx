@@ -22,8 +22,8 @@ const whyCards = [
 function SectionHeader({ label, title, center = true }: { label?: string; title: string; center?: boolean }) {
   return (
     <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} className={`mb-14 ${center ? "text-center" : ""}`}>
-      {label && <p className={`text-[#B8860B] mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
-      <h2 className={`text-[#F5F5DC] font-tajawal ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
+      {label && <p className={`text-gold-primary mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
+      <h2 className={`text-cream font-tajawal ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
       <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)", margin: "12px auto 0" }} />
     </motion.div>
   );
@@ -93,8 +93,8 @@ export function HomePageClient() {
             sizes="100vw"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f]/60 via-[#0f0f0f]/25 to-[#0f0f0f]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0f]/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/60 via-luxury-deep/25 to-luxury-rich" />
+        <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/40 via-transparent to-transparent" />
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(184,134,11,0.06) 0%, transparent 65%)" }} />
         <Particles />
         
@@ -109,10 +109,10 @@ export function HomePageClient() {
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full max-w-2xl px-6 sm:px-8 py-8 sm:py-12 rounded-3xl mt-4 sm:mt-0"
             style={{
-              background: "rgba(184, 134, 11, 0.08)",
+              background: "var(--gradient-matte-card)",
               backdropFilter: "blur(20px)",
-              border: "1px solid rgba(184, 134, 11, 0.3)",
-              boxShadow: "0 8px 32px rgba(184, 134, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+              border: "1px solid rgba(212, 175, 55, 0.3)",
+              boxShadow: "var(--shadow-luxury-card)",
             }}
           >
             {/* Sparkles around the container */}
@@ -134,7 +134,7 @@ export function HomePageClient() {
             >
               <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-[#B8860B] to-transparent" />
               <span
-                className="text-[#D4A017] font-medium"
+                className="text-gold-highlight font-medium"
                 style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}
               >
                 SINCE 2016
@@ -147,12 +147,12 @@ export function HomePageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[#F5F5DC] mb-4 font-tajawal"
+              className="text-cream mb-4 font-tajawal"
               style={{
                 fontSize: "clamp(2.2rem, 8vw, 4.5rem)",
                 fontWeight: 900,
                 lineHeight: 1.2,
-                background: "linear-gradient(135deg, #FFD700 0%, #D4A017 25%, #B8860B 50%, #D4A017 75%, #FFD700 100%)",
+                background: "var(--gradient-gold-shine)",
                 backgroundSize: "200% auto",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -186,7 +186,7 @@ export function HomePageClient() {
               className="flex flex-col items-center gap-2 mb-6"
             >
               <p
-                className="text-[#D4A017]"
+                className="text-gold-highlight"
                 style={{
                   fontSize: "clamp(0.8rem, 2vw, 0.95rem)",
                   letterSpacing: "0.25em",
@@ -198,7 +198,7 @@ export function HomePageClient() {
               <div className="flex items-center justify-center gap-2">
                 <div className="h-px w-6 bg-gradient-to-l from-[#B8860B] to-transparent" />
                 <span
-                  className="text-[#B8860B]"
+                  className="text-gold-primary"
                   style={{
                     fontSize: "0.65rem",
                     letterSpacing: "0.2em",
@@ -285,7 +285,7 @@ export function HomePageClient() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="flex flex-col items-center gap-2" style={{ opacity: 0.5 }}>
-            <span className="text-[#B8860B] text-xs" style={{ letterSpacing: "0.2em" }}>
+            <span className="text-gold-primary text-xs" style={{ letterSpacing: "0.2em" }}>
               اكتشف
             </span>
             <div className="w-5 h-8 rounded-full border border-[#B8860B]/40 flex items-start justify-center pt-1.5">
@@ -329,13 +329,13 @@ export function HomePageClient() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#B8860B]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
-                  <div className="mb-4 text-[#D4A017] group-hover:scale-110 transition-transform duration-300">
+                  <div className="mb-4 text-gold-highlight group-hover:scale-110 transition-transform duration-300">
                     {card.icon}
                   </div>
-                  <h3 className="text-[#F5F5DC] font-tajawal mb-3" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
+                  <h3 className="text-cream font-tajawal mb-3" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
                     {card.title}
                   </h3>
-                  <p className="text-[#F5F5DC]/70" style={{ fontSize: "0.9rem", lineHeight: 1.6 }}>
+                  <p className="text-cream/70" style={{ fontSize: "0.9rem", lineHeight: 1.6 }}>
                     {card.desc}
                   </p>
                 </div>
@@ -357,7 +357,7 @@ export function HomePageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-[#F5F5DC] font-tajawal mb-6"
+            className="text-cream font-tajawal mb-6"
             style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", fontWeight: 800 }}
           >
             هل أنت مستعد لتجربة الفخامة الحقيقية؟
@@ -367,7 +367,7 @@ export function HomePageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[#F5F5DC]/70 max-w-2xl mx-auto mb-10"
+            className="text-cream/70 max-w-2xl mx-auto mb-10"
             style={{ fontSize: "1rem", lineHeight: 1.8 }}
           >
             دع فريقنا المتخصص يحول مناسبتك إلى حدث لا يُنسى بخدمات ضيافة فاخرة وراقية
