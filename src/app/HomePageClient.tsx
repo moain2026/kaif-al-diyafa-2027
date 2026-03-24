@@ -23,8 +23,8 @@ function SectionHeader({ label, title, center = true }: { label?: string; title:
   return (
     <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} className={`mb-14 ${center ? "text-center" : ""}`}>
       {label && <p className={`text-gold-primary mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
-      <h2 className={`text-cream font-tajawal ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
-      <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)", margin: "12px auto 0" }} />
+      <h2 className={`text-text-primary font-cairo ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
+      <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4AF37 60%, transparent)", margin: "12px auto 0" }} />
     </motion.div>
   );
 }
@@ -33,7 +33,7 @@ function Particles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(6)].map((_, i) => (
-        <motion.div key={i} className="absolute w-1 h-1 rounded-full bg-[#B8860B]" style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }} animate={{ y: [0, -30, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.5, 1] }} transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8, ease: "easeInOut" }} />
+        <motion.div key={i} className="absolute w-1 h-1 rounded-full bg-gold-bronze" style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }} animate={{ y: [0, -30, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.5, 1] }} transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8, ease: "easeInOut" }} />
       ))}
     </div>
   );
@@ -46,8 +46,8 @@ function GoldenSparkle({ delay, x, y }: { delay: number; x: number; y: number })
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        background: "radial-gradient(circle, #FFD700 0%, #B8860B 100%)",
-        boxShadow: "0 0 8px rgba(184, 134, 11, 0.8)",
+        background: "radial-gradient(circle, #F9E488 0%, #D4AF37 100%)",
+        boxShadow: "0 0 8px rgba(212, 175, 55, 0.8)",
       }}
       animate={{
         opacity: [0, 1, 0],
@@ -74,7 +74,6 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          {/* صورة الهواتف والأجهزة الصغيرة — High-Res Local */}
           <ImageWithFallback
             src={HERO_MOBILE_IMG}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
@@ -83,7 +82,6 @@ export function HomePageClient() {
             quality={90}
             sizes="100vw"
           />
-          {/* صورة الشاشات الكبيرة واللابتوب — High-Res Local */}
           <ImageWithFallback
             src={HERO_IMG}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
@@ -95,10 +93,9 @@ export function HomePageClient() {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-deep/40 to-luxury-rich" />
         <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/60 via-transparent to-transparent" />
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%)" }} />
         <Particles />
         
-        {/* Golden Glassmorphism Container */}
         <motion.div 
           className="absolute inset-0 flex flex-col items-center justify-start sm:justify-center text-center px-4 sm:px-6 pt-12 sm:pt-0" 
           style={{ opacity: heroOpacity }}
@@ -109,62 +106,43 @@ export function HomePageClient() {
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full max-w-2xl px-6 sm:px-8 py-8 sm:py-12 rounded-3xl mt-4 sm:mt-0"
             style={{
-              background: "var(--gradient-matte-card)",
+              background: "linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(139, 125, 80, 0.04) 100%)",
               backdropFilter: "blur(20px)",
-              border: "1px solid rgba(212, 175, 55, 0.3)",
-              boxShadow: "var(--shadow-luxury-card)",
+              border: "1px solid rgba(212, 175, 55, 0.18)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
             }}
           >
-            {/* Sparkles around the container */}
             {[...Array(8)].map((_, i) => (
-              <GoldenSparkle
-                key={i}
-                delay={i * 0.25}
-                x={15 + (i % 2) * 70}
-                y={10 + Math.floor(i / 2) * 25}
-              />
+              <GoldenSparkle key={i} delay={i * 0.25} x={15 + (i % 2) * 70} y={10 + Math.floor(i / 2) * 25} />
             ))}
 
-            {/* SINCE 2016 */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex items-center justify-center gap-3 mb-6"
             >
-              <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-[#B8860B] to-transparent" />
-              <span
-                className="text-gold-highlight font-medium"
-                style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}
-              >
-                SINCE 2016
-              </span>
-              <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-[#B8860B] to-transparent" />
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-gold-bronze to-transparent" />
+              <span className="text-gold-highlight font-medium" style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}>SINCE 2016</span>
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-gold-bronze to-transparent" />
             </motion.div>
 
-            {/* Main Title - 3D Golden Text */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-cream mb-4 font-tajawal"
+              className="text-text-primary mb-4 font-cairo gold-shine-text-animated"
               style={{
                 fontSize: "clamp(2.2rem, 8vw, 4.5rem)",
                 fontWeight: 900,
                 lineHeight: 1.2,
-                background: "var(--gradient-gold-shine)",
-                backgroundSize: "200% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
                 textShadow: "0 4px 30px rgba(0,0,0,0.6)",
-                filter: "drop-shadow(0 0 20px rgba(184, 134, 11, 0.4))",
+                filter: "drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))",
               }}
             >
               كيف الضيافة
             </motion.h1>
 
-            {/* Divider Line */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -173,240 +151,80 @@ export function HomePageClient() {
               style={{
                 width: 80,
                 height: 2,
-                background: "linear-gradient(90deg, transparent, #B8860B, #FFD700, #B8860B, transparent)",
-                boxShadow: "0 0 15px rgba(184, 134, 11, 0.6)",
+                background: "linear-gradient(90deg, transparent, #B8860B, #F9E488, #B8860B, transparent)",
+                boxShadow: "0 0 15px rgba(212, 175, 55, 0.6)",
               }}
             />
 
-            {/* KEIF AL-DIAFA & LUXURY HOSPITALITY */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
               className="flex flex-col items-center gap-2 mb-6"
             >
-              <p
-                className="text-gold-highlight"
-                style={{
-                  fontSize: "clamp(0.8rem, 2vw, 0.95rem)",
-                  letterSpacing: "0.25em",
-                  fontWeight: 600,
-                }}
-              >
-                KEIF AL-DIAFA
-              </p>
+              <p className="text-gold-highlight" style={{ fontSize: "clamp(0.8rem, 2vw, 0.95rem)", letterSpacing: "0.25em", fontWeight: 600 }}>KEIF AL-DIAFA</p>
               <div className="flex items-center justify-center gap-2">
-                <div className="h-px w-6 bg-gradient-to-l from-[#B8860B] to-transparent" />
-                <span
-                  className="text-gold-primary"
-                  style={{
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.2em",
-                    fontWeight: 500,
-                  }}
-                >
-                  LUXURY HOSPITALITY
-                </span>
-                <div className="h-px w-6 bg-gradient-to-r from-[#B8860B] to-transparent" />
+                <div className="h-px w-6 bg-gradient-to-l from-gold-bronze to-transparent" />
+                <span className="text-gold-primary" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", fontWeight: 500 }}>LUXURY HOSPITALITY</span>
+                <div className="h-px w-6 bg-gradient-to-r from-gold-bronze to-transparent" />
               </div>
             </motion.div>
 
-            {/* Description */}
-            {/* Description - Updated Luxury Variant */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.8 }}
               className="max-w-2xl mx-auto w-full px-4"
             >
-              <p
-                className="text-cream/90 mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-light"
-              >
+              <p className="text-text-primary/90 mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-light">
                 نبتكر تجارب ضيافة استثنائية تلبي تطلعات النخبة، ونرتقي بمعايير الفخامة لفعاليات الشركات والمحافل الحكومية والخاصة.
               </p>
               
-              {/* Events List - Glowing Gold Dots Separators */}
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 font-tajawal text-[clamp(0.85rem,1.5vw,0.95rem)] font-medium">
-                <span className="text-gold-shimmer tracking-wide">المعارض</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
-                <span className="text-gold-shimmer tracking-wide">المؤتمرات</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
-                <span className="text-gold-shimmer tracking-wide">الاجتماعات</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
-                <span className="text-gold-shimmer tracking-wide">الفعاليات الوطنية</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
-                <span className="text-gold-shimmer tracking-wide">المناسبات الخاصة</span>
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-10">
+                {["فعاليات رسمية", "مؤتمرات دولية", "مناسبات خاصة"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold-primary shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+                    <span className="text-gold-highlight text-xs font-medium tracking-wider">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href={`https://wa.me/${WA}`} target="_blank" className="gold-button w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest">
+                  احجز الآن
+                </Link>
+                <Link href="#services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-primary/30 text-gold-primary hover:bg-gold-primary/10 transition-all">
+                  اكتشف خدماتنا
+                </Link>
               </div>
             </motion.div>
           </motion.div>
-
-          {/* CTA Buttons - Outside Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="flex gap-3 flex-wrap justify-center mt-8 sm:mt-12 relative z-20"
-          >
-            <Link
-              href="/services"
-              className="px-6 sm:px-8 py-3 rounded-full text-[#0f0f0f] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              style={{
-                background: "linear-gradient(135deg, #FFD700, #D4A017, #B8860B)",
-                backgroundSize: "200% auto",
-                fontWeight: 800,
-                fontSize: "0.9rem",
-                boxShadow: "0 8px 25px rgba(184, 134, 11, 0.5)",
-              }}
-            >
-              اكتشف خدماتنا
-            </Link>
-            <a
-              href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 sm:px-8 py-3 rounded-full transition-all duration-300 hover:bg-white/15"
-              style={{
-                border: "1.5px solid rgba(184, 134, 11, 0.6)",
-                color: "#D4A017",
-                fontWeight: 600,
-                fontSize: "0.9rem",
-                backdropFilter: "blur(10px)",
-              }}
-            >
-              تواصل معنا
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="flex flex-col items-center gap-2" style={{ opacity: 0.5 }}>
-            <span className="text-gold-primary text-xs" style={{ letterSpacing: "0.2em" }}>
-              اكتشف
-            </span>
-            <div className="w-5 h-8 rounded-full border border-[#B8860B]/40 flex items-start justify-center pt-1.5">
-              <motion.div
-                className="w-1 h-2 rounded-full bg-[#B8860B]"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </div>
-          </div>
         </motion.div>
       </section>
 
-      {/* PARTNERS SLIDER */}
-      <section className="relative py-16 sm:py-20 bg-[#0f0f0f]">
-        <div className="container mx-auto px-4">
-          <Suspense fallback={<div className="h-32 bg-[#1a1a1a] rounded-lg animate-pulse" />}>
-            <PartnersMarquee />
-          </Suspense>
-        </div>
+      {/* PARTNERS */}
+      <section className="py-12 bg-luxury-rich border-y border-gold-primary/10">
+        <Suspense fallback={<div className="h-20" />}>
+          <PartnersMarquee />
+        </Suspense>
       </section>
 
-      {/* WHY US SECTION */}
-      <section className="relative py-16 sm:py-24 bg-[#0f0f0f]">
-        <div className="container mx-auto px-4">
-          <SectionHeader label="لماذا نحن" title="لماذا تختار كيف الضيافة؟" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      {/* WHY US */}
+      <section className="py-24 px-4 bg-luxury-black relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionHeader label="لماذا نحن" title="نصنع الفرق في كل تفصيل" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyCards.map((card, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative p-6 sm:p-8 rounded-2xl overflow-hidden"
-                style={{
-                  background: "rgba(184, 134, 11, 0.05)",
-                  border: "1px solid rgba(184, 134, 11, 0.2)",
-                  backdropFilter: "blur(10px)",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#B8860B]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="mb-4 text-gold-highlight group-hover:scale-110 transition-transform duration-300">
-                    {card.icon}
-                  </div>
-                  <h3 className="text-cream font-tajawal mb-3" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
-                    {card.title}
-                  </h3>
-                  <p className="text-cream/70" style={{ fontSize: "0.9rem", lineHeight: 1.6 }}>
-                    {card.desc}
-                  </p>
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-8 rounded-3xl group">
+                <div className="w-14 h-14 rounded-2xl bg-gold-primary/10 flex items-center justify-center text-gold-primary mb-6 group-hover:bg-gold-primary group-hover:text-luxury-black transition-all duration-500">
+                  {card.icon}
                 </div>
+                <h3 className="text-xl font-cairo font-bold text-text-primary mb-3">{card.title}</h3>
+                <p className="text-text-secondary leading-relaxed text-sm">{card.desc}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section className="relative py-16 sm:py-24 bg-[#0f0f0f] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#B8860B]/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#B8860B]/10 rounded-full blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-cream font-tajawal mb-6"
-            style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", fontWeight: 800 }}
-          >
-            هل أنت مستعد لتجربة الفخامة الحقيقية؟
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-cream/70 max-w-2xl mx-auto mb-10"
-            style={{ fontSize: "1rem", lineHeight: 1.8 }}
-          >
-            دع فريقنا المتخصص يحول مناسبتك إلى حدث لا يُنسى بخدمات ضيافة فاخرة وراقية
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex gap-4 flex-wrap justify-center"
-          >
-            <a
-              href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 rounded-full text-[#0f0f0f] transition-all duration-300 hover:-translate-y-1"
-              style={{
-                background: "linear-gradient(135deg, #FFD700, #D4A017)",
-                fontWeight: 800,
-                fontSize: "0.95rem",
-                boxShadow: "0 8px 25px rgba(184, 134, 11, 0.5)",
-              }}
-            >
-              تواصل معنا الآن
-            </a>
-            <Link
-              href="/portfolio"
-              className="px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10"
-              style={{
-                border: "1.5px solid rgba(184, 134, 11, 0.6)",
-                color: "#D4A017",
-                fontWeight: 600,
-                fontSize: "0.95rem",
-                backdropFilter: "blur(10px)",
-              }}
-            >
-              شاهد أعمالنا
-            </Link>
-          </motion.div>
         </div>
       </section>
     </div>
