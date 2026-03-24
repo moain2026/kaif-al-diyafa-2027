@@ -22,9 +22,9 @@ const whyCards = [
 function SectionHeader({ label, title, center = true }: { label?: string; title: string; center?: boolean }) {
   return (
     <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} className={`mb-14 ${center ? "text-center" : ""}`}>
-      {label && <p className={`text-gold-primary mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
+      {label && <p className={`text-gold-matte mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
       <h2 className={`text-text-primary font-cairo ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
-      <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4AF37 60%, transparent)", margin: "12px auto 0" }} />
+      <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #C5A059 30%, #E2C68E 60%, transparent)", margin: "12px auto 0" }} />
     </motion.div>
   );
 }
@@ -33,7 +33,7 @@ function Particles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(6)].map((_, i) => (
-        <motion.div key={i} className="absolute w-1 h-1 rounded-full bg-gold-bronze" style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }} animate={{ y: [0, -30, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.5, 1] }} transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8, ease: "easeInOut" }} />
+        <motion.div key={i} className="absolute w-1 h-1 rounded-full bg-gold-matte" style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }} animate={{ y: [0, -30, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.5, 1] }} transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8, ease: "easeInOut" }} />
       ))}
     </div>
   );
@@ -46,8 +46,8 @@ function GoldenSparkle({ delay, x, y }: { delay: number; x: number; y: number })
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        background: "radial-gradient(circle, #F9E488 0%, #D4AF37 100%)",
-        boxShadow: "0 0 8px rgba(212, 175, 55, 0.8)",
+        background: "radial-gradient(circle, #E2C68E 0%, #C5A059 100%)",
+        boxShadow: "0 0 8px rgba(197, 160, 89, 0.8)",
       }}
       animate={{
         opacity: [0, 1, 0],
@@ -74,26 +74,23 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          <ImageWithFallback
-            src={HERO_MOBILE_IMG}
-            alt="كيف الضيافة - خدمات الضيافة الفاخرة"
-            className="block md:hidden w-full h-[110%] object-cover object-center"
-            priority={true}
-            quality={90}
-            sizes="100vw"
-          />
-          <ImageWithFallback
-            src={HERO_IMG}
-            alt="كيف الضيافة - خدمات الضيافة الفاخرة"
-            className="hidden md:block w-full h-[110%] object-cover object-center"
-            priority={true}
-            quality={90}
-            sizes="100vw"
-          />
+          {/* Video Background from v3 */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            poster={HERO_IMG}
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
         </motion.div>
+        
+        {/* Charcoal Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-deep/40 to-luxury-rich" />
         <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/60 via-transparent to-transparent" />
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(197,160,89,0.1) 0%, transparent 70%)" }} />
         <Particles />
         
         <motion.div 
@@ -104,12 +101,12 @@ export function HomePageClient() {
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-2xl px-6 sm:px-8 py-8 sm:py-12 rounded-3xl mt-4 sm:mt-0"
+            className="relative w-full max-w-2xl px-6 sm:px-8 py-8 sm:py-12 rounded-3xl mt-4 sm:mt-0 hero-card-mobile"
             style={{
-              background: "linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(139, 125, 80, 0.04) 100%)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(212, 175, 55, 0.18)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+              background: "rgba(26, 26, 26, 0.75)",
+              backdropFilter: "blur(24px)",
+              border: "1px solid rgba(197, 160, 89, 0.25)",
+              boxShadow: "0 12px 48px rgba(0, 0, 0, 0.5)",
             }}
           >
             {[...Array(8)].map((_, i) => (
@@ -122,22 +119,22 @@ export function HomePageClient() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex items-center justify-center gap-3 mb-6"
             >
-              <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-gold-bronze to-transparent" />
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-gold-matte to-transparent" />
               <span className="text-gold-highlight font-medium" style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}>SINCE 2016</span>
-              <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-gold-bronze to-transparent" />
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-gold-matte to-transparent" />
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-text-primary mb-4 font-cairo gold-shine-text-animated"
+              className="text-text-primary mb-4 font-cairo gold-shine-text"
               style={{
                 fontSize: "clamp(2.2rem, 8vw, 4.5rem)",
                 fontWeight: 900,
                 lineHeight: 1.2,
                 textShadow: "0 4px 30px rgba(0,0,0,0.6)",
-                filter: "drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))",
+                filter: "drop-shadow(0 0 20px rgba(197, 160, 89, 0.4))",
               }}
             >
               كيف الضيافة
@@ -151,8 +148,8 @@ export function HomePageClient() {
               style={{
                 width: 80,
                 height: 2,
-                background: "linear-gradient(90deg, transparent, #B8860B, #F9E488, #B8860B, transparent)",
-                boxShadow: "0 0 15px rgba(212, 175, 55, 0.6)",
+                background: "linear-gradient(90deg, transparent, #C5A059, #E2C68E, #C5A059, transparent)",
+                boxShadow: "0 0 15px rgba(197, 160, 89, 0.6)",
               }}
             />
 
@@ -164,9 +161,9 @@ export function HomePageClient() {
             >
               <p className="text-gold-highlight" style={{ fontSize: "clamp(0.8rem, 2vw, 0.95rem)", letterSpacing: "0.25em", fontWeight: 600 }}>KEIF AL-DIAFA</p>
               <div className="flex items-center justify-center gap-2">
-                <div className="h-px w-6 bg-gradient-to-l from-gold-bronze to-transparent" />
-                <span className="text-gold-primary" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", fontWeight: 500 }}>LUXURY HOSPITALITY</span>
-                <div className="h-px w-6 bg-gradient-to-r from-gold-bronze to-transparent" />
+                <div className="h-px w-6 bg-gradient-to-l from-gold-matte to-transparent" />
+                <span className="text-gold-matte" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", fontWeight: 500 }}>LUXURY HOSPITALITY</span>
+                <div className="h-px w-6 bg-gradient-to-r from-gold-matte to-transparent" />
               </div>
             </motion.div>
 
@@ -183,7 +180,7 @@ export function HomePageClient() {
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-10">
                 {["فعاليات رسمية", "مؤتمرات دولية", "مناسبات خاصة"].map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold-primary shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold-matte shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
                     <span className="text-gold-highlight text-xs font-medium tracking-wider">{item}</span>
                   </div>
                 ))}
@@ -193,7 +190,7 @@ export function HomePageClient() {
                 <Link href={`https://wa.me/${WA}`} target="_blank" className="gold-button w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest">
                   احجز الآن
                 </Link>
-                <Link href="#services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-primary/30 text-gold-primary hover:bg-gold-primary/10 transition-all">
+                <Link href="#services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-matte/30 text-gold-matte hover:bg-gold-matte/10 transition-all">
                   اكتشف خدماتنا
                 </Link>
               </div>
@@ -203,7 +200,7 @@ export function HomePageClient() {
       </section>
 
       {/* PARTNERS */}
-      <section className="py-12 bg-luxury-rich border-y border-gold-primary/10">
+      <section className="py-12 bg-luxury-rich border-y border-gold-matte/10">
         <Suspense fallback={<div className="h-20" />}>
           <PartnersMarquee />
         </Suspense>
@@ -211,13 +208,13 @@ export function HomePageClient() {
 
       {/* WHY US */}
       <section className="py-24 px-4 bg-luxury-black relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-matte/20 to-transparent" />
         <div className="max-w-7xl mx-auto relative z-10">
           <SectionHeader label="لماذا نحن" title="نصنع الفرق في كل تفصيل" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyCards.map((card, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-8 rounded-3xl group">
-                <div className="w-14 h-14 rounded-2xl bg-gold-primary/10 flex items-center justify-center text-gold-primary mb-6 group-hover:bg-gold-primary group-hover:text-luxury-black transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-gold-matte/10 flex items-center justify-center text-gold-matte mb-6 group-hover:bg-gold-matte group-hover:text-luxury-black transition-all duration-500">
                   {card.icon}
                 </div>
                 <h3 className="text-xl font-cairo font-bold text-text-primary mb-3">{card.title}</h3>

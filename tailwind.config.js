@@ -22,37 +22,32 @@ module.exports = {
       },
       colors: {
         luxury: {
-          black: '#121212',      // Baseline depth
-          deep: '#0A0A0A',       // High-contrast sections
-          rich: '#050505',       // Maximum contrast
-          elevated: '#1A1A1A',   // Elevated surfaces
-          surface: '#242424',    // Card backgrounds
+          black: '#1A1A1A',      // Charcoal Black
+          deep: '#121212',       // Deep Charcoal
+          rich: '#0D0D0D',       // Rich Black
+          elevated: '#242424',   // Elevated Surface
         },
         gold: {
-          primary: '#D4AF37',    // Primary Gold
-          highlight: '#F9E488',  // Champagne Highlight
-          bronze: '#B8860B',     // Dark Goldenrod
-          aged: '#8B7D50',       // Aged Brass
-          deep: '#6B4E16',       // Deep Bronze Shadow
-          metallic: '#D3AF37',
-          chinese: '#CD9900',
-          coin: '#A57D02',
+          matte: '#C5A059',      // Matte Gold
+          primary: '#C5A059',
+          highlight: '#E2C68E',  // Champagne
+          bronze: '#A67C37',     // Bronze
+          deep: '#85642E',       // Deep Gold
         },
         text: {
-          primary: '#F5F5DC',    // Cream
-          secondary: '#E0E0E0',
-          muted: '#A0A0A0',
+          primary: '#F5F5F5',    // Cream White
+          secondary: 'rgba(245, 245, 245, 0.8)',
+          muted: 'rgba(245, 245, 245, 0.6)',
         }
       },
       backgroundImage: {
-        'gold-shine': 'linear-gradient(90deg, #D4AF37 0%, #F9E488 50%, #B8860B 100%)',
-        'gold-button': 'linear-gradient(135deg, #D4AF37 0%, #F9E488 50%, #D4AF37 100%)',
-        'luxury-gradient': 'linear-gradient(135deg, #121212 0%, #0A0A0A 100%)',
+        'gold-matte': 'linear-gradient(135deg, #C5A059 0%, #E2C68E 50%, #A67C37 100%)',
+        'gold-shine': 'linear-gradient(90deg, #C5A059 0%, #E2C68E 40%, #A67C37 80%, #C5A059 100%)',
+        'charcoal-gradient': 'linear-gradient(135deg, #1A1A1A 0%, #121212 100%)',
       },
       boxShadow: {
-        'luxury-card': '0 8px 32px rgba(0, 0, 0, 0.4)',
-        'luxury-card-hover': '0 12px 48px rgba(212, 175, 55, 0.2)',
-        'gold-glow': '0 0 30px rgba(212, 175, 55, 0.3)',
+        'luxury-card': '0 10px 40px rgba(0, 0, 0, 0.5)',
+        'gold-glow': '0 0 30px rgba(197, 160, 89, 0.3)',
       },
     },
   },
