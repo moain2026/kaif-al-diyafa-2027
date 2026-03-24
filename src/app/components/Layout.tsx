@@ -41,7 +41,7 @@ export function Layout() {
 
   return (
     <div
-      className="min-h-screen bg-[#1a1a1a] text-[#F5F5DC]"
+      className="min-h-screen bg-luxury-black text-cream"
       dir="rtl"
       style={{ fontFamily: "'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif" }}
     >
@@ -49,13 +49,13 @@ export function Layout() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg shadow-black/50"
+            ? "bg-luxury-deep/95 backdrop-blur-md shadow-lg shadow-black/50"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#B8860B] to-[#DAA520] flex items-center justify-center shadow-lg shadow-[#B8860B]/30">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-primary to-gold-highlight flex items-center justify-center shadow-lg shadow-[#B8860B]/30">
               <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#1a1a1a]">
                 <path
                   d="M12 2C8 2 4 5 4 9c0 3 2 5.5 5 7l1 4h4l1-4c3-1.5 5-4 5-7 0-4-4-7-8-7z"
@@ -65,7 +65,7 @@ export function Layout() {
             </div>
             <div>
               <span
-                className="text-[#B8860B] block leading-none"
+                className="text-gold-primary block leading-none"
                 style={{ fontSize: "1.1rem", fontWeight: 700 }}
               >
                 كيف الضيافة
@@ -82,8 +82,8 @@ export function Layout() {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`transition-colors duration-200 hover:text-[#B8860B] text-sm ${
-                  location.pathname === link.href ? "text-[#B8860B]" : "text-[#F5F5DC]/80"
+                className={`transition-colors duration-200 hover:text-gold-primary text-sm ${
+                  location.pathname === link.href ? "text-gold-primary" : "text-[#F5F5DC]/80"
                 }`}
               >
                 {link.label}
@@ -97,7 +97,7 @@ export function Layout() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full bg-[#B8860B] text-[#1a1a1a] text-sm transition-all duration-200 hover:bg-[#DAA520] hover:shadow-lg hover:shadow-[#B8860B]/30"
+              className="px-4 py-2 rounded-full gold-button text-sm transition-all duration-200 hover:bg-[#DAA520] hover:shadow-lg hover:shadow-[#B8860B]/30"
               style={{ fontWeight: 600 }}
             >
               واتساب
@@ -112,12 +112,12 @@ export function Layout() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#111111] border-t border-[#B8860B]/20 pt-12 pb-24 md:pb-12">
+      <footer className="bg-luxury-rich border-t border-gold-primary/20 pt-12 pb-24 md:pb-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#B8860B] to-[#DAA520] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-primary to-gold-highlight flex items-center justify-center">
                   <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#1a1a1a]">
                     <path
                       d="M12 2C8 2 4 5 4 9c0 3 2 5.5 5 7l1 4h4l1-4c3-1.5 5-4 5-7 0-4-4-7-8-7z"
@@ -125,7 +125,7 @@ export function Layout() {
                     />
                   </svg>
                 </div>
-                <span className="text-[#B8860B]" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
+                <span className="text-gold-primary" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
                   كيف الضيافة
                 </span>
               </div>
@@ -135,7 +135,7 @@ export function Layout() {
               </p>
             </div>
             <div>
-              <h3 className="text-[#B8860B] mb-4" style={{ fontSize: "1rem", fontWeight: 600 }}>
+              <h3 className="text-gold-primary mb-4" style={{ fontSize: "1rem", fontWeight: 600 }}>
                 روابط سريعة
               </h3>
               <ul className="space-y-2">
@@ -143,7 +143,7 @@ export function Layout() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="text-[#F5F5DC]/60 text-sm hover:text-[#B8860B] transition-colors"
+                      className="text-[#F5F5DC]/60 text-sm hover:text-gold-primary transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -152,7 +152,7 @@ export function Layout() {
               </ul>
             </div>
             <div>
-              <h3 className="text-[#B8860B] mb-4" style={{ fontSize: "1rem", fontWeight: 600 }}>
+              <h3 className="text-gold-primary mb-4" style={{ fontSize: "1rem", fontWeight: 600 }}>
                 تواصل معنا
               </h3>
               <div className="flex gap-3">
@@ -168,7 +168,7 @@ export function Layout() {
                 </a>
                 <a
                   href="tel:+966500000000"
-                  className="w-10 h-10 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B] hover:bg-[#B8860B]/20 transition-colors"
+                  className="w-10 h-10 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center text-gold-primary hover:bg-[#B8860B]/20 transition-colors"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -233,7 +233,7 @@ export function Layout() {
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
         <motion.button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#B8860B] to-[#DAA520] text-[#1a1a1a] shadow-xl shadow-[#B8860B]/40"
+          className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold-primary to-gold-highlight text-[#1a1a1a] shadow-xl shadow-[#B8860B]/40"
           style={{ fontWeight: 700, fontSize: "0.9rem" }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -281,7 +281,7 @@ export function Layout() {
                 {/* Gold line decoration */}
                 <div className="w-12 h-1 bg-[#B8860B] rounded-full mx-auto mb-8" />
                 <p
-                  className="text-center text-[#B8860B] mb-6"
+                  className="text-center text-gold-primary mb-6"
                   style={{ fontSize: "0.8rem", letterSpacing: "0.15em" }}
                 >
                   كيف الضيافة
@@ -300,13 +300,13 @@ export function Layout() {
                         onClick={() => setMenuOpen(false)}
                         className={`flex items-center justify-between w-full px-5 py-4 rounded-xl transition-all duration-200 group ${
                           location.pathname === link.href
-                            ? "bg-[#B8860B]/20 text-[#B8860B] border border-[#B8860B]/30"
-                            : "text-[#F5F5DC]/80 hover:bg-[#B8860B]/10 hover:text-[#B8860B] border border-transparent"
+                            ? "bg-[#B8860B]/20 text-gold-primary border border-[#B8860B]/30"
+                            : "text-[#F5F5DC]/80 hover:bg-[#B8860B]/10 hover:text-gold-primary border border-transparent"
                         }`}
                         style={{ fontSize: "1.05rem", fontWeight: 500 }}
                       >
                         <span>{link.label}</span>
-                        <span className="text-[#B8860B]/60 group-hover:text-[#B8860B] transition-colors">
+                        <span className="text-gold-primary/60 group-hover:text-gold-primary transition-colors">
                           ←
                         </span>
                       </Link>
@@ -329,7 +329,7 @@ export function Layout() {
                   </a>
                   <a
                     href="tel:+966500000000"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 text-[#B8860B] text-sm hover:bg-[#B8860B]/20 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#B8860B]/10 border border-[#B8860B]/30 text-gold-primary text-smhover:text-gold-highlight20 transition-colors"
                   >
                     <svg
                       viewBox="0 0 24 24"

@@ -1,4 +1,78 @@
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
-
 @import 'tw-animate-css';
+
+@layer base {
+  :root {
+    /* ═══════════════════════════════════════════════════
+       LUXURY DESIGN TOKENS - TRANSFERRED FROM V3
+       ═══════════════════════════════════════════════════ */
+
+    /* 🎨 LUXURY COLORS */
+    --color-luxury-black: #121212;
+    --color-luxury-deep: #0A0A0A;
+    --color-luxury-rich: #050505;
+    --color-luxury-elevated: #1A1A1A;
+    --color-luxury-surface: #242424;
+
+    --color-gold-primary: #D4AF37;
+    --color-gold-highlight: #F9E488;
+    --color-gold-bronze: #B8860B;
+    --color-gold-aged: #8B7D50;
+    --color-gold-deep: #6B4E16;
+
+    --color-cream: #F5F5DC;
+    --color-cream-light: #F2F2F2;
+    --color-cream-muted: #E0E0E0;
+
+    /* ✨ LUXURY GRADIENTS */
+    --gradient-gold-shine: linear-gradient(90deg, #D4AF37 0%, #F9E488 50%, #B8860B 100%);
+    --gradient-gold-button: linear-gradient(135deg, #D4AF37 0%, #F9E488 50%, #D4AF37 100%);
+    --gradient-luxury-bg: linear-gradient(135deg, #121212 0%, #0A0A0A 100%);
+    --gradient-matte-card: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 125, 80, 0.05) 100%);
+
+    /* 🌟 LUXURY SHADOWS */
+    --shadow-luxury-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-luxury-card-hover: 0 12px 48px rgba(212, 175, 55, 0.2);
+    --shadow-gold-glow: 0 0 30px rgba(212, 175, 55, 0.3);
+    --shadow-gold-button: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+}
+
+@layer utilities {
+  /* UTILITY CLASSES FOR LUXURY TOKENS */
+  .gold-shine-text {
+    background: var(--gradient-gold-shine);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .luxury-card {
+    background: var(--gradient-matte-card);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-luxury-card);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-card:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: var(--shadow-luxury-card-hover);
+    transform: translateY(-4px);
+  }
+
+  .gold-button {
+    background: var(--gradient-gold-button);
+    color: var(--color-luxury-black);
+    box-shadow: var(--shadow-gold-button);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .gold-button:hover {
+    filter: brightness(1.15);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
+  }
+}

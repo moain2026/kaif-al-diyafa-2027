@@ -100,19 +100,19 @@ function SectionTitle({
         transition={{ duration: 0.6 }}
       >
         <p
-          className={`text-[#B8860B] mb-2 ${center ? "text-center" : ""}`}
+          className={`text-gold-primary mb-2 ${center ? "text-center" : ""}`}
           style={{ fontSize: "0.8rem", letterSpacing: "0.2em" }}
         >
           ✦ {subtitle || "كيف الضيافة"} ✦
         </p>
         <h2
-          className={`text-[#F5F5DC] ${center ? "text-center" : ""}`}
+          className={`text-cream ${center ? "text-center" : ""}`}
           style={{ fontSize: "clamp(1.5rem, 4vw, 2.2rem)", fontWeight: 700 }}
         >
           {title}
         </h2>
         <div
-          className={`mt-3 h-px bg-gradient-to-r from-transparent via-[#B8860B] to-transparent ${center ? "mx-auto" : ""}`}
+          className={`mt-3 h-px bg-gradient-to-r from-transparent via-gold-primary to-transparent ${center ? "mx-auto" : ""}`}
           style={{ width: "120px" }}
         />
       </motion.div>
@@ -139,7 +139,7 @@ export function HomePage() {
         </motion.div>
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/70 via-[#1a1a1a]/40 to-[#1a1a1a]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/70 via-luxury-deep/40 to-luxury-rich" />
 
         {/* Decorative gold lines */}
         <div
@@ -159,7 +159,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[#B8860B] mb-4"
+            className="text-gold-primary mb-4"
             style={{ fontSize: "0.85rem", letterSpacing: "0.3em" }}
           >
             ✦ ✦ ✦
@@ -169,7 +169,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-[#F5F5DC] mb-3"
+            className="text-cream mb-3"
             style={{
               fontSize: "clamp(2.5rem, 8vw, 5rem)",
               fontWeight: 700,
@@ -184,7 +184,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-[#B8860B] mb-2"
+            className="text-gold-primary mb-2"
             style={{ fontSize: "clamp(1rem, 3vw, 1.4rem)", fontWeight: 300, letterSpacing: "0.1em" }}
           >
             KEIF AL-DIAFA
@@ -194,7 +194,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="text-[#F5F5DC]/70 max-w-lg mb-10"
+            className="text-cream/70 max-w-lg mb-10"
             style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)", lineHeight: 1.8 }}
           >
             منصة تجربة فاخرة تعكس جودة وفخامة خدمات الضيافة السعودية الأصيلة
@@ -208,14 +208,14 @@ export function HomePage() {
           >
             <Link
               to="/services"
-              className="px-8 py-3 rounded-full bg-gradient-to-r from-[#B8860B] to-[#DAA520] text-[#1a1a1a] hover:shadow-xl hover:shadow-[#B8860B]/40 transition-all duration-300 hover:-translate-y-0.5"
+              className="px-8 py-3 rounded-full gold-button text-luxury-black hover:shadow-xl hover:shadow-[#B8860B]/40 transition-all duration-300 hover:-translate-y-0.5"
               style={{ fontWeight: 700, fontSize: "1rem" }}
             >
               اكتشف خدماتنا
             </Link>
             <Link
               to="/portfolio"
-              className="px-8 py-3 rounded-full border border-[#B8860B]/50 text-[#B8860B] hover:bg-[#B8860B]/10 transition-all duration-300"
+              className="px-8 py-3 rounded-full border border-gold-primary/50 text-gold-primary hover:bg-[#B8860B]/10 transition-all duration-300"
               style={{ fontWeight: 500, fontSize: "1rem" }}
             >
               معرض أعمالنا
@@ -236,7 +236,7 @@ export function HomePage() {
       </div>
 
       {/* ── Stats Bar ── */}
-      <div className="bg-gradient-to-r from-[#B8860B]/10 via-[#B8860B]/5 to-[#B8860B]/10 border-y border-[#B8860B]/20 py-6">
+      <div className="bg-gradient-to-r from-[#B8860B]/10 via-gold-primary/5 to-[#B8860B]/10 border-y border-[#B8860B]/20 py-6">
         <div className="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { num: "+500", label: "مناسبة ناجحة" },
@@ -252,12 +252,12 @@ export function HomePage() {
               transition={{ delay: i * 0.1 }}
             >
               <p
-                className="text-[#B8860B]"
+                className="text-gold-primary"
                 style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 700 }}
               >
                 {s.num}
               </p>
-              <p className="text-[#F5F5DC]/60 text-sm">{s.label}</p>
+              <p className="text-cream/60 text-sm">{s.label}</p>
             </motion.div>
           ))}
         </div>
@@ -287,18 +287,18 @@ export function HomePage() {
               <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-[#B8860B]/5 group-hover:bg-[#B8860B]/10 transition-colors duration-300" />
 
               <div
-                className="text-[#B8860B] mb-4 relative z-10"
+                className="text-gold-primary mb-4 relative z-10"
                 style={{ fontSize: "2rem", lineHeight: 1 }}
               >
                 {card.icon}
               </div>
               <h3
-                className="text-[#F5F5DC] mb-3 relative z-10"
+                className="text-cream mb-3 relative z-10"
                 style={{ fontSize: "1.05rem", fontWeight: 600 }}
               >
                 {card.title}
               </h3>
-              <p className="text-[#F5F5DC]/55 text-sm leading-relaxed relative z-10">{card.desc}</p>
+              <p className="text-cream/55 text-sm leading-relaxed relative z-10">{card.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -330,7 +330,7 @@ export function HomePage() {
                 {/* Category tag */}
                 <div className="absolute top-4 right-4">
                   <span
-                    className="px-3 py-1 rounded-full text-[#B8860B] border border-[#B8860B]/40"
+                    className="px-3 py-1 rounded-full text-gold-primary border border-[#B8860B]/40"
                     style={{
                       fontSize: "0.7rem",
                       background: "rgba(26,26,26,0.8)",
@@ -343,7 +343,7 @@ export function HomePage() {
 
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <h3
-                    className="text-[#F5F5DC]"
+                    className="text-cream"
                     style={{ fontSize: "1.05rem", fontWeight: 600 }}
                   >
                     {m.title}
@@ -357,7 +357,7 @@ export function HomePage() {
           <div className="text-center mt-10">
             <Link
               to="/portfolio"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#B8860B]/40 text-[#B8860B] hover:bg-[#B8860B]/10 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#B8860B]/40 text-gold-primary hover:bg-[#B8860B]/10 transition-all duration-300"
               style={{ fontWeight: 500 }}
             >
               عرض المزيد من الأعمال
@@ -385,7 +385,7 @@ export function HomePage() {
             {[...partners, ...partners].map((p, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 px-8 py-4 rounded-xl border border-[#B8860B]/15 text-[#F5F5DC]/50 hover:text-[#B8860B] hover:border-[#B8860B]/40 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                className="flex-shrink-0 px-8 py-4 rounded-xl border border-[#B8860B]/15 text-cream/50 hover:text-gold-primary hover:border-[#B8860B]/40 transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{
                   background: "rgba(30,25,15,0.5)",
                   fontSize: "0.9rem",
@@ -419,31 +419,31 @@ export function HomePage() {
               >
                 {/* Quote */}
                 <div
-                  className="text-[#B8860B]/30 mb-4"
+                  className="text-gold-primary/30 mb-4"
                   style={{ fontSize: "3rem", lineHeight: 1, fontFamily: "serif" }}
                 >
                   "
                 </div>
-                <p className="text-[#F5F5DC]/70 text-sm leading-relaxed mb-5">"{t.text}"</p>
+                <p className="text-cream/70 text-sm leading-relaxed mb-5">"{t.text}"</p>
 
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.rating }).map((_, si) => (
-                    <span key={si} className="text-[#B8860B]" style={{ fontSize: "0.9rem" }}>
+                    <span key={si} className="text-gold-primary" style={{ fontSize: "0.9rem" }}>
                       ★
                     </span>
                   ))}
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#B8860B]/30 to-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B]">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#B8860B]/30 to-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center text-gold-primary">
                     {t.name[0]}
                   </div>
                   <div>
-                    <p className="text-[#F5F5DC]" style={{ fontSize: "0.9rem", fontWeight: 600 }}>
+                    <p className="text-cream" style={{ fontSize: "0.9rem", fontWeight: 600 }}>
                       {t.name}
                     </p>
-                    <p className="text-[#F5F5DC]/40 text-xs">{t.role}</p>
+                    <p className="text-cream/40 text-xs">{t.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -460,16 +460,16 @@ export function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.8rem", letterSpacing: "0.2em" }}>
+            <p className="text-gold-primary mb-3" style={{ fontSize: "0.8rem", letterSpacing: "0.2em" }}>
               ✦ ابدأ رحلتك معنا ✦
             </p>
             <h2
-              className="text-[#F5F5DC] mb-5"
+              className="text-cream mb-5"
               style={{ fontSize: "clamp(1.6rem, 4vw, 2.4rem)", fontWeight: 700 }}
             >
               جاهزون لإضافة لمسة فخامة لمناسبتك
             </h2>
-            <p className="text-[#F5F5DC]/60 mb-10 leading-relaxed">
+            <p className="text-cream/60 mb-10 leading-relaxed">
               تواصل معنا الآن واحصل على استشارة مجانية لتصميم تجربة ضيافة لا تُنسى
             </p>
 
@@ -491,7 +491,7 @@ export function HomePage() {
 
               <motion.a
                 href="tel:+966500000000"
-                className="flex items-center gap-3 px-8 py-4 rounded-full border border-[#B8860B]/40 text-[#B8860B] hover:bg-[#B8860B]/10 transition-all duration-300"
+                className="flex items-center gap-3 px-8 py-4 rounded-full border border-[#B8860B]/40 text-gold-primary hover:bg-[#B8860B]/10 transition-all duration-300"
                 style={{ fontWeight: 500, fontSize: "1rem" }}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
