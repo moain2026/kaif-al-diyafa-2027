@@ -224,7 +224,7 @@ export const SERVICES_ARTISTIC = {
 // ═══════════════════════════════════════════════════════════════
 // EQUIPMENT IMAGES (21 photos)
 // ═══════════════════════════════════════════════════════════════
-export const EQUIPMENT_IMAGES = Array.from({ length: 21 }, (_, i) => `/images/equipment/equip-${i + 1}.webp`);
+export const EQUIPMENT_IMAGES = Array.from({ length: 28 }, (_, i) => `/images/equipment/equip-${i + 1}.webp`);
 
 // ═══════════════════════════════════════════════════════════════
 // PARTNER LOGOS (36 logos)
