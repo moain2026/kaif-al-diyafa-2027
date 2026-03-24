@@ -9,7 +9,7 @@ import { DallahLogo } from "@/components/DallahLogo";
 const WA_NUMBER = "966508252134";
 
 const navLinks = [
-  { href: "/", label: "الرئيسية", icon: "⌂" },
+  { href: "/", label: "الالرئيسية", icon: "⌂" },
   { href: "/services", label: "خدماتنا", icon: "◈" },
   { href: "/offerings", label: "تقديماتنا", icon: "☕" },
   { href: "/portfolio", label: "معرض الأعمال", icon: "◻" },
@@ -68,6 +68,14 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
   const toggleMenu = useCallback(() => setMenuOpen((v) => !v), []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const isActive = (href: string) => pathname === href;
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (setDeferredPrompt) setDeferredPrompt(null);
+    closeMenu();
+  };
 
   return (
     <>
@@ -179,13 +187,31 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
         {menuOpen && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm" onClick={closeMenu} />
-            <motion.nav initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 28, stiffness: 280 }} id="mobile-nav-menu" className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-3xl overflow-hidden" style={{ background: "linear-gradient(160deg, rgba(26,26,26,0.98) 0%, rgba(18,18,18,0.99) 100%)", backdropFilter: "blur(30px) saturate(200%)", borderTop: "1px solid rgba(197, 160, 89, 0.25)", boxShadow: "0 -20px 80px rgba(0,0,0,0.4)", paddingBottom: "max(100px, calc(80px + env(safe-area-inset-bottom)))" }} role="navigation" aria-label="القائمة الرئيسية">
+            <motion.nav 
+              initial={{ y: "100%" }} 
+              animate={{ y: 0 }} 
+              exit={{ y: "100%" }} 
+              transition={{ type: "spring", damping: 28, stiffness: 280 }} 
+              id="mobile-nav-menu" 
+              className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-3xl overflow-hidden" 
+              style={{ 
+                background: "linear-gradient(160deg, rgba(26,26,26,0.98) 0%, rgba(18,18,18,0.99) 100%)", 
+                backdropFilter: "blur(30px) saturate(200%)", 
+                borderTop: "1px solid rgba(197, 160, 89, 0.25)", 
+                boxShadow: "0 -20px 80px rgba(0,0,0,0.4)", 
+                paddingBottom: "max(100px, calc(80px + env(safe-area-inset-bottom)))" 
+              }} 
+              role="navigation" 
+              aria-label="القائمة الرئيسية"
+            >
               <div className="max-w-lg mx-auto px-5 pt-6">
                 <div className="w-10 h-1 bg-gold-matte/40 rounded-full mx-auto mb-5" />
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <DallahLogo size={32} />
                   <span className="gold-shine-text" style={{ fontSize: "1.1rem", fontWeight: 800 }}>كيف الضيافة</span>
                 </div>
+                
+                {/* Navigation Grid */}
                 <div className="grid grid-cols-2 gap-3">
                   {navLinks.map((link) => (
                     <Link
@@ -201,6 +227,34 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
                     </Link>
                   ))}
                 </div>
+
+                {/* PWA Install Button Section - Luxury Adapted */}
+                {deferredPrompt && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.3 }}
+                    className="mt-6 pt-6 border-t border-white/5"
+                  >
+                    <button 
+                      onClick={handleInstallClick}
+                      className="group relative overflow-hidden flex items-center justify-center gap-3 w-full px-6 py-4 rounded-2xl text-luxury-black transition-all duration-500 active:scale-[0.98]"
+                      style={{ 
+                        background: "var(--gradient-gold-matte)",
+                        fontWeight: 800,
+                        fontSize: "0.95rem",
+                        boxShadow: "0 10px 30px rgba(197, 160, 89, 0.3)"
+                      }}
+                    >
+                      <span className="text-xl group-hover:rotate-12 transition-transform">📲</span>
+                      <span className="tracking-tight">تثبيت تطبيق الجوال الفاخر</span>
+                      
+                      {/* Shine Effect Animation Overlay */}
+                      <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine" />
+                    </button>
+                    <p className="text-center text-gold-matte/40 text-[10px] mt-3 font-medium">احصل على تجربة ضيافة ملكية متكاملة بضغطة زر</p>
+                  </motion.div>
+                )}
               </div>
             </motion.nav>
           </>

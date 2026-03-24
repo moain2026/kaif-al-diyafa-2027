@@ -21,6 +21,8 @@ module.exports = {
         cairo: ['Cairo', 'sans-serif'],
       },
       colors: {
+        'luxury-black': '#1A1A1A',
+        'gold-matte': '#C5A059',
         luxury: {
           black: '#1A1A1A',      // Charcoal Black
           deep: '#121212',       // Deep Charcoal
@@ -48,6 +50,14 @@ module.exports = {
       boxShadow: {
         'luxury-card': '0 10px 40px rgba(0, 0, 0, 0.5)',
         'gold-glow': '0 0 30px rgba(197, 160, 89, 0.3)',
+      },
+      animation: {
+        'shine': 'shine 2s infinite',
+      },
+      keyframes: {
+        shine: {
+          '100%': { left: '125%' },
+        },
       },
     },
   },
