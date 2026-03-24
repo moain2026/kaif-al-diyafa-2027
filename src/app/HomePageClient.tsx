@@ -190,7 +190,7 @@ export function HomePageClient() {
                 <Link href={`https://wa.me/${WA}`} target="_blank" className="gold-button w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest">
                   احجز الآن
                 </Link>
-                <Link href="#services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-matte/30 text-gold-matte hover:bg-gold-matte/10 transition-all">
+                <Link href="services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-matte/30 text-gold-matte hover:bg-gold-matte/10 transition-all">
                   اكتشف خدماتنا
                 </Link>
               </div>
