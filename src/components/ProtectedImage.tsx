@@ -13,9 +13,9 @@ interface ProtectedImageProps extends ImageProps {
 export default function ProtectedImage({
   src,
   alt,
-  watermarkSrc = "/images/watermarks/svg/logo-3.svg", // Default to the white/gold version
-  watermarkOpacity = 0.4,
-  watermarkSize = 20,
+  watermarkSrc = "/images/watermarks/svg/logo-gold.svg", // Using the new fully gold logo
+  watermarkOpacity = 0.6, // Increased default opacity for better visibility
+  watermarkSize = 22,
   className,
   ...props
 }: ProtectedImageProps) {
@@ -37,22 +37,30 @@ export default function ProtectedImage({
         {...props}
       />
 
-      {/* Watermark Overlay - Bottom Positioned */}
-      <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-6 overflow-hidden">
+      {/* Watermark Overlay - Bottom Positioned with Black Outline */}
+      <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-8 overflow-hidden">
         <motion.div
           initial={{ opacity: watermarkOpacity, y: 10 }}
           animate={{ 
-            opacity: isHovered ? watermarkOpacity * 1.5 : watermarkOpacity,
+            opacity: isHovered ? 1 : watermarkOpacity, // Full opacity on hover
             y: 0
           }}
           className="relative"
-          style={{ width: `${watermarkSize}%`, maxWidth: '120px', height: "auto" }}
+          style={{ width: `${watermarkSize}%`, maxWidth: '130px', height: "auto" }}
         >
           <img 
             src={watermarkSrc} 
             alt="watermark" 
-            className="w-full h-auto brightness-200 drop-shadow-lg"
-            style={{ filter: "drop-shadow(0 6px 16px rgba(0,0,0,0.8))" }}
+            className="w-full h-auto"
+            style={{ 
+              filter: `
+                drop-shadow(1px 1px 0px black) 
+                drop-shadow(-1px -1px 0px black) 
+                drop-shadow(1px -1px 0px black) 
+                drop-shadow(-1px 1px 0px black)
+                drop-shadow(0px 4px 10px rgba(0,0,0,0.7))
+              `
+            }}
           />
         </motion.div>
       </div>
