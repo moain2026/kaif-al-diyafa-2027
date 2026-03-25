@@ -9,7 +9,7 @@ import { DallahLogo } from "@/components/DallahLogo";
 const WA_NUMBER = "966508252134";
 
 const navLinks = [
-  { href: "/", label: "الالرئيسية", icon: "⌂" },
+  { href: "/", label: "الرئيسية", icon: "⌂" },
   { href: "/services", label: "خدماتنا", icon: "◈" },
   { href: "/offerings", label: "تقديماتنا", icon: "☕" },
   { href: "/portfolio", label: "معرض الأعمال", icon: "◻" },
