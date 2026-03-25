@@ -13,8 +13,8 @@ interface ProtectedImageProps extends ImageProps {
 export default function ProtectedImage({
   src,
   alt,
-  watermarkSrc = "/images/watermarks/svg/logo-gold-white.svg", // Logo with White Shield + Gold Content
-  watermarkOpacity = 0.7, // High visibility as requested
+  watermarkSrc = "/images/watermarks/svg/logo-1-gold.svg", // Using the gold version of logo-1
+  watermarkOpacity = 0.7,
   watermarkSize = 25,
   className,
   ...props
@@ -37,12 +37,12 @@ export default function ProtectedImage({
         {...props}
       />
 
-      {/* Watermark Overlay - Bottom Positioned with Black Outline */}
+      {/* Watermark Overlay - Bottom Positioned with Strong Black Outline */}
       <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-8 overflow-hidden">
         <motion.div
           initial={{ opacity: watermarkOpacity, y: 10 }}
           animate={{ 
-            opacity: isHovered ? 1 : watermarkOpacity,
+            opacity: isHovered ? 0.9 : watermarkOpacity, // 90% opacity on hover as requested
             y: 0
           }}
           className="relative"
