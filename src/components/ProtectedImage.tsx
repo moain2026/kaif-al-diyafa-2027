@@ -14,8 +14,8 @@ export default function ProtectedImage({
   src,
   alt,
   watermarkSrc = "/images/watermarks/svg/logo-3.svg", // Default to the white/gold version
-  watermarkOpacity = 0.15,
-  watermarkSize = 30,
+  watermarkOpacity = 0.2,
+  watermarkSize = 20,
   className,
   ...props
 }: ProtectedImageProps) {
@@ -37,33 +37,24 @@ export default function ProtectedImage({
         {...props}
       />
 
-      {/* Watermark Overlay */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        {/* Center Watermark */}
+      {/* Watermark Overlay - Bottom Positioned */}
+      <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-6 overflow-hidden">
         <motion.div
-          initial={{ opacity: watermarkOpacity }}
-          animate={{ opacity: isHovered ? watermarkOpacity * 1.5 : watermarkOpacity }}
+          initial={{ opacity: watermarkOpacity, y: 10 }}
+          animate={{ 
+            opacity: isHovered ? watermarkOpacity * 1.5 : watermarkOpacity,
+            y: 0
+          }}
           className="relative"
-          style={{ width: `${watermarkSize}%`, height: "auto" }}
+          style={{ width: `${watermarkSize}%`, maxWidth: '120px', height: "auto" }}
         >
           <img 
             src={watermarkSrc} 
             alt="watermark" 
-            className="w-full h-auto grayscale brightness-200"
-            style={{ filter: "drop-shadow(0 0 10px rgba(0,0,0,0.3))" }}
+            className="w-full h-auto brightness-200 drop-shadow-lg"
+            style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.5))" }}
           />
         </motion.div>
-
-        {/* Repeating Watermark Pattern (Subtle) */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: `url(${watermarkSrc})`,
-            backgroundSize: "150px 150px",
-            backgroundRepeat: "repeat",
-            filter: "brightness(0) invert(1)"
-          }}
-        />
       </div>
 
       {/* Protective Shield Overlay (Transparent layer to block direct interaction) */}

@@ -3,7 +3,7 @@
 import { useRef, lazy, Suspense } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import ProtectedImage from "@/components/ProtectedImage";
+import Image from "next/image";
 
 import { HERO_IMG } from "@/lib/images";
 
@@ -74,7 +74,7 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          {/* Video Background with Poster Protection */}
+          {/* Video Background */}
           <div className="absolute inset-0 w-full h-full">
             <video
               autoPlay
@@ -85,14 +85,13 @@ export function HomePageClient() {
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
             </video>
-            {/* Poster as ProtectedImage overlay when video hasn't loaded or as a fallback */}
-            <ProtectedImage 
+            {/* Poster without watermark protection as requested */}
+            <Image 
               src={HERO_IMG} 
               alt="Luxury Hospitality" 
               fill 
               className="absolute inset-0 z-10 opacity-20 pointer-events-none"
-              watermarkOpacity={0.05}
-              watermarkSize={50}
+              priority
             />
           </div>
         </motion.div>
