@@ -13,8 +13,8 @@ interface ProtectedImageProps extends ImageProps {
 export default function ProtectedImage({
   src,
   alt,
-  watermarkSrc = "/images/watermarks/svg/logo-1-gold.svg", // Using the gold version of logo-1
-  watermarkOpacity = 0.7,
+  watermarkSrc = "/images/watermarks/svg/logo-1.svg", // Using the original logo-1 with its natural colors
+  watermarkOpacity = 0.75, // High visibility as requested
   watermarkSize = 25,
   className,
   ...props
@@ -42,7 +42,7 @@ export default function ProtectedImage({
         <motion.div
           initial={{ opacity: watermarkOpacity, y: 10 }}
           animate={{ 
-            opacity: isHovered ? 0.9 : watermarkOpacity, // 90% opacity on hover as requested
+            opacity: isHovered ? 0.9 : watermarkOpacity, // 90% opacity on hover
             y: 0
           }}
           className="relative"
