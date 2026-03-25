@@ -14,7 +14,7 @@ export default function ProtectedImage({
   src,
   alt,
   watermarkSrc = "/images/watermarks/svg/logo-3.svg", // Default to the white/gold version
-  watermarkOpacity = 0.2,
+  watermarkOpacity = 0.4,
   watermarkSize = 20,
   className,
   ...props
@@ -52,7 +52,7 @@ export default function ProtectedImage({
             src={watermarkSrc} 
             alt="watermark" 
             className="w-full h-auto brightness-200 drop-shadow-lg"
-            style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.5))" }}
+            style={{ filter: "drop-shadow(0 6px 16px rgba(0,0,0,0.8))" }}
           />
         </motion.div>
       </div>
