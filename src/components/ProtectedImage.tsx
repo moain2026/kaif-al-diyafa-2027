@@ -13,9 +13,9 @@ interface ProtectedImageProps extends ImageProps {
 export default function ProtectedImage({
   src,
   alt,
-  watermarkSrc = "/images/watermarks/svg/logo-gold.svg", // Using the new fully gold logo
-  watermarkOpacity = 0.6, // Increased default opacity for better visibility
-  watermarkSize = 22,
+  watermarkSrc = "/images/watermarks/svg/logo-gold-white.svg", // Logo with White Shield + Gold Content
+  watermarkOpacity = 0.7, // High visibility as requested
+  watermarkSize = 25,
   className,
   ...props
 }: ProtectedImageProps) {
@@ -42,11 +42,11 @@ export default function ProtectedImage({
         <motion.div
           initial={{ opacity: watermarkOpacity, y: 10 }}
           animate={{ 
-            opacity: isHovered ? 1 : watermarkOpacity, // Full opacity on hover
+            opacity: isHovered ? 1 : watermarkOpacity,
             y: 0
           }}
           className="relative"
-          style={{ width: `${watermarkSize}%`, maxWidth: '130px', height: "auto" }}
+          style={{ width: `${watermarkSize}%`, maxWidth: '140px', height: "auto" }}
         >
           <img 
             src={watermarkSrc} 
@@ -54,11 +54,11 @@ export default function ProtectedImage({
             className="w-full h-auto"
             style={{ 
               filter: `
-                drop-shadow(1px 1px 0px black) 
-                drop-shadow(-1px -1px 0px black) 
-                drop-shadow(1px -1px 0px black) 
-                drop-shadow(-1px 1px 0px black)
-                drop-shadow(0px 4px 10px rgba(0,0,0,0.7))
+                drop-shadow(1.5px 1.5px 0px black) 
+                drop-shadow(-1.5px -1.5px 0px black) 
+                drop-shadow(1.5px -1.5px 0px black) 
+                drop-shadow(-1.5px 1.5px 0px black)
+                drop-shadow(0px 6px 15px rgba(0,0,0,0.8))
               `
             }}
           />
