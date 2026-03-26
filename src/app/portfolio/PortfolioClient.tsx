@@ -3,7 +3,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
-import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   EVENT_IMAGES,
@@ -148,12 +147,10 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <ProtectedImage
+            <ImageWithFallback
               src={item.image}
               alt={`صورة ${index + 1}`}
-              width={1200}
-              height={800}
-              className="max-w-full max-h-full"
+              className="max-w-full max-h-full w-auto h-auto object-contain"
               priority
             />
           </motion.div>
@@ -321,12 +318,10 @@ export default function PortfolioClient() {
               onClick={() => setSelectedIndex(idx)}
               className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-square"
             >
-              <ProtectedImage
+              <ImageWithFallback
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                width={600}
-                height={600}
-                className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
