@@ -18,7 +18,7 @@ interface ProtectedImageProps {
  * Architecture: Zero-Layout-Shift Protocol
  * - Uses natural aspect ratio (w-full h-auto)
  * - No fill, object-cover, or aspect-square properties
- * - Watermark: Logo-1 (SVG) at bottom-right
+ * - Watermark: Logo-1 (SVG) at center
  * - Protection: Prevents drag and right-click
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
@@ -49,14 +49,14 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
         draggable={false}
       />
 
-      {/* Watermark Layer */}
-      <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
-        <div className="relative w-24 md:w-32 opacity-70 drop-shadow-md">
+      {/* Watermark Layer - Centered and Enlarged */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
           <Image
             src="/images/watermarks/svg/logo-1.svg"
             alt="Watermark"
-            width={120}
-            height={120}
+            width={180}
+            height={180}
             className="w-full h-auto"
           />
         </div>
