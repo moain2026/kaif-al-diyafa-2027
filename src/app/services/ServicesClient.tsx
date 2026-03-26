@@ -1,207 +1,228 @@
-"use client";
-
-import { useState, useCallback, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll } from "motion/react";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import {
-  SERVICE_IMAGES,
-  OUTFIT_IMAGES,
-  SERVICES_MALE,
-  SERVICES_FEMALE_EXTENDED,
-  SERVICES_ARTISTIC,
-  SAFARJIA_IMAGES,
-  SAWAS_IMAGES,
-  FEMALE_SERVICES_IMAGES,
-} from "@/lib/images";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import Link from 'next/link';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import ProtectedImage from '@/components/ProtectedImage';
 
 const WA = "966508252134";
 
-interface OutfitItem { name: string; img: string; desc: string; }
-interface ServiceItem { id: string; title: string; subtitle: string; img: string; description: string; features: string[]; outfits: OutfitItem[]; }
-interface ServiceCategory { key: string; label: string; sublabel: string; icon: string; color: string; services: ServiceItem[]; }
+interface ServiceItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  img: string;
+  category: string;
+  details?: {
+    features: string[];
+    outfits?: { name: string; img: string }[];
+  };
+}
 
-const categories: ServiceCategory[] = [
+const categories = [
   {
-    key: "male", label: "الخدمات الرجالية", sublabel: "Male Hospitality", icon: "👨‍💼", color: "#B8860B",
-    services: [
-      { id: "hosts", title: "مضيفون", subtitle: "Male Hosts", img: SERVICE_IMAGES.maleWaiter, description: "مضيفون محترفون مدربون على أعلى معايير الضيافة الدولية والأصالة العربية.", features: ["زي رسمي أنيق", "خبرة +5 سنوات", "لغات متعددة", "بروتوكول VIP"], outfits: [{ name: "حزام", img: OUTFIT_IMAGES.hizam, desc: "زي رسمي بحزام أنيق" }, { name: "دقلة", img: OUTFIT_IMAGES.dagla, desc: "دقلة سعودية أصيلة" }, { name: "دقلة وجنبية", img: OUTFIT_IMAGES.daglaJanbiya, desc: "دقلة مع جنبية تراثية" }, { name: "سديرية", img: OUTFIT_IMAGES.sideriya, desc: "سديرية أنيقة" }, { name: "مكاوي", img: OUTFIT_IMAGES.makkawi, desc: "زي مكاوي تراثي" }] },
-      { 
-        id: "zamzam", 
-        title: "سقّاء زمزم", 
-        subtitle: "Zamzam Server", 
-        img: SERVICE_IMAGES.zamzam, 
-        description: "سقاء زمزم بأسلوب تراثي فاخر يعكس أصالة الضيافة السعودية، حيث نقدم مياه زمزم المباركة بأسلوب يجمع بين الهيبة والجمال.", 
-        features: ["زي تراثي أصيل", "إبريق نحاسي فاخر", "خدمة شخصية", "تقديم فوري"], 
-        outfits: SERVICES_MALE.souqiya.map((img, index) => ({
-          name: `سقيا زمزم - ${index + 1}`,
-          img: img,
-          desc: "تقديم مياه زمزم بأسلوب تراثي فاخر"
-        }))
-      },
-      { id: "safarjia", title: "السفرجية", subtitle: "Coffee Butler", img: SAFARJIA_IMAGES.mainBg, description: "سفرجية محترفة تقدم القهوة السعودية الأصيلة بأسلوب يليق بضيوفكم، مع تقديم فاخر وخدمة استثنائية.", features: ["قهوة سعودية طازجة", "دلال نحاسية أصيلة", "تمر وحلويات فاخرة", "خدمة مستمرة"], outfits: [{ name: "زي سفرجية - 1", img: SAFARJIA_IMAGES.safarji1, desc: "زي تقليدي فاخر مع دلال نحاسية" }, { name: "زي سفرجية - 2", img: SAFARJIA_IMAGES.safarji2, desc: "ثوب سعودي أصيل مع بشت فاخر" }, { name: "زي سفرجية - 3", img: SAFARJIA_IMAGES.safarji3, desc: "ملابس تراثية بتصميم راقٍ" }, { name: "زي سفرجية - 4", img: SAFARJIA_IMAGES.safarji4, desc: "زي فاخر للمناسبات الخاصة" }] },
-      { id: "sawas", title: "سوّاس", subtitle: "Traditional Hospitality", img: SAWAS_IMAGES.mainBg, description: "تجربة ضيافة تراثية حية، حيث يقدم السوّاس بزيّه الفلكلوري الأصيل وإبريقه النحاسي المشروبات بأسلوب استعراضي فاخر يعكس كرم الضيافة.", features: ["مشروبات متنوعة", "زي فلكلوري أصيل", "استعراض وتقديم حي", "إبريق نحاسي فاخر"], outfits: [{ name: "الزي التراثي الأصيل", img: SAWAS_IMAGES.style1, desc: "تقديم المشروبات بأسلوب فلكلوري يعكس الأصالة" }, { name: "ضيافة استعراضية", img: SAWAS_IMAGES.style2, desc: "أجواء تراثية فخمة تلفت أنظار ضيوفكم" }, { name: "تقديم فاخر", img: SAWAS_IMAGES.style3, desc: "تكامل بين جودة الضيافة والمظهر التراثي" }, { name: "أجواء متكاملة", img: SAWAS_IMAGES.style4, desc: "عناصر ديكورية تراثية تصاحب خدمة التقديم" }] },
-    ],
-  },
-  {
-    key: "female", label: "الخدمات النسائية", sublabel: "Female Hospitality", icon: "👩‍💼", color: "#D4A017",
+    key: 'hospitality',
+    label: 'خدمات الضيافة',
+    icon: '☕',
     services: [
       {
-        id: "hostesses",
-        title: "مضيفات",
-        subtitle: "Female Hosts",
-        img: FEMALE_SERVICES_IMAGES.mainBg,
-        description: "مضيفات محترفات بمظهر راقٍ وخدمة استثنائية لمناسباتكم النسائية، مع تدريب عالي المستوى.",
-        features: ["مظهر أنيق وراقٍ", "خدمة احترافية", "تنسيق المناسبات", "استقبال VIP"],
-        outfits: [
-          { name: "عباءة فاخرة - 1", img: FEMALE_SERVICES_IMAGES.female1, desc: "عباءة مصممة خصيصاً بأناقة فائقة" },
-          { name: "عباءة فاخرة - 2", img: FEMALE_SERVICES_IMAGES.female2, desc: "عباءة راقية بتصميم مميز" },
-          { name: "عباءة فاخرة - 3", img: FEMALE_SERVICES_IMAGES.female3, desc: "زي فاخر للمناسبات الراقية" },
-          { name: "عباءة فاخرة - 4", img: FEMALE_SERVICES_IMAGES.female4, desc: "تصميم حديث مع لمسة تراثية" },
-        ],
+        id: 'saudi-coffee',
+        title: 'صباح القهوة السعودية',
+        subtitle: 'تراث أصيل',
+        description: 'نقدم أجود أنواع القهوة السعودية المحضرة بعناية مع الهيل والزعفران، تقدم بأسلوب ملكي فاخر.',
+        img: '/images/services/coffee.jpg',
+        category: 'hospitality',
+        details: {
+          features: ['بن خولاني درجة أولى', 'تحضير طازج في الموقع', 'تقديم بالدلال المذهبة', 'تمر سكري فاخر'],
+        }
       },
       {
-        id: "safarjiat",
-        title: "سفرجيات",
-        subtitle: "Female Butlers",
-        img: FEMALE_SERVICES_IMAGES.female5,
-        description: "سفرجيات محترفات يقدمن القهوة السعودية والشاي والتمر بأسلوب راقٍ للمناسبات النسائية.",
-        features: ["قهوة سعودية طازجة", "دلال فاخرة", "تمر وحلويات", "خدمة متواصلة"],
-        outfits: [
-          { name: "زي سفرجية - 1", img: FEMALE_SERVICES_IMAGES.female5, desc: "زي أنيق خاص بالسفرجيات" },
-          { name: "زي سفرجية - 2", img: FEMALE_SERVICES_IMAGES.female6, desc: "زي رسمي فاخر" },
-          { name: "زي سفرجية - 3", img: FEMALE_SERVICES_IMAGES.female7, desc: "ملابس تراثية راقية" },
-          { name: "زي سفرجية - 4", img: FEMALE_SERVICES_IMAGES.female8, desc: "تصميم حديث فاخر" },
-        ],
+        id: 'tea-service',
+        title: 'ركن الشاي الفاخر',
+        subtitle: 'تنوع المذاق',
+        description: 'تشكيلة واسعة من أنواع الشاي العالمي والمحلي، يقدم في أواني كريستالية فاخرة.',
+        img: '/images/services/tea.jpg',
+        category: 'hospitality',
+        details: {
+          features: ['شاي ربيع إكسبريس', 'شاي أخضر بالياسمين', 'شاي مغربي أصيل', 'تقديم بالسماور المذهب'],
+        }
       },
       {
-        id: "cleaning-female",
-        title: "عاملات نظافة",
-        subtitle: "Cleaning Staff",
-        img: SERVICES_FEMALE_EXTENDED.cleaning[0],
-        description: "طاقم نظافة نسائي مدرب ومتخصص لضمان نظافة المكان طوال فترة المناسبة.",
-        features: ["تنظيف مستمر", "معدات حديثة", "فريق مدرب", "خدمة سريعة"],
-        outfits: [
-          { name: "زي عمل - 1", img: SERVICES_FEMALE_EXTENDED.cleaning[0], desc: "زي عمل أنيق ومريح" },
-          { name: "زي عمل - 2", img: SERVICES_FEMALE_EXTENDED.cleaning[1], desc: "زي عمل مميز" },
-        ],
+        id: 'zamzam',
+        title: 'سقاء زمزم',
+        subtitle: 'سقيا مباركة',
+        description: 'خدمة توزيع ماء زمزم المبارك في عبوات مبردة أو كاسات كريستالية بأسلوب راقٍ.',
+        img: '/images/services/zamzam.jpg',
+        category: 'hospitality',
+        details: {
+          features: ['ماء زمزم نقي', 'تبريد مثالي', 'كاسات مذهبة خاصة', 'زي موحد للسقاة'],
+        }
       },
-    ],
+      {
+        id: 'dates-sweets',
+        title: 'التمور والحلويات',
+        subtitle: 'حلاوة الضيافة',
+        description: 'أفخر أنواع التمور المحشوة والحلويات الشرقية والغربية المختارة بعناية.',
+        img: '/images/services/dates.jpg',
+        category: 'hospitality',
+        details: {
+          features: ['تمور محشوة بالمكسرات', 'حلويات شرقية فاخرة', 'شوكولاتة بلجيكية', 'تنسيق صواني ملكي'],
+        }
+      }
+    ]
   },
   {
-    key: "artistic", label: "الخدمات الفنية", sublabel: "Artistic Services", icon: "🎨", color: "#F0C040",
+    key: 'staff',
+    label: 'طاقم الضيافة',
+    icon: '🤵',
     services: [
-      { id: "calligrapher", title: "خطاط", subtitle: "Arabic Calligrapher", img: SERVICE_IMAGES.calligrapher, description: "خطاط محترف يضيف لمسة فنية راقية لمناسباتكم.", features: ["خط عربي أصيل", "كتابة أسماء الضيوف", "لوحات فنية حية", "هدايا مخصصة"], outfits: [] },
-      { id: "artist", title: "رسّام بورتريه", subtitle: "Portrait Artist", img: SERVICE_IMAGES.artist, description: "رسام بورتريه محترف يرسم لوحات حية لضيوفكم.", features: ["رسم حي سريع", "أنماط متنوعة", "هدايا تذكارية", "تجربة تفاعلية"], outfits: [] },
-      { id: "folkband", title: "فرقة شعبية", subtitle: "Folk Band", img: SERVICE_IMAGES.folkband, description: "فرقة شعبية تضيف أجواء حماسية أصيلة لمناسباتكم.", features: ["عرض حي", "أغاني تراثية", "أجواء حماسية", "فقرات متنوعة"], outfits: [] },
-      { id: "heritage-tent", title: "خيمة تراثية", subtitle: "Heritage Tent", img: SERVICE_IMAGES.heritageTent, description: "خيمة تراثية سعودية مجهزة بالكامل لإضافة لمسة أصالة.", features: ["تجهيز كامل", "ديكور تراثي", "إضاءة مميزة", "أحجام متعددة"], outfits: [] },
-      { id: "counter", title: "كاونتر ضيافة", subtitle: "Hospitality Counter", img: SERVICE_IMAGES.counter, description: "كاونتر ضيافة فاخر مجهز بالكامل.", features: ["تصميم أنيق", "تجهيزات كاملة", "أحجام متعددة", "توصيل وتركيب"], outfits: [] },
-      { id: "photo-booth", title: "ركن التصوير", subtitle: "Photo Booth", img: SERVICE_IMAGES.photoBooth, description: "ركن تصوير احترافي لتوثيق لحظات مناسباتكم.", features: ["خلفيات متنوعة", "طباعة فورية", "إكسسوارات ممتعة", "صور رقمية"], outfits: [] },
-      { id: "buffet", title: "بوفيه متكامل", subtitle: "Full Buffet", img: SERVICE_IMAGES.buffet, description: "تجهيز بوفيه متكامل بأطباق فاخرة ومتنوعة.", features: ["أطباق عالمية", "تقديم فاخر", "معدات حديثة", "فريق متخصص"], outfits: [] },
-      { id: "mobile-table", title: "طاولة متنقلة", subtitle: "Mobile Table", img: SERVICE_IMAGES.mobileTable, description: "طاولة متنقلة فاخرة لتقديم المشروبات والحلويات.", features: ["تصميم أنيق", "حركة سهلة", "أحجام متعددة", "تخصيص كامل"], outfits: [] },
-    ],
+      {
+        id: 'waiters',
+        title: 'مضيفون محترفون',
+        subtitle: 'لباقة وإتقان',
+        description: 'طاقم من المضيفين المدربين على أعلى معايير الضيافة العالمية لخدمة ضيوفكم.',
+        img: '/images/services/waiters.jpg',
+        category: 'staff',
+        details: {
+          features: ['تدريب احترافي', 'لباقة في التعامل', 'إدارة تدفق الضيوف', 'زي رسمي فاخر'],
+          outfits: [
+            { name: 'الزي الرسمي', img: '/images/outfits/formal.jpg' },
+            { name: 'الزي التراثي', img: '/images/outfits/traditional.jpg' }
+          ]
+        }
+      },
+      {
+        id: 'waitresses',
+        title: 'مضيفات محترفات',
+        subtitle: 'رقي وخصوصية',
+        description: 'مضيفات متخصصات للمناسبات النسائية، يتميزن بالرقي والخصوصية التامة.',
+        img: '/images/services/waitresses.jpg',
+        category: 'staff',
+        details: {
+          features: ['خصوصية تامة', 'إتقان فنون التقديم', 'تنظيم صالات النساء', 'أزياء موحدة أنيقة'],
+        }
+      },
+      {
+        id: 'supervisors',
+        title: 'مشرفو فعاليات',
+        subtitle: 'دقة التنظيم',
+        description: 'إشراف كامل على سير خدمة الضيافة لضمان أعلى مستويات الجودة والرضا.',
+        img: '/images/services/supervisors.jpg',
+        category: 'staff',
+        details: {
+          features: ['تنسيق الطواقم', 'مراقبة الجودة', 'حل المشكلات الفوري', 'تقارير الأداء'],
+        }
+      }
+    ]
   },
+  {
+    key: 'equipment',
+    label: 'تأجير المعدات',
+    icon: '🍽️',
+    services: [
+      {
+        id: 'luxury-sets',
+        title: 'أطقم ضيافة فاخرة',
+        subtitle: 'فخامة المائدة',
+        description: 'تأجير أطقم الدلال والبيالات والفناجين المذهبة والفضية ذات التصاميم الفريدة.',
+        img: '/images/services/equipment.jpg',
+        category: 'equipment',
+        details: {
+          features: ['دلال مذهبة وفضية', 'فناجين كريستال', 'صواني تقديم ملكية', 'مباخر فاخرة'],
+        }
+      },
+      {
+        id: 'furniture',
+        title: 'أثاث المناسبات',
+        subtitle: 'راحة وأناقة',
+        description: 'توفير الكراسي والطاولات الفاخرة التي تتناسب مع طابع مناسبتكم الراقي.',
+        img: '/images/services/furniture.jpg',
+        category: 'equipment',
+        details: {
+          features: ['كراسي ملكية', 'طاولات استقبال', 'كنب فاخر', 'سجاد أحمر'],
+        }
+      }
+    ]
+  }
 ];
 
 function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () => void }) {
   const [selectedOutfit, setSelectedOutfit] = useState(0);
 
-  const handleDragEnd = (event: any, info: any) => {
-    if (service.outfits.length <= 1) return;
-    const swipeThreshold = 50;
-    if (info.offset.x > swipeThreshold) {
-      // Swipe Right -> Previous
-      setSelectedOutfit((prev) => (prev === 0 ? service.outfits.length - 1 : prev - 1));
-    } else if (info.offset.x < -swipeThreshold) {
-      // Swipe Left -> Next
-      setSelectedOutfit((prev) => (prev === service.outfits.length - 1 ? 0 : prev + 1));
-    }
-  };
-
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-1 sm:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`تفاصيل خدمة ${service.title}`}>
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
-      <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative w-[98%] sm:max-w-4xl max-h-[90vh] overflow-hidden rounded-3xl flex flex-col md:flex-row" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
-        <button onClick={onClose} className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full flex items-center justify-center text-[#F5F5DC]/60 hover:text-[#F5F5DC] transition-colors" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)" }}>✕</button>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        className="bg-[#1a1a1a] w-full max-w-4xl rounded-3xl overflow-hidden relative border border-[#B8860B]/20 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-[#B8860B] transition-colors">✕</button>
         
-        {/* Image Section with Gallery Swipe */}
-        <div className="relative w-full md:w-1/2 aspect-[3/4] md:aspect-auto overflow-hidden touch-none flex-shrink-0">
-          <div className="flex w-full h-full transition-transform duration-500 ease-out" style={{ transform: `translateX(-${selectedOutfit * 100}%)`, direction: 'ltr' }}>
-            {service.outfits.length > 0 ? (
-              service.outfits.map((o, i) => (
-                <div key={i} className="w-full h-full flex-shrink-0">
-                  <ImageWithFallback src={o.img} alt={o.name} className="w-full h-full object-cover" />
-                </div>
-              ))
-            ) : (
-              <div className="w-full h-full flex-shrink-0">
-                <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover" />
-              </div>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative h-[300px] md:h-full">
+            <ProtectedImage src={service.img} alt={service.title} width={800} height={1000} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent md:hidden" />
           </div>
           
-          {/* Swipe Overlay */}
-          <motion.div 
-            drag="x" 
-            dragConstraints={{ left: 0, right: 0 }} 
-            onDragEnd={handleDragEnd}
-            className="absolute inset-0 z-10 cursor-grab active:cursor-grabbing"
-          />
-
-          <div className="absolute inset-0 img-overlay md:hidden pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:hidden">
-            <p className="text-[#B8860B] text-xs mb-1" style={{ letterSpacing: "0.15em" }}>{service.subtitle}</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "1.8rem", fontWeight: 800}}>{service.title}</h2>
-            {service.outfits.length > 0 && (
-              <p className="text-[#B8860B] text-sm mt-1 font-medium">{service.outfits[selectedOutfit].name}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Content Section - Responsive Layout */}
-        <div className="w-full md:w-1/2 p-3 sm:p-8 overflow-y-auto flex flex-col bg-[#0A0802]/40 backdrop-blur-sm">
-          <div className="hidden md:block mb-6">
-            <p className="text-[#B8860B] text-xs mb-1" style={{ letterSpacing: "0.15em" }}>{service.subtitle}</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "2.2rem", fontWeight: 800, lineHeight: 1.2 }}>{service.title}</h2>
-            {service.outfits.length > 0 && (
-              <p className="text-[#B8860B] text-sm mt-2 font-medium">{service.outfits[selectedOutfit].name}</p>
-            )}
-          </div>
-
-          <p className="text-[#F5F5DC]/65 text-[11px] md:text-base leading-tight md:leading-relaxed mb-4 md:mb-6">{service.description}</p>
-          
-          <div className="grid grid-cols-2 gap-1.5 md:gap-4 mb-4 md:mb-8">
-            {service.features.map((f, i) => (
-              <div key={i} className="flex items-center gap-1.5 md:gap-3">
-                <div className="w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(184,134,11,0.15)", border: "1px solid rgba(184,134,11,0.2)" }}>
-                  <svg viewBox="0 0 16 16" fill="#B8860B" className="w-2.5 h-2.5 md:w-3 md:h-3"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" /></svg>
-                </div>
-                <span className="text-[#F5F5DC]/60 md:text-[#F5F5DC]/70 text-[10px] md:text-sm">{f}</span>
-              </div>
-            ))}
-          </div>
-
-          {service.outfits.length > 0 && (
-            <div className="mt-auto">
-              <h3 className="text-[#B8860B] text-[10px] md:text-xs mb-2 md:mb-3 uppercase tracking-wider font-bold">الأزياء المتاحة</h3>
-              <div className="flex gap-1.5 md:gap-2 overflow-x-auto scroll-hide pb-1 md:pb-2">
-                {service.outfits.map((o, i) => (
-                  <button key={i} onClick={() => setSelectedOutfit(i)} className="flex-shrink-0 w-16 md:w-20 rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 group" style={{ border: selectedOutfit === i ? "1.5px solid #B8860B" : "1.5px solid rgba(184,134,11,0.1)", opacity: selectedOutfit === i ? 1 : 0.5 }}>
-                    <ImageWithFallback src={o.img} alt={o.name} className="w-full h-12 md:h-16 object-cover group-hover:scale-110 transition-transform duration-500" />
-                  </button>
+          <div className="p-8 md:p-12 flex flex-col">
+            <span className="text-[#B8860B] text-xs font-bold tracking-widest mb-2 uppercase">{service.subtitle}</span>
+            <h2 className="text-[#F5F5DC] text-3xl md:text-4xl font-tajawal font-black mb-6 leading-tight">{service.title}</h2>
+            <p className="text-[#F5F5DC]/60 text-sm leading-relaxed mb-8">{service.description}</p>
+            
+            <div className="space-y-4 mb-10">
+              <h4 className="text-[#F5F5DC] text-sm font-bold flex items-center gap-2">
+                <span className="w-5 h-px bg-[#B8860B]" /> مميزات الخدمة
+              </h4>
+              <div className="grid grid-cols-1 gap-3">
+                {service.details?.features.map((f, i) => (
+                  <div key={i} className="flex items-center gap-3 text-[#F5F5DC]/80 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" /> {f}
+                  </div>
                 ))}
               </div>
             </div>
-          )}
 
-
+            <div className="mt-auto pt-8 border-t border-white/5 flex flex-col sm:flex-row gap-4">
+              <a 
+                href={`https://wa.me/${WA}?text=${encodeURIComponent(`مرحباً، أود الاستفسار عن خدمة: ${service.title}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 px-8 py-4 rounded-full bg-[#B8860B] text-black text-center font-bold text-sm hover:bg-[#D4A017] transition-colors shadow-lg shadow-[#B8860B]/20"
+              >
+                طلب الخدمة الآن
+              </a>
+            </div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-// Royal Trio Sticky Navigation Component
+function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClick: () => void; index: number }) {
+  return (
+    <div onClick={onClick} className="relative rounded-2xl overflow-hidden group cursor-pointer h-full" style={{ minHeight: "100%" }}>
+      <ProtectedImage src={service.img} alt={service.title} width={600} height={800} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 img-overlay" />
+      <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[#B8860B]" style={{ fontSize: "0.65rem", background: "rgba(10,8,2,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(184,134,11,0.3)", letterSpacing: "0.05em" }}>{service.subtitle}</div>
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="text-[#F5F5DC]" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{service.title}</h3>
+        <p className="text-[#F5F5DC]/50 text-xs mt-1 line-clamp-2">{service.description}</p>
+      </div>
+    </div>
+  );
+}
+
 function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChange: (index: number) => void }) {
   const [isSticky, setIsSticky] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -209,7 +230,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.on("change", (latest) => {
       if (containerRef.current) {
         const containerTop = containerRef.current.getBoundingClientRect().top;
         setIsSticky(containerTop <= 0);
@@ -242,12 +263,11 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {/* Background with Glassmorphism */}
                 <motion.div
                   className="absolute inset-0 rounded-3xl transition-all duration-300"
                   animate={{
                     background: activeTab === idx
-                      ? 'linear-gradient(135deg, rgba(184, 134, 11, 0.25), rgba(212, 160, 23, 0.15))'
+                      ? 'linear-gradient(135deg, rgba(184,134,11,0.25), rgba(212, 160, 23, 0.15))'
                       : 'rgba(0, 0, 0, 0.25)',
                     border: activeTab === idx
                       ? '2px solid rgba(184, 134, 11, 0.7)'
@@ -257,10 +277,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                       : 'none',
                   }}
                 />
-
-                {/* Content Container */}
                 <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
-                  {/* Icon with Animation */}
                   <motion.span 
                     className="text-lg sm:text-xl mb-1.5"
                     animate={{ 
@@ -270,7 +287,6 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                   >
                     {cat.icon}
                   </motion.span>
-                  {/* Label Only - Text-based Design with Text Shadow */}
                   <motion.p
                     className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
                     style={{
@@ -287,8 +303,6 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                     {cat.label}
                   </motion.p>
                 </div>
-
-                {/* Active Indicator Line */}
                 {activeTab === idx && (
                   <motion.div
                     layoutId="activeIndicator"
@@ -306,26 +320,10 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
   );
 }
 
-function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClick: () => void; index: number }) {
-  return (
-    <div onClick={onClick} className="relative rounded-2xl overflow-hidden group cursor-pointer h-full" style={{ minHeight: "100%" }}>
-      <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-      <div className="absolute inset-0 img-overlay" />
-      <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[#B8860B]" style={{ fontSize: "0.65rem", background: "rgba(10,8,2,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(184,134,11,0.3)", letterSpacing: "0.05em" }}>{service.subtitle}</div>
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <h3 className="text-[#F5F5DC]" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{service.title}</h3>
-        <p className="text-[#F5F5DC]/50 text-xs mt-1 line-clamp-2">{service.description}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function ServicesClient() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedService(null);
@@ -343,7 +341,7 @@ export default function ServicesClient() {
   const currentCategory = categories[activeTab];
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#0f0f0f] pb-32">
       <Breadcrumbs />
       {/* HERO */}
       <section className="relative pt-4 pb-6 px-4 overflow-hidden">
@@ -354,12 +352,10 @@ export default function ServicesClient() {
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">اكتشف مجموعة خدماتنا المتكاملة المصممة لتلبية جميع احتياجات الضيافة في مناسباتكم</motion.p>
         </div>
       </section>
-
       {/* ROYAL TRIO STICKY NAV */}
       <RoyalTrioNav activeTab={activeTab} onTabChange={setActiveTab} />
-
       {/* SERVICES GRID */}
-      <section className="px-4 pb-20">
+      <section className="px-4 pb-20 pt-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[300px] sm:auto-rows-[350px] lg:auto-rows-[400px]">
             {currentCategory.services.map((service, i) => (
@@ -374,7 +370,6 @@ export default function ServicesClient() {
               </motion.div>
             ))}
           </div>
-
           {/* CTA */}
           <div className="mt-16 text-center p-8 sm:p-12 rounded-3xl relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(25,20,8,0.9), rgba(15,12,5,0.95))", border: "1px solid rgba(184,134,11,0.2)" }}>
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(184,134,11,0.06) 0%, transparent 70%)" }} />
@@ -389,7 +384,6 @@ export default function ServicesClient() {
           </div>
         </div>
       </section>
-
       {/* MODAL */}
       <AnimatePresence>
         {selectedService && <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />}
