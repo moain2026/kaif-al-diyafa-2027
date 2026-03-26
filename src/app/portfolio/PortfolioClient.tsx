@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
+import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   EVENT_IMAGES,
@@ -147,10 +148,12 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <ImageWithFallback
+            <ProtectedImage
               src={item.image}
               alt={`صورة ${index + 1}`}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
+              width={1200}
+              height={800}
+              className="max-w-full max-h-full"
               priority
             />
           </motion.div>
