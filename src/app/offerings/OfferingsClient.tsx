@@ -78,7 +78,7 @@ const categories: CategoryData[] = [
       { name: "كنافة نابلسية",          description: "كنافة بالجبن والقطر",                  img: SWEETS_IMAGES.kunafa },
       { name: "شوكولاتة باتشي",         description: "باتشي الفاخرة للمناسبات",              img: SWEETS_IMAGES.patchiChocolate },
       { name: "شوكولاتة بستاني",        description: "بستاني الفاخرة بنكهات مميزة",           img: SWEETS_IMAGES.bostaniChocolate },
-      { name: "كرواسون شوكولاتة",       description: "كرواسون فرنسي محشو",                   img: SWEETS_IMAGES.chocolateCroissant },
+      { name: "كرواءسون شوكولاتة",       description: "كرواسون فرنسي محشو",                   img: SWEETS_IMAGES.chocolateCroissant },
       { name: "بان كيك",                description: "بان كيك طازج بالتوبينج",               img: SWEETS_IMAGES.pancake },
     ],
   },
@@ -195,16 +195,18 @@ function Lightbox({
           onClick={(e) => e.stopPropagation()}
         >
           <div className="relative w-full h-screen max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex items-center justify-center">
-            <ImageWithFallback
-              src={item.img}
-              alt={item.name}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-              priority
-            />
-            {/* Watermark - Matched with Portfolio (ProtectedImage) */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-              <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
+            <div className="relative w-full h-full flex items-center justify-center">
+              <ImageWithFallback
+                src={item.img}
+                alt={item.name}
+                className="max-w-full max-h-full w-auto h-auto object-contain"
+                priority
+              />
+              {/* Watermark - Placed inside the image container */}
+              <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+                  <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
+                </div>
               </div>
             </div>
           </div>
@@ -265,7 +267,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                   className="absolute inset-0 rounded-3xl transition-all duration-300"
                   animate={{
                     background: activeTab === category.id
-                      ? 'linear-gradient(135deg, rgba(184, 134, 11, 0.25), rgba(212, 160, 23, 0.15))'
+                      ? 'linear-gradient(135deg, rgba(184,134,11,0.25), rgba(212, 160, 23, 0.15))'
                       : 'rgba(0, 0, 0, 0.25)',
                     border: activeTab === category.id
                       ? '2px solid rgba(184, 134, 11, 0.7)'
@@ -366,16 +368,18 @@ export default function OfferingsClient() {
               onClick={() => setLightbox({ items: currentCategory.items, index: idx })}
               className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/5]"
             >
-              <ImageWithFallback
-                src={item.img}
-                alt={item.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-              />
-              {/* Watermark - Matched with Portfolio (ProtectedImage) */}
-              <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                  <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
+              <div className="relative w-full h-full">
+                <ImageWithFallback
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                {/* Watermark - Placed inside the image container */}
+                <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                  <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+                    <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
+                  </div>
                 </div>
               </div>
               <div className="absolute inset-0 img-overlay" />
