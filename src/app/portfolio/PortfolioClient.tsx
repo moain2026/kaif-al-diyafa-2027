@@ -151,7 +151,9 @@ function Lightbox({
             <ProtectedImage
               src={item.image}
               alt={`صورة ${index + 1}`}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
+              width={1200}
+              height={800}
+              className="max-w-full max-h-full"
               priority
             />
           </motion.div>
@@ -322,7 +324,9 @@ export default function PortfolioClient() {
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={600}
+                className="w-full h-full transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
