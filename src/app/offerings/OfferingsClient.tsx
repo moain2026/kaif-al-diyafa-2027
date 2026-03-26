@@ -1,16 +1,9 @@
-"use client";
-
-import { useState, useCallback, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import {
-  HOT_DRINKS_IMAGES,
-  COLD_DRINKS_IMAGES,
-  DATES_IMAGES,
-  SWEETS_IMAGES,
-  PASTRY_IMAGES,
-} from "@/lib/images";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import Link from 'next/link';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import ProtectedImage from '@/components/ProtectedImage';
 
 const WA = "966508252134";
 
@@ -20,208 +13,130 @@ interface OfferingItem {
   img: string;
 }
 
-interface CategoryData {
-  id: string;
+interface Category {
+  key: string;
   label: string;
   icon: string;
   description: string;
   items: OfferingItem[];
 }
 
-const categories: CategoryData[] = [
+const categories: Category[] = [
   {
-    id: "hot", label: "المشروبات الحارة", icon: "☕", description: "قهوة سعودية أصيلة وشاي فاخر ومشروبات دافئة",
+    key: 'hot-drinks',
+    label: 'مشروبات حارة',
+    icon: '☕',
+    description: 'تشكيلة فاخرة من القهوة السعودية الأصيلة وأنواع الشاي العالمي والمحلي.',
     items: [
-      { name: "القهوة التركية",      description: "قهوة تركية أصيلة",                 img: HOT_DRINKS_IMAGES.turkishCoffee },
-      { name: "الشاي الأحمر",        description: "شاي أحمر معطر بالنعناع",            img: HOT_DRINKS_IMAGES.redTea },
-      { name: "الشاي الأخضر",        description: "شاي أخضر طبيعي منعش",               img: HOT_DRINKS_IMAGES.greenTea },
-      { name: "شاي الكرك",           description: "شاي كرك بنكهة فريدة",               img: HOT_DRINKS_IMAGES.karakTea },
-      { name: "السحلب",              description: "مشروب الدفء الشتوي",               img: HOT_DRINKS_IMAGES.sahlab },
-      { name: "زنجبيل بالأناناس",    description: "مزيج فريد منعش",                    img: HOT_DRINKS_IMAGES.gingerPineapple },
-      { name: "الكابتشينو",          description: "كابتشينو إيطالي الأصل",             img: HOT_DRINKS_IMAGES.cappuccino },
-    ],
+      { name: 'قهوة سعودية ملكية', description: 'بن خولاني فاخر مع الهيل والزعفران', img: '/images/offerings/coffee-1.jpg' },
+      { name: 'شاي مغربي أصيل', description: 'شاي أخضر بالنعناع المغربي الطازج', img: '/images/offerings/tea-1.jpg' },
+      { name: 'شاي كرك', description: 'شاي بالحليب والهيل والزعفران', img: '/images/offerings/karak.jpg' },
+      { name: 'قهوة تركية', description: 'قهوة تركية محضرة على الرمل', img: '/images/offerings/turkish.jpg' },
+    ]
   },
   {
-    id: "cold", label: "المشروبات الباردة", icon: "🧊", description: "مشروبات منعشة وباردة تليق بالمناسبات",
+    key: 'cold-drinks',
+    label: 'مشروبات باردة',
+    icon: '🍹',
+    description: 'عصائر طازجة ومشروبات باردة منعشة تقدم بأسلوب عصري.',
     items: [
-      { name: "عصائر طبيعية",       description: "عصائر فواكه طازجة",                 img: COLD_DRINKS_IMAGES.freshJuice },
-      { name: "موهيتو",             description: "موهيتو منعش بنكهات متعددة",         img: COLD_DRINKS_IMAGES.mojito },
-      { name: "عرق سوس",            description: "مشروب عرق السوس الأصيل",            img: COLD_DRINKS_IMAGES.arakSous },
-      { name: "كركديه",             description: "شراب الكركديه الأحمر المنعش",        img: COLD_DRINKS_IMAGES.karkade },
-      { name: "تمر هندي",           description: "شراب التمر الهندي الحامض",          img: COLD_DRINKS_IMAGES.tamarind },
-      { name: "سوبيا",              description: "سوبيا تراثية سعودية",               img: COLD_DRINKS_IMAGES.sobia },
-      { name: "سموذي فواكه",        description: "سموذي طازج من الفواكه",             img: COLD_DRINKS_IMAGES.smoothie },
-      { name: "آيس لاتيه",          description: "لاتيه مثلج بنكهات مختلفة",          img: COLD_DRINKS_IMAGES.icedLatte },
-    ],
+      { name: 'عصير برتقال طازج', description: 'عصير طبيعي 100% بدون إضافات', img: '/images/offerings/orange.jpg' },
+      { name: 'موهيتو منعش', description: 'تشكيلة من نكهات الموهيتو بالنعناع والليمون', img: '/images/offerings/mojito.jpg' },
+      { name: 'قهوة باردة', description: 'سبانش لاتيه وآيس أمريكانو فاخر', img: '/images/offerings/cold-brew.jpg' },
+      { name: 'عصائر استوائية', description: 'مزيج من الفواكه الاستوائية الطازجة', img: '/images/offerings/tropical.jpg' },
+    ]
   },
   {
-    id: "dates", label: "التمور الفاخرة", icon: "🌴", description: "أجود أنواع التمور السعودية الفاخرة",
+    key: 'sweets',
+    label: 'حلويات وتمور',
+    icon: '🍬',
+    description: 'أفخر أنواع التمور المحشوة والحلويات الشرقية والغربية.',
     items: [
-      { name: "تمر سكري محشي",             description: "محشو بالمكسرات الملكية",              img: DATES_IMAGES.sukariStuffed },
-      { name: "تمر خلاص محشي",             description: "محشي بالقشدة واللوز",               img: DATES_IMAGES.khalasStuffed },
-      { name: "تمر خلاص بالسمسم",          description: "بالسمسم والطحينية الطبيعية",         img: DATES_IMAGES.khalasSesame },
-      { name: "تمر محشي بالمكسرات",         description: "تشكيلة تمور محشية فاخرة",            img: DATES_IMAGES.stuffedDates },
-      { name: "تمر محشي مشكّل",            description: "بمزيج الشوكولاتة والمكسرات",          img: DATES_IMAGES.stuffedDates2 },
-      { name: "تمر محشي فاخر",             description: "تشكيلة فاخرة للمناسبات",             img: DATES_IMAGES.stuffedDates3 },
-      { name: "تمر محشي ملكي",             description: "ملكية بالفستق والكاجو",              img: DATES_IMAGES.stuffedDates5 },
-      { name: "نخلة تمر سكري",             description: "طبيعي معروض بأناقة",                img: DATES_IMAGES.palmSukari },
-      { name: "نخلة تمر سكري محشي",        description: "نخلة تقديم فاخرة",                  img: DATES_IMAGES.palmSukariStuffed },
-      { name: "نخلة تمر خلاص محشي",        description: "نخلة تقديم أنيقة",                  img: DATES_IMAGES.palmKhalasStuffed },
-      { name: "تمور مشكّلة",               description: "أجود التمور السعودية",               img: DATES_IMAGES.datesAssorted },
-    ],
-  },
-  {
-    id: "sweets", label: "الحلويات", icon: "🍰", description: "حلويات شرقية وغربية فاخرة",
-    items: [
-      { name: "بقلاوة فاخرة",           description: "بقلاوة تركية بالفستق",                  img: SWEETS_IMAGES.baklava },
-      { name: "كنافة نابلسية",          description: "كنافة بالجبن والقطر",                  img: SWEETS_IMAGES.kunafa },
-      { name: "شوكولاتة باتشي",         description: "باتشي الفاخرة للمناسبات",              img: SWEETS_IMAGES.patchiChocolate },
-      { name: "شوكولاتة بستاني",        description: "بستاني الفاخرة بنكهات مميزة",           img: SWEETS_IMAGES.bostaniChocolate },
-      { name: "كرواسون شوكولاتة",       description: "كرواسون فرنسي محشو",                   img: SWEETS_IMAGES.chocolateCroissant },
-      { name: "بان كيك",                description: "بان كيك طازج بالتوبينج",               img: SWEETS_IMAGES.pancake },
-    ],
-  },
-  {
-    id: "pastry", label: "المعجنات", icon: "🥐", description: "معجنات طازجة محضرة بعناية",
-    items: [
-      { name: "سمبوسة",               description: "ذهبية مقرمشة بحشوات متنوعة",           img: PASTRY_IMAGES.samosa },
-      { name: "فطائر بالفواكه",        description: "محشوة بالفواكه الموسمية",               img: PASTRY_IMAGES.fruitPie },
-      { name: "معجنات عربية",          description: "تشكيلة معجنات أصيلة",                  img: PASTRY_IMAGES.arabicPastry },
-      { name: "معجنات متنوعة",         description: "باقة متنوعة للمناسبات",               img: PASTRY_IMAGES.assortedPastry },
-      { name: "مقبلات فاخرة",          description: "مقبلات صغيرة فاخرة",                  img: PASTRY_IMAGES.appetizers },
-    ],
-  },
+      { name: 'تمور محشوة فاخرة', description: 'تمر سكري وخلاص محشو بالمكسرات', img: '/images/offerings/dates-1.jpg' },
+      { name: 'حلويات شرقية', description: 'بقلاوة وكنافة بلمسة عصرية', img: '/images/offerings/oriental.jpg' },
+      { name: 'ميني كيك', description: 'تشكيلة من الكيك الفرنسي الصغير', img: '/images/offerings/mini-cake.jpg' },
+      { name: 'شوكولاتة بلجيكية', description: 'أفخر أنواع الشوكولاتة العالمية', img: '/images/offerings/chocolate.jpg' },
+    ]
+  }
 ];
 
-// ─────────────────────────────────────────────
-// Lightbox
-// ─────────────────────────────────────────────
-function Lightbox({
-  items,
-  initialIndex,
-  onClose,
-}: {
-  items: OfferingItem[];
-  initialIndex: number;
-  onClose: () => void;
-}) {
-  const [index, setIndex] = useState(initialIndex);
-  const [direction, setDirection] = useState(0);
-  const dragX = useMotionValue(0);
-  const bgOpacity = useTransform(dragX, [-200, 0, 200], [0.5, 1, 0.5]);
-  const item = items[index];
+function Lightbox({ items, initialIndex, onClose }: { items: OfferingItem[]; initialIndex: number; onClose: () => void }) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  const goTo = useCallback(
-    (next: number) => {
-      if (next < 0 || next >= items.length) return;
-      setDirection(next > index ? 1 : -1);
-      setIndex(next);
-    },
-    [index, items.length]
-  );
-
-  const handleDragEnd = useCallback(
-    (_: unknown, info: { velocity: { x: number }; offset: { x: number } }) => {
-      const { velocity, offset } = info;
-      if (velocity.x < -300 || offset.x < -80) {
-        goTo(index + 1);
-      } else if (velocity.x > 300 || offset.x > 80) {
-        goTo(index - 1);
-      } else {
-        animate(dragX, 0, { type: "spring", stiffness: 400, damping: 40 });
-      }
-    },
-    [goTo, index, dragX]
-  );
+  const next = () => setCurrentIndex((prev) => (prev + 1) % items.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape")      onClose();
-      if (e.key === "ArrowRight")  goTo(index - 1);
-      if (e.key === "ArrowLeft")   goTo(index + 1);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'Escape') onClose();
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [onClose, goTo, index]);
-
-  const variants = {
-    enter:  (d: number) => ({ x: d > 0 ?  300 : -300, opacity: 0, scale: 0.92 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit:   (d: number) => ({ x: d > 0 ? -300 :  300, opacity: 0, scale: 0.92 }),
-  };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[90] flex items-center justify-center"
+      className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
       onClick={onClose}
     >
-      <motion.div
-        className="absolute inset-0"
-        style={{ background: "rgba(5,4,2,0.95)", backdropFilter: "blur(24px)", opacity: bgOpacity }}
-      />
-
-      <button
-        onClick={onClose}
-        className="absolute top-5 left-5 z-20 w-11 h-11 rounded-full flex items-center justify-center text-[#F5F5DC]/70 hover:text-[#F5F5DC] transition-colors"
-        style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(184,134,11,0.2)" }}
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+      <button onClick={onClose} className="absolute top-6 right-6 z-50 text-white/50 hover:text-white transition-colors">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-8 h-8">
+          <path d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
-      <div className="absolute top-5 right-5 z-20 px-3 py-1.5 rounded-full text-xs text-[#B8860B]"
-        style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(184,134,11,0.2)" }}>
-        {index + 1} / {items.length}
-      </div>
-
-      <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.div
-          key={index}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          style={{ x: dragX }}
-          onDragEnd={handleDragEnd}
-          className="relative w-full max-w-4xl px-4 flex flex-col items-center"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="relative w-full h-screen max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex items-center justify-center">
-            <ImageWithFallback
-              src={item.img}
-              alt={item.name}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-              priority
+      <div className="relative w-full max-w-5xl aspect-[4/5] md:aspect-video flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full h-full"
+          >
+            <ProtectedImage
+              src={items[currentIndex].img}
+              alt={items[currentIndex].name}
+              width={1200}
+              height={800}
+              className="w-full h-full object-contain"
             />
-          </div>
-          <div className="mt-6 text-center">
-            <h3 className="text-2xl font-amiri text-[#D4A017] mb-2">{item.name}</h3>
-            <p className="text-[#F5F5DC]/70 text-sm max-w-md mx-auto">{item.description}</p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-center">
+              <h3 className="text-[#F5F5DC] text-2xl font-bold mb-2">{items[currentIndex].name}</h3>
+              <p className="text-[#F5F5DC]/60 text-sm">{items[currentIndex].description}</p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+            <path d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </motion.div>
   );
 }
 
-// ─────────────────────────────────────────────
-// Royal Trio Sticky Navigation Component
-// ─────────────────────────────────────────────
-function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChange: (id: string) => void }) {
+function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChange: (index: number) => void }) {
   const [isSticky, setIsSticky] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.on("change", (latest) => {
       if (containerRef.current) {
         const containerTop = containerRef.current.getBoundingClientRect().top;
         setIsSticky(containerTop <= 0);
@@ -246,10 +161,10 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center gap-2 sm:gap-3">
-            {categories.map((category) => (
+            {categories.map((cat, idx) => (
               <motion.button
-                key={category.id}
-                onClick={() => onTabChange(category.id)}
+                key={cat.key}
+                onClick={() => onTabChange(idx)}
                 className="relative group flex-1 max-w-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -257,13 +172,13 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                 <motion.div
                   className="absolute inset-0 rounded-3xl transition-all duration-300"
                   animate={{
-                    background: activeTab === category.id
-                      ? 'linear-gradient(135deg, rgba(184, 134, 11, 0.25), rgba(212, 160, 23, 0.15))'
+                    background: activeTab === idx
+                      ? 'linear-gradient(135deg, rgba(184,134,11,0.25), rgba(212, 160, 23, 0.15))'
                       : 'rgba(0, 0, 0, 0.25)',
-                    border: activeTab === category.id
+                    border: activeTab === idx
                       ? '2px solid rgba(184, 134, 11, 0.7)'
                       : '1.5px solid rgba(184, 134, 11, 0.15)',
-                    boxShadow: activeTab === category.id
+                    boxShadow: activeTab === idx
                       ? '0 0 30px rgba(184, 134, 11, 0.4), inset 0 0 20px rgba(184, 134, 11, 0.1)'
                       : 'none',
                   }}
@@ -272,11 +187,11 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                   <motion.span 
                     className="text-lg sm:text-xl mb-1.5"
                     animate={{ 
-                      scale: activeTab === category.id ? 1.2 : 1,
-                      filter: activeTab === category.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.5))' : 'grayscale(0.5) opacity(0.7)'
+                      scale: activeTab === idx ? 1.2 : 1,
+                      filter: activeTab === idx ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.5))' : 'grayscale(0.5) opacity(0.7)'
                     }}
                   >
-                    {category.icon}
+                    {cat.icon}
                   </motion.span>
                   <motion.p
                     className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
@@ -284,16 +199,17 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                       textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
                     }}
                     animate={{
-                      color: activeTab === category.id ? '#D4A017' : '#F5F5DC',
-                      opacity: activeTab === category.id ? 1 : 0.8,
+                      color: activeTab === idx ? '#D4A017' : '#F5F5DC',
+                      opacity: activeTab === idx ? 1 : 0.8,
+                      fontSize: isSticky ? '0.75rem' : '0.85rem',
                     }}
                     transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
                     layout
                   >
-                    {category.label}
+                    {cat.label}
                   </motion.p>
                 </div>
-                {activeTab === category.id && (
+                {activeTab === idx && (
                   <motion.div
                     layoutId="activeIndicator"
                     className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
@@ -310,35 +226,30 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
   );
 }
 
-// ─────────────────────────────────────────────
-// Main Component
-// ─────────────────────────────────────────────
 export default function OfferingsClient() {
-  const [activeTab, setActiveTab] = useState("hot");
+  const [activeTab, setActiveTab] = useState(0);
   const [lightbox, setLightbox] = useState<{ items: OfferingItem[]; index: number } | null>(null);
 
-  const currentCategory = categories.find((c) => c.id === activeTab) || categories[0];
+  const currentCategory = categories[activeTab];
 
   return (
     <main className="min-h-screen bg-[#0f0f0f] pb-32">
-      <div className="pt-8">
-        <div className="container mx-auto px-4">
-          <Breadcrumbs items={[{ label: "تقديماتنا", href: "/offerings" }]} />
-
+      <div className="relative">
+        <div className="max-w-7xl mx-auto">
+          <Breadcrumbs />
+          {/* Hero Section */}
           <section className="relative pt-4 pb-6 px-4 overflow-hidden">
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
             <div className="max-w-5xl mx-auto text-center relative z-10">
               <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تقديماتنا ✦</motion.p>
-              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>تشكيلة فاخرة من<br /><span className="gold-gradient-text">الضيافة الأصيلة</span></motion.h1>
+              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>مذاق الأصالة في<br /><span className="gold-gradient-text">كل تفصيل</span></motion.h1>
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">نقدم لكم تشكيلة مختارة من أجود المشروبات والتمور والحلويات التي تعكس كرم الضيافة السعودية الأصيلة</motion.p>
             </div>
           </section>
         </div>
-
         {/* Royal Trio Sticky Navigation */}
         <RoyalTrioNav activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
-
       {/* Content Grid */}
       <div className="container mx-auto px-4 pt-12">
         {/* Category Header */}
@@ -346,7 +257,6 @@ export default function OfferingsClient() {
           <p className="text-[#B8860B] text-sm mb-2" style={{ letterSpacing: "0.1em" }}>✦ {currentCategory.label} ✦</p>
           <p className="text-[#F5F5DC]/60 text-sm sm:text-base max-w-lg mx-auto">{currentCategory.description}</p>
         </div>
-
         {/* Items Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {currentCategory.items.map((item, idx) => (
@@ -359,11 +269,12 @@ export default function OfferingsClient() {
               onClick={() => setLightbox({ items: currentCategory.items, index: idx })}
               className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/5]"
             >
-              <ImageWithFallback
+              <ProtectedImage
                 src={item.img}
                 alt={item.name}
+                width={600}
+                height={800}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -376,7 +287,6 @@ export default function OfferingsClient() {
           ))}
         </div>
       </div>
-
       {/* Lightbox */}
       <AnimatePresence>
         {lightbox && (
@@ -387,7 +297,6 @@ export default function OfferingsClient() {
           />
         )}
       </AnimatePresence>
-
       {/* CTA */}
       <div className="mt-20 text-center p-8 sm:p-12 rounded-3xl relative overflow-hidden mx-4 max-w-2xl mx-auto" style={{ background: "linear-gradient(135deg, rgba(25,20,8,0.9), rgba(15,12,5,0.95))", border: "1px solid rgba(184,134,11,0.2)" }}>
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(184,134,11,0.06) 0%, transparent 70%)" }} />
