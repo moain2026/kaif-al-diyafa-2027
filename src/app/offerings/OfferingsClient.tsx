@@ -201,9 +201,9 @@ function Lightbox({
               className="max-w-full max-h-full w-auto h-auto object-contain"
               priority
             />
-            {/* Watermark */}
-            <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10 pointer-events-none">
-              <div className="relative w-32 md:w-48 opacity-60 drop-shadow-md">
+            {/* Watermark - Matched with Portfolio (ProtectedImage) */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+              <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
                 <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
               </div>
             </div>
@@ -372,10 +372,10 @@ export default function OfferingsClient() {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              {/* Watermark */}
-              <div className="absolute bottom-3 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                <div className="relative w-20 opacity-50 drop-shadow-md">
-                  <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={100} height={100} className="w-full h-auto" />
+              {/* Watermark - Matched with Portfolio (ProtectedImage) */}
+              <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+                  <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
                 </div>
               </div>
               <div className="absolute inset-0 img-overlay" />
