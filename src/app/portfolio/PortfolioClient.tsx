@@ -147,17 +147,19 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <ProtectedImage
-              src={item.image}
-              alt={`صورة ${index + 1}`}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-              priority
-              fill={false}
-              width={1200}
-              height={800}
-              watermarkOpacity={0.2}
-              watermarkSize={25}
-            />
+            <div className="relative max-w-full max-h-full">
+              <ProtectedImage
+                src={item.image}
+                alt={`صورة ${index + 1}`}
+                className="w-auto h-auto object-contain max-h-[85vh] md:max-h-[90vh]"
+                priority
+                fill={false}
+                width={1200}
+                height={800}
+                watermarkOpacity={0.15}
+                watermarkSize={20}
+              />
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -324,17 +326,17 @@ export default function PortfolioClient() {
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                className="w-full h-full object-cover"
-                fill
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                fill={true}
                 watermarkOpacity={0.12}
-                watermarkSize={35}
+                watermarkSize={18}
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-[#B8860B]/30">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#D4A017" strokeWidth="2" className="w-5 h-5">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-xl border border-[#B8860B]/20">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#D4A017" strokeWidth="1.5" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                   </svg>
                 </div>
