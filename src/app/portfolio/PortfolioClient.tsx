@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
-import ProtectedImage from "@/components/ProtectedImage";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   EVENT_IMAGES,
@@ -147,16 +147,11 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <ProtectedImage
+            <ImageWithFallback
               src={item.image}
               alt={`صورة ${index + 1}`}
               className="max-w-full max-h-full w-auto h-auto object-contain"
               priority
-              fill={false}
-              width={1200}
-              height={800}
-              watermarkOpacity={0.2}
-              watermarkSize={25}
             />
           </motion.div>
         </AnimatePresence>
@@ -301,6 +296,8 @@ export default function PortfolioClient() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <Breadcrumbs />
+          <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3 mt-8" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ معرض أعمالنا ✦</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>توثيق للحظات<br /><span className="gold-gradient-text">الفخامة والتميز</span></motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">استعرض أفضل لحظاتنا من الفعاليات والأعراس والمعدات الفاخرة التي تعكس جودة خدماتنا</motion.p>
         </div>
       </section>
@@ -321,13 +318,10 @@ export default function PortfolioClient() {
               onClick={() => setSelectedIndex(idx)}
               className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-square"
             >
-              <ProtectedImage
+              <ImageWithFallback
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                className="w-full h-full object-cover"
-                fill
-                watermarkOpacity={0.12}
-                watermarkSize={35}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

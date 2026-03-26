@@ -3,9 +3,9 @@
 import { useRef, lazy, Suspense } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
 
-import { HERO_IMG } from "@/lib/images";
+import { HERO_IMG, HERO_MOBILE_IMG } from "@/lib/images";
 
 const PartnersMarquee = lazy(() =>
   import("@/components/PartnersMarquee").then((m) => ({ default: m.PartnersMarquee }))
@@ -74,26 +74,17 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          {/* Video Background */}
-          <div className="absolute inset-0 w-full h-full">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            >
-              <source src="/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-            {/* Poster without watermark protection as requested */}
-            <Image 
-              src={HERO_IMG} 
-              alt="Luxury Hospitality" 
-              fill 
-              className="absolute inset-0 z-10 opacity-20 pointer-events-none"
-              priority
-            />
-          </div>
+          {/* Video Background from v3 */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            poster={HERO_IMG}
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
         </motion.div>
         
         {/* Charcoal Overlays */}
