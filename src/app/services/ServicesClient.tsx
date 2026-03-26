@@ -132,10 +132,10 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
               service.outfits.map((o, i) => (
                 <div key={i} className="w-full h-full flex-shrink-0 relative">
                   <ImageWithFallback src={o.img} alt={o.name} className="w-full h-full object-cover" />
-                  {/* Watermark */}
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                    <div className="relative w-24 md:w-32 opacity-60 drop-shadow-md">
-                      <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={120} height={120} className="w-full h-auto" />
+                  {/* Watermark - Matched with Portfolio (ProtectedImage) */}
+                  <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                    <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+                      <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
                     </div>
                   </div>
                 </div>
@@ -143,10 +143,10 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
             ) : (
               <div className="w-full h-full flex-shrink-0 relative">
                 <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover" />
-                {/* Watermark */}
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                  <div className="relative w-24 md:w-32 opacity-60 drop-shadow-md">
-                    <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={120} height={120} className="w-full h-auto" />
+                {/* Watermark - Matched with Portfolio (ProtectedImage) */}
+                <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                  <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+                    <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
                   </div>
                 </div>
               </div>
@@ -321,10 +321,10 @@ function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClic
   return (
     <div onClick={onClick} className="relative rounded-2xl overflow-hidden group cursor-pointer h-full" style={{ minHeight: "100%" }}>
       <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-      {/* Watermark */}
-      <div className="absolute bottom-3 left-0 right-0 flex justify-center z-10 pointer-events-none">
-        <div className="relative w-20 opacity-50 drop-shadow-md">
-          <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={100} height={100} className="w-full h-auto" />
+      {/* Watermark - Matched with Portfolio (ProtectedImage) */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+        <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+          <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
         </div>
       </div>
       <div className="absolute inset-0 img-overlay" />
