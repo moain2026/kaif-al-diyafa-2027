@@ -3,7 +3,7 @@
 const SITE_URL = "https://keifaldiafa.com";
 const SITE_NAME = "كيف الضيافة";
 const PHONE = "+966508252134";
-const EMAIL = "info@keifdiafa.com";
+const EMAIL = "keifaldiafa@gmail.com";
 
 export function generateOrganizationSchema() {
   return {
@@ -128,6 +128,7 @@ export function generateServiceSchema(service: {
 }) {
   return {
     "@context": "https://schema.org",
+    "@context": "https://schema.org",
     "@type": "Service",
     name: service.name,
     description: service.description,
@@ -168,16 +169,12 @@ export function generateWebSiteSchema() {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
-    alternateName: "Keif Al-Diafa",
     url: SITE_URL,
-    inLanguage: "ar",
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/icon-512.png`,
-      },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
     },
+    inLanguage: "ar",
   };
 }
