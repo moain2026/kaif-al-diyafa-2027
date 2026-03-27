@@ -207,6 +207,6 @@ npm run lint   # فحص الكود
 
 - **الموقع**: https://keifaldiafa.com
 - **واتساب**: +966535636933
-- **البريد**: info@keifdiafa.com
+- **البريد**: keifdiafa@gmail.com
 - **إنستغرام**: @keifdiafa
 - **العنوان**: الرياض، المملكة العربية السعودية
