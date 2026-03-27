@@ -40,7 +40,7 @@ const categories: ServiceCategory[] = [
           desc: "تقديم مياه زمزم بأسلوب تراثي فاخر"
         }))
       },
-      { id: "safarjia", title: "السفرجية", subtitle: "Coffee Butler", img: SAFARJIA_IMAGES.mainBg, description: "سفرجية محترفة تقدم القهوة السعودية الأصيلة بأسلوب يليق بضيوفكم، مع تقديم فاخر وخدمة استثنائية.", features: ["قهوة سعودية طازجة", "دلال نحاسية أصيلة", "تمر وحلويات فاخرة", "خدمة مستمرة"], outfits: [{ name: "زي سفرجية - 1", img: SAFARJIA_IMAGES.safarji1, desc: "زي تقليدي فاخر مع دلال نحاسية" }, { name: "زي سفرجية - 2", img: SAFARJIA_IMAGES.safarji2, desc: "ثوب سعودي أصيل مع بشت فاخر" }, { name: "زي سفرجية - 3", img: SAFARJIA_IMAGES.safarji3, desc: "ملابس تراثية بتصميم راقٍ" }, { name: "زي سفرجية - 4", img: SAFARJIA_IMAGES.safarji4, desc: "زي فاخر للمناسبات الخاصة" }] },
+      { id: "safarjia", title: "مقدمين طعام", subtitle: "Coffee Butler", img: SAFARJIA_IMAGES.mainBg, description: "مقدمين طعام محترفين يقدمون القهوة السعودية الأصيلة بأسلوب يليق بضيوفكم، مع تقديم فاخر وخدمة استثنائية.", features: ["قهوة سعودية طازجة", "دلال نحاسية أصيلة", "تمر وحلويات فاخرة", "خدمة مستمرة"], outfits: [{ name: "زي مقدم طعام - 1", img: SAFARJIA_IMAGES.safarji1, desc: "زي تقليدي فاخر مع دلال نحاسية" }, { name: "زي مقدم طعام - 2", img: SAFARJIA_IMAGES.safarji2, desc: "ثوب سعودي أصيل مع بشت فاخر" }, { name: "زي مقدم طعام - 3", img: SAFARJIA_IMAGES.safarji3, desc: "ملابس تراثية بتصميم راقٍ" }, { name: "زي مقدم طعام - 4", img: SAFARJIA_IMAGES.safarji4, desc: "زي فاخر للمناسبات الخاصة" }] },
       { id: "sawas", title: "سوّاس", subtitle: "Traditional Hospitality", img: SAWAS_IMAGES.mainBg, description: "تجربة ضيافة تراثية حية، حيث يقدم السوّاس بزيّه الفلكلوري الأصيل وإبريقه النحاسي المشروبات بأسلوب استعراضي فاخر يعكس كرم الضيافة.", features: ["مشروبات متنوعة", "زي فلكلوري أصيل", "استعراض وتقديم حي", "إبريق نحاسي فاخر"], outfits: [{ name: "الزي التراثي الأصيل", img: SAWAS_IMAGES.style1, desc: "تقديم المشروبات بأسلوب فلكلوري يعكس الأصالة" }, { name: "ضيافة استعراضية", img: SAWAS_IMAGES.style2, desc: "أجواء تراثية فخمة تلفت أنظار ضيوفكم" }, { name: "تقديم فاخر", img: SAWAS_IMAGES.style3, desc: "تكامل بين جودة الضيافة والمظهر التراثي" }, { name: "أجواء متكاملة", img: SAWAS_IMAGES.style4, desc: "عناصر ديكورية تراثية تصاحب خدمة التقديم" }] },
     ],
   },
@@ -63,16 +63,16 @@ const categories: ServiceCategory[] = [
       },
       {
         id: "safarjiat",
-        title: "سفرجيات",
+        title: "مقدمات طعام",
         subtitle: "Female Butlers",
         img: FEMALE_SERVICES_IMAGES.female5,
-        description: "سفرجيات محترفات يقدمن القهوة السعودية والشاي والتمر بأسلوب راقٍ للمناسبات النسائية.",
+        description: "مقدمات طعام محترفات يقدمن القهوة السعودية والشاي والتمر بأسلوب راقٍ للمناسبات النسائية.",
         features: ["قهوة سعودية طازجة", "دلال فاخرة", "تمر وحلويات", "خدمة متواصلة"],
         outfits: [
-          { name: "زي سفرجية - 1", img: FEMALE_SERVICES_IMAGES.female5, desc: "زي أنيق خاص بالسفرجيات" },
-          { name: "زي سفرجية - 2", img: FEMALE_SERVICES_IMAGES.female6, desc: "زي رسمي فاخر" },
-          { name: "زي سفرجية - 3", img: FEMALE_SERVICES_IMAGES.female7, desc: "ملابس تراثية راقية" },
-          { name: "زي سفرجية - 4", img: FEMALE_SERVICES_IMAGES.female8, desc: "تصميم حديث فاخر" },
+          { name: "زي مقدمة طعام - 1", img: FEMALE_SERVICES_IMAGES.female5, desc: "زي أنيق خاص بمقدمات الطعام" },
+          { name: "زي مقدمة طعام - 2", img: FEMALE_SERVICES_IMAGES.female6, desc: "زي رسمي فاخر" },
+          { name: "زي مقدمة طعام - 3", img: FEMALE_SERVICES_IMAGES.female7, desc: "ملابس تراثية راقية" },
+          { name: "زي مقدمة طعام - 4", img: FEMALE_SERVICES_IMAGES.female8, desc: "تصميم حديث فاخر" },
         ],
       },
       {
