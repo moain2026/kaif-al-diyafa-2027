@@ -6,8 +6,9 @@ import Image from 'next/image';
 interface ProtectedImageProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
+  fill?: boolean;
   className?: string;
   priority?: boolean;
   showWatermark?: boolean; // New prop to control watermark visibility
@@ -34,6 +35,7 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
   alt,
   width,
   height,
+  fill = false,
   className = '',
   priority = false,
   showWatermark = false, // Default to false as requested
@@ -44,23 +46,23 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
 
   return (
     <div 
-      className={`relative inline-block w-full select-none ${className}`}
+      className={`relative select-none ${fill ? 'w-full h-full' : 'inline-block w-full'} ${className}`}
       onContextMenu={handleContextMenu}
     >
       {/* 
         Image Wrapper: 
         This div ensures the watermark is relative to the actual rendered image dimensions.
-        Using inline-block and w-full to wrap the image tightly.
       */}
-      <div className="relative w-full h-auto">
-        {/* Main Image - Zero-Layout-Shift Implementation */}
+      <div className={`relative w-full ${fill ? 'h-full' : 'h-auto'}`}>
+        {/* Main Image */}
         <Image
           src={src}
           alt={alt}
-          width={width}
-          height={height}
+          width={!fill ? width : undefined}
+          height={!fill ? height : undefined}
+          fill={fill}
           priority={priority}
-          className="w-full h-auto block"
+          className={`${fill ? 'object-cover' : 'w-full h-auto block'}`}
           draggable={false}
         />
 

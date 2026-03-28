@@ -325,9 +325,8 @@ export default function PortfolioClient() {
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                width={800}
-                height={800}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                fill
+                className="transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
