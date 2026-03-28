@@ -22,11 +22,11 @@ interface ProtectedImageProps {
  * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
  * 
- * Update: Deep Visual Blending (Soft-Light & Backdrop-Filter)
- * - Watermark is positioned at the lower third (bottom-[18%])
- * - Uses mix-blend-mode: soft-light for a more natural, subtle integration with image colors.
- * - Added backdrop-filter: blur(0.5px) to slightly soften the image texture behind the logo,
- *   making it look like it's part of the physical print.
+ * Update: Fixed Anchor & High-End Visual Blending (Screen)
+ * - Watermark is positioned at a fixed distance from the bottom (bottom-16 / 64px)
+ * - This ensures it stays in the "safe zone" and never covers faces, regardless of image height.
+ * - Uses mix-blend-mode: screen with 50% opacity for a luxurious, light-integrated look.
+ * - This makes the logo appear clearly over dark clothing and blend softly with light backgrounds.
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
   src,
@@ -59,13 +59,12 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
 
       {/* Watermark Layer - Only shown if showWatermark is true */}
       {showWatermark && (
-        <div className="absolute bottom-[18%] left-0 right-0 flex justify-center z-10 pointer-events-none">
+        <div className="absolute bottom-16 left-0 right-0 flex justify-center z-10 pointer-events-none">
           <div 
-            className="relative w-48 opacity-[0.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+            className="relative w-48 opacity-50 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
             style={{ 
-              mixBlendMode: 'soft-light',
-              backdropFilter: 'blur(0.5px) contrast(1.1)',
-              WebkitBackdropFilter: 'blur(0.5px) contrast(1.1)'
+              mixBlendMode: 'screen',
+              filter: 'brightness(1.2) contrast(1.1)'
             }}
           >
             <Image
