@@ -166,10 +166,11 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-bottom bottom-nav" 
         style={{ 
           paddingBottom: "max(12px, env(safe-area-inset-bottom))",
-          background: "linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, #ffffff 100%)",
-          backdropFilter: "blur(10px)",
-          borderTop: "1px solid rgba(197, 160, 89, 0.2)",
-          boxShadow: "0 -10px 25px -5px rgba(0, 0, 0, 0.1), 0 -8px 10px -6px rgba(0, 0, 0, 0.1)"
+          background: "rgba(15, 15, 15, 0.96)",
+          backdropFilter: "blur(24px) saturate(200%)",
+          WebkitBackdropFilter: "blur(24px) saturate(200%)",
+          borderTop: "1px solid rgba(212, 175, 55, 0.15)",
+          boxShadow: "0 -4px 40px rgba(0, 0, 0, 0.6)"
         }}>
         <div className="flex items-center justify-between px-4 pt-3 pb-2">
           <div className="flex gap-3">
@@ -202,10 +203,11 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
               id="mobile-nav-menu" 
               className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-3xl overflow-hidden" 
               style={{ 
-                background: "linear-gradient(160deg, rgba(26,26,26,0.98) 0%, rgba(18,18,18,0.99) 100%)", 
+                background: "linear-gradient(160deg, rgba(18, 18, 18, 0.98) 0%, rgba(12, 10, 3, 0.99) 100%)", 
                 backdropFilter: "blur(30px) saturate(200%)", 
-                borderTop: "1px solid rgba(197, 160, 89, 0.25)", 
-                boxShadow: "0 -20px 80px rgba(0,0,0,0.4)", 
+                WebkitBackdropFilter: "blur(30px) saturate(200%)", 
+                borderTop: "1px solid rgba(212, 175, 55, 0.25)", 
+                boxShadow: "0 -20px 80px rgba(212, 175, 55, 0.1)", 
                 paddingBottom: "max(100px, calc(80px + env(safe-area-inset-bottom)))" 
               }} 
               role="navigation" 
