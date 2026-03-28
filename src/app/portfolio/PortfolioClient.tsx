@@ -155,6 +155,7 @@ function Lightbox({
               height={800}
               className="max-w-full max-h-full"
               priority
+              showWatermark={true}
             />
           </motion.div>
         </AnimatePresence>

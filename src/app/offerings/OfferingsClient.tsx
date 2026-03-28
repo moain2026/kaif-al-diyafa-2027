@@ -375,12 +375,7 @@ export default function OfferingsClient() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                {/* Watermark - Placed inside the image container */}
-                <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                  <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                    <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
-                  </div>
-                </div>
+                {/* Watermark - Removed from Grid View as requested */}
               </div>
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -10,6 +10,7 @@ interface ProtectedImageProps {
   height: number;
   className?: string;
   priority?: boolean;
+  showWatermark?: boolean; // New prop to control watermark visibility
 }
 
 /**
@@ -18,7 +19,7 @@ interface ProtectedImageProps {
  * Architecture: Zero-Layout-Shift Protocol
  * - Uses natural aspect ratio (w-full h-auto)
  * - No fill, object-cover, or aspect-square properties
- * - Watermark: Logo-1 (SVG) at bottom-center
+ * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
@@ -28,6 +29,7 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
   height,
   className = '',
   priority = false,
+  showWatermark = false, // Default to false as requested
 }) => {
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,18 +51,20 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
         draggable={false}
       />
 
-      {/* Watermark Layer - Bottom-Center and Enlarged */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-        <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-          <Image
-            src="/images/watermarks/svg/logo-1.svg"
-            alt="Watermark"
-            width={180}
-            height={180}
-            className="w-full h-auto"
-          />
+      {/* Watermark Layer - Only shown if showWatermark is true */}
+      {showWatermark && (
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
+          <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+            <Image
+              src="/images/watermarks/svg/logo-1.svg"
+              alt="Watermark"
+              width={180}
+              height={180}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Protection Overlay - Prevents Dragging and Direct Interaction */}
       <div 

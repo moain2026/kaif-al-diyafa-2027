@@ -321,12 +321,7 @@ function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClic
   return (
     <div onClick={onClick} className="relative rounded-2xl overflow-hidden group cursor-pointer h-full" style={{ minHeight: "100%" }}>
       <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-      {/* Watermark - Matched with Portfolio (ProtectedImage) */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-        <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-          <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
-        </div>
-      </div>
+      {/* Watermark - Removed from Grid View as requested */}
       <div className="absolute inset-0 img-overlay" />
       <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[#B8860B]" style={{ fontSize: "0.65rem", background: "rgba(10,8,2,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(184,134,11,0.3)", letterSpacing: "0.05em" }}>{service.subtitle}</div>
