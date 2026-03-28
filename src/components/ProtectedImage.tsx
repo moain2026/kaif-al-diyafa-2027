@@ -22,11 +22,11 @@ interface ProtectedImageProps {
  * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
  * 
- * Update: Image-Bound Anchor (Final Precision Solution)
- * - Watermark is now strictly bound to the IMAGE pixels, not the container.
+ * Update: Enhanced Visibility & Proportional Sizing
+ * - Watermark is strictly bound to the IMAGE pixels.
  * - Positioned at bottom-[8%] of the actual image height.
- * - This ensures it stays at the bottom of the photo itself, even if the photo is landscape
- *   and centered in a portrait screen (no more covering faces in landscape shots).
+ * - Width: Increased to 50% of the image width for better presence.
+ * - Max Width: Increased to 240px for a more luxurious feel on larger screens.
  * - Uses mix-blend-mode: screen with 45% opacity for a high-end integrated look.
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
@@ -68,7 +68,7 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
         {showWatermark && (
           <div className="absolute bottom-[8%] left-0 right-0 flex justify-center z-10 pointer-events-none">
             <div 
-              className="relative w-[40%] max-w-[192px] opacity-[0.45] drop-shadow-[0_1px_4px_rgba(0,0,0,0.15)]"
+              className="relative w-[50%] max-w-[240px] opacity-[0.45] drop-shadow-[0_1px_4px_rgba(0,0,0,0.15)]"
               style={{ 
                 mixBlendMode: 'screen',
                 filter: 'brightness(1.1) contrast(1.1)'
@@ -77,8 +77,8 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
               <Image
                 src="/images/watermarks/svg/logo-1.svg"
                 alt="Watermark"
-                width={192}
-                height={192}
+                width={240}
+                height={240}
                 className="w-full h-auto"
               />
             </div>
