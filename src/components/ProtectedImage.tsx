@@ -53,13 +53,13 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
 
       {/* Watermark Layer - Only shown if showWatermark is true */}
       {showWatermark && (
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-          <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
+        <div className="absolute bottom-[28%] left-0 right-0 flex justify-center z-10 pointer-events-none">
+          <div className="relative w-48 opacity-[0.65] drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <Image
               src="/images/watermarks/svg/logo-1.svg"
               alt="Watermark"
-              width={180}
-              height={180}
+              width={192}
+              height={192}
               className="w-full h-auto"
             />
           </div>
