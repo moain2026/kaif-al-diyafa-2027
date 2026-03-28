@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
+import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   HOT_DRINKS_IMAGES,
@@ -196,18 +197,15 @@ function Lightbox({
         >
           <div className="relative w-full h-screen max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex items-center justify-center">
             <div className="relative w-full h-full flex items-center justify-center">
-              <ImageWithFallback
+              <ProtectedImage
                 src={item.img}
                 alt={item.name}
-                className="max-w-full max-h-full w-auto h-auto object-contain"
+                width={1200}
+                height={800}
+                className="max-w-full max-h-full"
                 priority
+                showWatermark={true}
               />
-              {/* Watermark - Placed inside the image container */}
-              <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                  <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
-                </div>
-              </div>
             </div>
           </div>
           <div className="mt-6 text-center">
