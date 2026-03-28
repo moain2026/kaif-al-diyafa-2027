@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
+import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   SERVICE_IMAGES,
@@ -131,24 +132,26 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
             {service.outfits.length > 0 ? (
               service.outfits.map((o, i) => (
                 <div key={i} className="w-full h-full flex-shrink-0 relative">
-                  <ImageWithFallback src={o.img} alt={o.name} className="w-full h-full object-cover" />
-                  {/* Watermark - Matched with Portfolio (ProtectedImage) */}
-                  <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                    <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                      <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
-                    </div>
-                  </div>
+                  <ProtectedImage
+                    src={o.img}
+                    alt={o.name}
+                    width={800}
+                    height={1200}
+                    className="w-full h-full"
+                    showWatermark={true}
+                  />
                 </div>
               ))
             ) : (
               <div className="w-full h-full flex-shrink-0 relative">
-                <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover" />
-                {/* Watermark - Matched with Portfolio (ProtectedImage) */}
-                <div className="absolute bottom-6 left-0 right-0 flex justify-center z-10 pointer-events-none">
-                  <div className="relative w-32 md:w-48 opacity-70 drop-shadow-md">
-                    <Image src="/images/watermarks/svg/logo-1.svg" alt="Watermark" width={180} height={180} className="w-full h-auto" />
-                  </div>
-                </div>
+                <ProtectedImage
+                  src={service.img}
+                  alt={service.title}
+                  width={800}
+                  height={1200}
+                  className="w-full h-full"
+                  showWatermark={true}
+                />
               </div>
             )}
           </div>
