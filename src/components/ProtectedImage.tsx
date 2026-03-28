@@ -22,10 +22,11 @@ interface ProtectedImageProps {
  * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
  * 
- * Update: Professional Blending Mode (Overlay)
+ * Update: Deep Visual Blending (Soft-Light & Backdrop-Filter)
  * - Watermark is positioned at the lower third (bottom-[18%])
- * - Uses mix-blend-mode: overlay to blend with image textures and colors
- * - This creates an "engraved" or "printed" look, making it part of the art.
+ * - Uses mix-blend-mode: soft-light for a more natural, subtle integration with image colors.
+ * - Added backdrop-filter: blur(0.5px) to slightly soften the image texture behind the logo,
+ *   making it look like it's part of the physical print.
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
   src,
@@ -60,8 +61,12 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
       {showWatermark && (
         <div className="absolute bottom-[18%] left-0 right-0 flex justify-center z-10 pointer-events-none">
           <div 
-            className="relative w-48 opacity-[0.75] drop-shadow-[0_1px_4px_rgba(0,0,0,0.15)] filter blur-[0.2px]"
-            style={{ mixBlendMode: 'overlay' }}
+            className="relative w-48 opacity-[0.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+            style={{ 
+              mixBlendMode: 'soft-light',
+              backdropFilter: 'blur(0.5px) contrast(1.1)',
+              WebkitBackdropFilter: 'blur(0.5px) contrast(1.1)'
+            }}
           >
             <Image
               src="/images/watermarks/svg/logo-1.svg"
