@@ -21,6 +21,10 @@ interface ProtectedImageProps {
  * - No fill, object-cover, or aspect-square properties
  * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
+ * 
+ * Update: Smart Relative Positioning
+ * - Watermark is positioned at the lower third (bottom-[18%]) of the image container
+ * - This ensures consistency across different aspect ratios (Portrait, Landscape, Square)
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
   src,
@@ -53,8 +57,8 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
 
       {/* Watermark Layer - Only shown if showWatermark is true */}
       {showWatermark && (
-        <div className="absolute bottom-[28%] left-0 right-0 flex justify-center z-10 pointer-events-none">
-          <div className="relative w-48 opacity-[0.65] drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+        <div className="absolute bottom-[18%] left-0 right-0 flex justify-center z-10 pointer-events-none">
+          <div className="relative w-48 opacity-[0.65] drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] filter blur-[0.3px]">
             <Image
               src="/images/watermarks/svg/logo-1.svg"
               alt="Watermark"
