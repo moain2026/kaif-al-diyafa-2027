@@ -329,7 +329,7 @@ function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClic
       <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[#B8860B]" style={{ fontSize: "0.65rem", background: "rgba(10,8,2,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(184,134,11,0.3)", letterSpacing: "0.05em" }}>{service.subtitle}</div>
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <h3 className="text-[#F5F5DC]" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{service.title}</h3>
-        <p className="text-[#F5F5DC]/50 text-xs mt-1 line-clamp-2">{service.description}</p>
+        <p className="text-[#F5F5DC]/85 text-xs mt-1.5 line-clamp-2 leading-relaxed">{service.description}</p>
       </div>
     </div>
   );
