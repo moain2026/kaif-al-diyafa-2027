@@ -182,16 +182,17 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
           <div className="space-y-6 flex-grow">
             <p className="text-[#F5F5DC]/70 text-sm leading-relaxed">{service.description}</p>
             
-            <div className="grid grid-cols-1 gap-3">
-              {service.features.map((f, i) => (
-                <div key={i} className="flex items-center gap-3 text-[#F5F5DC]/80 text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" /> {f}
-                </div>
-              ))}
-            </div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                    {service.features.map((f, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[#F5F5DC]/80 text-[11px] leading-tight">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B] flex-shrink-0"></span>
+                        {f}
+                      </div>
+                    ))}
+                  </div>
 
-            {service.outfits.length > 1 && (
-              <div className="pt-4">
+                  {service.outfits.length > 0 && (
+                    <div className="pt-4">
                 <p className="text-[#B8860B] text-[10px] font-bold mb-3 tracking-widest uppercase">خيارات الزي المتاحة</p>
                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                   {service.outfits.map((o, i) => (
