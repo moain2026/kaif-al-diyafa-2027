@@ -309,9 +309,9 @@ export default function PortfolioClient() {
       {/* Royal Trio Sticky Navigation */}
       <RoyalTrioNav activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
-      {/* Gallery Grid - Masonry Layout using CSS Columns */}
+      {/* Gallery Grid - Uniform Grid Layout (keif-v4 style) */}
       <div className="container mx-auto px-4 pt-12">
-        <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {displayedItems.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -320,14 +320,14 @@ export default function PortfolioClient() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4 }}
               onClick={() => setSelectedIndex(idx)}
-              className="break-inside-avoid group relative rounded-[2.5rem] overflow-hidden cursor-pointer mb-4 sm:mb-6 bg-black"
+              className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer aspect-[3/4] bg-black"
             >
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
                 width={600}
                 height={800}
-                className="w-full h-auto transition-transform duration-700 group-hover:scale-110 rounded-[2.5rem]"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 rounded-[2.5rem]"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
