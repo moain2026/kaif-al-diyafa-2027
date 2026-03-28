@@ -309,7 +309,7 @@ export default function PortfolioClient() {
       {/* Royal Trio Sticky Navigation */}
       <RoyalTrioNav activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
-      {/* Gallery Grid - Uniform Grid Layout (keif-v4 style) */}
+      {/* Gallery Grid - Matching Offerings Style (Square & rounded-2xl) */}
       <div className="container mx-auto px-4 pt-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {displayedItems.map((item, idx) => (
@@ -320,14 +320,14 @@ export default function PortfolioClient() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4 }}
               onClick={() => setSelectedIndex(idx)}
-              className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer aspect-[3/4] bg-black"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-square bg-black"
             >
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
-                width={600}
+                width={800}
                 height={800}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 rounded-[2.5rem]"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
