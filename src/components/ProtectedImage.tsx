@@ -22,9 +22,10 @@ interface ProtectedImageProps {
  * - Watermark: Logo-1 (SVG) at bottom-center (Optional)
  * - Protection: Prevents drag and right-click
  * 
- * Update: Smart Relative Positioning
- * - Watermark is positioned at the lower third (bottom-[18%]) of the image container
- * - This ensures consistency across different aspect ratios (Portrait, Landscape, Square)
+ * Update: Professional Blending Mode (Overlay)
+ * - Watermark is positioned at the lower third (bottom-[18%])
+ * - Uses mix-blend-mode: overlay to blend with image textures and colors
+ * - This creates an "engraved" or "printed" look, making it part of the art.
  */
 const ProtectedImage: React.FC<ProtectedImageProps> = ({
   src,
@@ -58,7 +59,10 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
       {/* Watermark Layer - Only shown if showWatermark is true */}
       {showWatermark && (
         <div className="absolute bottom-[18%] left-0 right-0 flex justify-center z-10 pointer-events-none">
-          <div className="relative w-48 opacity-[0.65] drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] filter blur-[0.3px]">
+          <div 
+            className="relative w-48 opacity-[0.75] drop-shadow-[0_1px_4px_rgba(0,0,0,0.15)] filter blur-[0.2px]"
+            style={{ mixBlendMode: 'overlay' }}
+          >
             <Image
               src="/images/watermarks/svg/logo-1.svg"
               alt="Watermark"
