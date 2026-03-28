@@ -320,14 +320,14 @@ export default function PortfolioClient() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4 }}
               onClick={() => setSelectedIndex(idx)}
-              className="break-inside-avoid group relative rounded-2xl overflow-hidden cursor-pointer mb-4 sm:mb-6"
+              className="break-inside-avoid group relative rounded-[2.5rem] overflow-hidden cursor-pointer mb-4 sm:mb-6 bg-black"
             >
               <ProtectedImage
                 src={item.image}
                 alt={`صورة ${idx + 1}`}
                 width={600}
                 height={800}
-                className="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-110 rounded-[2.5rem]"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
