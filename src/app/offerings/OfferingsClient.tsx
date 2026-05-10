@@ -287,12 +287,16 @@ function Lightbox({
 // ─────────────────────────────────────────────
 function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChange: (id: string) => void }) {
   const [isSticky, setIsSticky] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
+  // Track sticky state
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
+    const unsubscribe = scrollY.on("change", () => {
       if (containerRef.current) {
         const containerTop = containerRef.current.getBoundingClientRect().top;
         setIsSticky(containerTop <= 0);
@@ -300,6 +304,29 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
     });
     return () => unsubscribe();
   }, [scrollY]);
+
+  // Track horizontal scroll state for fade indicators
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    // RTL: scrollLeft is negative in RTL
+    const absScroll = Math.abs(scrollLeft);
+    setCanScrollRight(absScroll > 1);
+    setCanScrollLeft(absScroll < scrollWidth - clientWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [checkScroll]);
 
   return (
     <div ref={containerRef} className="w-full">
@@ -316,70 +343,90 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 sm:justify-center sm:flex-wrap scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => onTabChange(category.id)}
-                className="relative group min-w-[72px] sm:min-w-0 sm:flex-1 max-w-sm flex-shrink-0 sm:flex-shrink"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-3xl transition-all duration-300"
-                  animate={{
-                    background: activeTab === category.id
-                      ? 'linear-gradient(135deg, rgba(184,134,11,0.25), rgba(212, 160, 23, 0.15))'
-                      : 'rgba(0, 0, 0, 0.25)',
-                    border: activeTab === category.id
-                      ? '2px solid rgba(184, 134, 11, 0.7)'
-                      : '1.5px solid rgba(184, 134, 11, 0.15)',
-                    boxShadow: activeTab === category.id
-                      ? '0 0 30px rgba(184, 134, 11, 0.4), inset 0 0 20px rgba(184, 134, 11, 0.1)'
-                      : 'none',
-                  }}
-                />
-                <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
-                  <motion.span 
-                    className="text-lg sm:text-xl mb-1.5"
-                    animate={{ 
-                      scale: activeTab === category.id ? 1.2 : 1,
-                      filter: activeTab === category.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.5))' : 'grayscale(0.5) opacity(0.7)'
-                    }}
-                  >
-                    {category.icon}
-                  </motion.span>
-                  <motion.p
-                    className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
-                    style={{
-                      textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
-                    }}
-                    animate={{
-                      color: activeTab === category.id ? '#D4A017' : '#F5F5DC',
-                      opacity: activeTab === category.id ? 1 : 0.8,
-                    }}
-                    transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
-                    layout
-                  >
-                    {category.label}
-                  </motion.p>
-                </div>
-                {activeTab === category.id && (
+          <div className="relative">
+            {/* Left fade indicator (RTL: means more content to the right) */}
+            <div
+              className={`absolute left-0 top-0 bottom-0 w-8 z-10 pointer-events-none transition-opacity duration-300 sm:hidden ${canScrollLeft ? 'opacity-100' : 'opacity-0'}`}
+              style={{ background: 'linear-gradient(to right, rgba(15,15,15,0.95), transparent)' }}
+            />
+            {/* Right fade indicator (RTL: means more content to the left) */}
+            <div
+              className={`absolute right-0 top-0 bottom-0 w-8 z-10 pointer-events-none transition-opacity duration-300 sm:hidden ${canScrollRight ? 'opacity-100' : 'opacity-0'}`}
+              style={{ background: 'linear-gradient(to left, rgba(15,15,15,0.95), transparent)' }}
+            />
+            <div
+              ref={scrollRef}
+              className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 sm:justify-center sm:flex-wrap scrollbar-hide"
+              style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {categories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => onTabChange(category.id)}
+                  className="relative group min-w-[72px] sm:min-w-0 sm:flex-1 max-w-sm flex-shrink-0 sm:flex-shrink"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
-                    style={{ borderRadius: '2px' }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    className="absolute inset-0 rounded-3xl overflow-hidden transition-all duration-300"
+                    animate={{
+                      background: activeTab === category.id
+                        ? 'linear-gradient(135deg, rgba(184,134,11,0.25), rgba(212, 160, 23, 0.15))'
+                        : 'rgba(0, 0, 0, 0.25)',
+                      border: activeTab === category.id
+                        ? '2px solid rgba(184, 134, 11, 0.7)'
+                        : '1.5px solid rgba(184, 134, 11, 0.15)',
+                    }}
+                    style={{
+                      borderRadius: '1.5rem',
+                      filter: activeTab === category.id
+                        ? 'drop-shadow(0 0 12px rgba(184, 134, 11, 0.35))'
+                        : 'none',
+                    }}
                   />
-                )}
-              </motion.button>
-            ))}
+                  <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
+                    <motion.span
+                      className="text-lg sm:text-xl mb-1.5"
+                      animate={{
+                        scale: activeTab === category.id ? 1.2 : 1,
+                        filter: activeTab === category.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.5))' : 'grayscale(0.5) opacity(0.7)'
+                      }}
+                    >
+                      {category.icon}
+                    </motion.span>
+                    <motion.p
+                      className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
+                      style={{
+                        textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
+                      }}
+                      animate={{
+                        color: activeTab === category.id ? '#D4A017' : '#F5F5DC',
+                        opacity: activeTab === category.id ? 1 : 0.8,
+                      }}
+                      transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
+                      layout
+                    >
+                      {category.label}
+                    </motion.p>
+                  </div>
+                  {activeTab === category.id && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
+                      style={{ borderRadius: '2px' }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
     </div>
   );
 }
+
 
 // ─────────────────────────────────────────────
 // Main Component
