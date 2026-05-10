@@ -12,6 +12,10 @@ import {
   DATES_IMAGES,
   SWEETS_IMAGES,
   PASTRY_IMAGES,
+  SNACKS_IMAGES,
+  SANDWICHES_IMAGES,
+  FRUITS_IMAGES,
+  NUTS_IMAGES,
 } from "@/lib/images";
 
 const WA = "966508252134";
@@ -91,6 +95,66 @@ const categories: CategoryData[] = [
       { name: "معجنات عربية",          description: "تشكيلة معجنات أصيلة",                  img: PASTRY_IMAGES.arabicPastry },
       { name: "معجنات متنوعة",         description: "باقة متنوعة للمناسبات",               img: PASTRY_IMAGES.assortedPastry },
       { name: "مقبلات فاخرة",          description: "مقبلات صغيرة فاخرة",                  img: PASTRY_IMAGES.appetizers },
+    ],
+  },
+  {
+    id: "snacks", label: "السناكات", icon: "🍿", description: "وجبات خفيفة فاخرة ومتنوعة تليق بالمناسبات",
+    items: [
+      { name: "ميني بيتزا",        description: "بيتزا صغيرة بحشوات متنوعة",           img: SNACKS_IMAGES.miniPizza },
+      { name: "ناتشوز",            description: "ناتشوز مقرمشة بالجبن والصلصة",        img: SNACKS_IMAGES.nachos },
+      { name: "بطاطس ودجز",        description: "ودجز ذهبية مقرمشة",                   img: SNACKS_IMAGES.potatoWedges },
+      { name: "سبرنج رول",         description: "لفائف مقرمشة بحشوات شرقية",           img: SNACKS_IMAGES.springRoll },
+      { name: "تشيكن بوبس",        description: "كرات دجاج مقرمشة ذهبية",             img: SNACKS_IMAGES.chickenPops },
+      { name: "كروكيت",            description: "كروكيت بالبطاطس والجبن",              img: SNACKS_IMAGES.croquette },
+      { name: "فنجر فود",          description: "تشكيلة مقبلات صغيرة فاخرة",           img: SNACKS_IMAGES.fingerFood },
+      { name: "ميني برجر",         description: "برجر صغير بلمسة فاخرة",              img: SNACKS_IMAGES.miniBurger },
+      { name: "تشيز ستيك",         description: "أصابع جبن مقرمشة ذهبية",             img: SNACKS_IMAGES.cheeseStick },
+      { name: "بروشيتا",           description: "خبز محمص بالطماطم والريحان",          img: SNACKS_IMAGES.bruschetta },
+    ],
+  },
+  {
+    id: "sandwiches", label: "السندوتشات", icon: "🥪", description: "سندوتشات طازجة محضرة بعناية فائقة",
+    items: [
+      { name: "كلوب ساندوتش",      description: "ساندوتش كلاسيكي ثلاثي الطبقات",       img: SANDWICHES_IMAGES.clubSandwich },
+      { name: "دجاج مشوي",         description: "ساندوتش دجاج مشوي بالأعشاب",         img: SANDWICHES_IMAGES.grilledChicken },
+      { name: "ساندوتش تونة",      description: "تونة طازجة بالخضروات",               img: SANDWICHES_IMAGES.tunaSandwich },
+      { name: "لحم بارد",          description: "شرائح لحم بارد فاخرة",               img: SANDWICHES_IMAGES.coldCuts },
+      { name: "فلافل راب",         description: "فلافل مقرمشة بخبز التورتيلا",         img: SANDWICHES_IMAGES.falafelWrap },
+      { name: "حلوم مشوي",         description: "جبن حلوم مشوي بالخضروات",            img: SANDWICHES_IMAGES.grilledHalloumi },
+      { name: "ديك رومي",          description: "شرائح ديك رومي مدخنة",               img: SANDWICHES_IMAGES.turkeySandwich },
+      { name: "سلمون مدخن",        description: "سلمون مدخن بالكريمة",                img: SANDWICHES_IMAGES.smokedSalmon },
+      { name: "ميني كرواسون",      description: "كرواسون صغير محشي متنوع",            img: SANDWICHES_IMAGES.miniCroissant },
+      { name: "ساندوتش ستيك",      description: "شرائح ستيك مشوية فاخرة",             img: SANDWICHES_IMAGES.steakSandwich },
+    ],
+  },
+  {
+    id: "fruits", label: "فواكه مشكلة", icon: "🍇", description: "فواكه طازجة مقطعة ومقدمة بأناقة",
+    items: [
+      { name: "تشكيلة فواكه موسمية", description: "أجود الفواكه الموسمية المنتقاة",      img: FRUITS_IMAGES.seasonalMix },
+      { name: "فراولة طازجة",       description: "فراولة حمراء طازجة ومنتقاة",          img: FRUITS_IMAGES.strawberry },
+      { name: "عنب أحمر وأخضر",    description: "عنب فاخر بنوعيه",                    img: FRUITS_IMAGES.grapes },
+      { name: "مانجو مقطعة",       description: "مانجو ناضجة مقطعة بأناقة",            img: FRUITS_IMAGES.mango },
+      { name: "أناناس طازج",       description: "أناناس استوائي مقطع",                img: FRUITS_IMAGES.pineapple },
+      { name: "كيوي مقطع",         description: "كيوي أخضر طازج ومنعش",               img: FRUITS_IMAGES.kiwi },
+      { name: "توت مشكل",          description: "تشكيلة توت بري فاخرة",               img: FRUITS_IMAGES.mixedBerries },
+      { name: "بطيخ مكعبات",       description: "بطيخ أحمر مقطع مكعبات",              img: FRUITS_IMAGES.watermelon },
+      { name: "تين طازج",          description: "تين موسمي طازج ومميز",               img: FRUITS_IMAGES.figs },
+      { name: "رمان مفصص",         description: "حبات رمان مفصصة بعناية",             img: FRUITS_IMAGES.pomegranate },
+    ],
+  },
+  {
+    id: "nuts", label: "المكسرات", icon: "🥜", description: "مكسرات فاخرة محمصة ومملحة بعناية",
+    items: [
+      { name: "لوز محمص",          description: "لوز محمص بالملح الخفيف",              img: NUTS_IMAGES.roastedAlmonds },
+      { name: "كاجو ملكي",         description: "كاجو فاخر محمص بالزبدة",             img: NUTS_IMAGES.royalCashew },
+      { name: "فستق حلبي",         description: "فستق حلبي أخضر فاخر",               img: NUTS_IMAGES.pistachio },
+      { name: "جوز عين الجمل",     description: "جوز طبيعي غني بالفوائد",             img: NUTS_IMAGES.walnut },
+      { name: "بندق محمص",         description: "بندق محمص بنكهة مميزة",              img: NUTS_IMAGES.roastedHazelnut },
+      { name: "مكسرات مشكلة فاخرة", description: "تشكيلة ملكية من أجود المكسرات",       img: NUTS_IMAGES.premiumMix },
+      { name: "صنوبر ذهبي",        description: "صنوبر محمص ذهبي اللون",              img: NUTS_IMAGES.pineNuts },
+      { name: "مكاديميا",          description: "مكاديميا فاخرة نادرة",               img: NUTS_IMAGES.macadamia },
+      { name: "بيكان محمص",        description: "بيكان أمريكي محمص فاخر",             img: NUTS_IMAGES.roastedPecan },
+      { name: "فول سوداني مملح",    description: "فول سوداني مقرمش ومملح",             img: NUTS_IMAGES.saltedPeanuts },
     ],
   },
 ];
@@ -252,12 +316,12 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-center gap-2 sm:gap-3">
+          <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 sm:justify-center sm:flex-wrap scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => onTabChange(category.id)}
-                className="relative group flex-1 max-w-sm"
+                className="relative group min-w-[72px] sm:min-w-0 sm:flex-1 max-w-sm flex-shrink-0 sm:flex-shrink"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

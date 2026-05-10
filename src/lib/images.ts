@@ -103,6 +103,63 @@ export const PASTRY_IMAGES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// OFFERINGS — SNACKS (10 images)
+export const SNACKS_IMAGES = {
+  miniPizza: "/images/snacks/mini-pizza.webp",
+  nachos: "/images/snacks/nachos.webp",
+  potatoWedges: "/images/snacks/potato-wedges.webp",
+  springRoll: "/images/snacks/spring-roll.webp",
+  chickenPops: "/images/snacks/chicken-pops.webp",
+  croquette: "/images/snacks/croquette.webp",
+  fingerFood: "/images/snacks/finger-food.webp",
+  miniBurger: "/images/snacks/mini-burger.webp",
+  cheeseStick: "/images/snacks/cheese-stick.webp",
+  bruschetta: "/images/snacks/bruschetta.webp",
+};
+
+// OFFERINGS — SANDWICHES (10 images)
+export const SANDWICHES_IMAGES = {
+  clubSandwich: "/images/sandwiches/club-sandwich.webp",
+  grilledChicken: "/images/sandwiches/grilled-chicken.webp",
+  tunaSandwich: "/images/sandwiches/tuna-sandwich.webp",
+  coldCuts: "/images/sandwiches/cold-cuts.webp",
+  falafelWrap: "/images/sandwiches/falafel-wrap.webp",
+  grilledHalloumi: "/images/sandwiches/grilled-halloumi.webp",
+  turkeySandwich: "/images/sandwiches/turkey-sandwich.webp",
+  smokedSalmon: "/images/sandwiches/smoked-salmon.webp",
+  miniCroissant: "/images/sandwiches/mini-croissant.webp",
+  steakSandwich: "/images/sandwiches/steak-sandwich.webp",
+};
+
+// OFFERINGS — FRUITS (10 images)
+export const FRUITS_IMAGES = {
+  seasonalMix: "/images/fruits/seasonal-mix.webp",
+  strawberry: "/images/fruits/strawberry.webp",
+  grapes: "/images/fruits/grapes.webp",
+  mango: "/images/fruits/mango.webp",
+  pineapple: "/images/fruits/pineapple.webp",
+  kiwi: "/images/fruits/kiwi.webp",
+  mixedBerries: "/images/fruits/mixed-berries.webp",
+  watermelon: "/images/fruits/watermelon.webp",
+  figs: "/images/fruits/figs.webp",
+  pomegranate: "/images/fruits/pomegranate.webp",
+};
+
+// OFFERINGS — NUTS (10 images)
+export const NUTS_IMAGES = {
+  roastedAlmonds: "/images/nuts/roasted-almonds.webp",
+  royalCashew: "/images/nuts/royal-cashew.webp",
+  pistachio: "/images/nuts/pistachio.webp",
+  walnut: "/images/nuts/walnut.webp",
+  roastedHazelnut: "/images/nuts/roasted-hazelnut.webp",
+  premiumMix: "/images/nuts/premium-mix.webp",
+  pineNuts: "/images/nuts/pine-nuts.webp",
+  macadamia: "/images/nuts/macadamia.webp",
+  roastedPecan: "/images/nuts/roasted-pecan.webp",
+  saltedPeanuts: "/images/nuts/salted-peanuts.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
 // OFFERINGS — SERVING EQUIPMENT (10 images from moain2026/allimg)
 // ═══════════════════════════════════════════════════════════════
 export const SERVING_EQUIPMENT_IMAGES = {
