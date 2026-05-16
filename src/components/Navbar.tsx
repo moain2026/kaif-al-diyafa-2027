@@ -32,9 +32,18 @@ function useWhatsAppUrl() {
 
 export { navLinks, useWhatsAppUrl, WA_NUMBER };
 
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{
+    outcome: "accepted" | "dismissed";
+    platform: string;
+  }>;
+  prompt(): Promise<void>;
+}
+
 interface NavbarProps {
-  deferredPrompt?: any;
-  setDeferredPrompt?: (prompt: any) => void;
+  deferredPrompt?: BeforeInstallPromptEvent | null;
+  setDeferredPrompt?: (prompt: BeforeInstallPromptEvent | null) => void;
 }
 
 export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProps) {
@@ -72,7 +81,7 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
+    await deferredPrompt.userChoice;
     if (setDeferredPrompt) setDeferredPrompt(null);
     closeMenu();
   };

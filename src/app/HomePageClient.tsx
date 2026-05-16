@@ -3,9 +3,7 @@
 import { useRef, lazy, Suspense } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
-
-import { HERO_IMG, HERO_MOBILE_IMG } from "@/lib/images";
+import { HERO_IMG } from "@/lib/images";
 
 const PartnersMarquee = lazy(() =>
   import("@/components/PartnersMarquee").then((m) => ({ default: m.PartnersMarquee }))

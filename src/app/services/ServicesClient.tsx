@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
@@ -11,7 +11,7 @@ import {
   OUTFIT_IMAGES,
   SERVICES_MALE,
   SERVICES_FEMALE_EXTENDED,
-  SERVICES_ARTISTIC,
+
   SAFARJIA_IMAGES,
   SAWAS_IMAGES,
   FEMALE_SERVICES_IMAGES,
@@ -108,7 +108,7 @@ const categories: ServiceCategory[] = [
 function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () => void }) {
   const [selectedOutfit, setSelectedOutfit] = useState(0);
 
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
     if (service.outfits.length <= 1) return;
     const swipeThreshold = 50;
     if (info.offset.x > swipeThreshold) {
@@ -224,7 +224,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
+    const unsubscribe = scrollY.onChange(() => {
       if (containerRef.current) {
         const containerTop = containerRef.current.getBoundingClientRect().top;
         setIsSticky(containerTop <= 0);
@@ -249,7 +249,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center gap-2 sm:gap-3">
-            {categories.map((cat, idx) => (
+            {categories.map((cat) => (
               <motion.button
                 key={cat.key}
                 onClick={() => onTabChange(idx)}
@@ -319,7 +319,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
   );
 }
 
-function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClick: () => void; index: number }) {
+function ServiceCard({ service, onClick }: { service: ServiceItem; onClick: () => void }) {
   return (
     <div onClick={onClick} className="relative rounded-2xl overflow-hidden group cursor-pointer h-full" style={{ minHeight: "100%" }}>
       <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
@@ -376,7 +376,7 @@ export default function ServicesClient() {
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[300px] sm:auto-rows-[350px] lg:auto-rows-[400px]">
-            {currentCategory.services.map((service, i) => (
+            {currentCategory.services.map((service) => (
               <motion.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -384,7 +384,7 @@ export default function ServicesClient() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4 }}
               >
-                <ServiceCard service={service} onClick={() => setSelectedService(service)} index={i} />
+                <ServiceCard service={service} onClick={() => setSelectedService(service)} />
               </motion.div>
             ))}
           </div>

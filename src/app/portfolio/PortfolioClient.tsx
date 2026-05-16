@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
+
 import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
@@ -11,7 +11,7 @@ import {
   EQUIPMENT_IMAGES,
 } from "@/lib/images";
 
-const WA = "966508252134";
+
 const ITEMS_PER_PAGE = 12;
 
 type FilterType = "all" | "events" | "weddings" | "equipment";
@@ -174,7 +174,7 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.onChange(() => {
       if (containerRef.current) {
         const containerTop = containerRef.current.getBoundingClientRect().top;
         setIsSticky(containerTop <= 0);

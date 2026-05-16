@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
-import Image from "next/image";
+
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
