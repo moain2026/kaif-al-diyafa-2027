@@ -55,6 +55,8 @@ export function generatePageMetadata({
     "قهوة سعودية",
     "ضيافة الرياض",
     "ضيافة السعودية",
+    "ضيافة في جميع أنحاء المملكة",
+    "خدمات ضيافة كافة مدن السعودية",
     "Keif Al-Diafa",
     "Saudi hospitality",
   ];

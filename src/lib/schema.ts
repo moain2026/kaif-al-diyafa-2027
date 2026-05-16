@@ -18,7 +18,10 @@ export function generateOrganizationSchema() {
       telephone: PHONE,
       contactType: "customer service",
       availableLanguage: ["Arabic", "English"],
-      areaServed: "SA",
+      areaServed: {
+      "@type": "Country",
+      name: "Saudi Arabia",
+    },
     },
     sameAs: [
       "https://www.instagram.com/keifaldiafa",
