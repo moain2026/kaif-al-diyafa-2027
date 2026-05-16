@@ -58,8 +58,8 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
         <Image
           src={src}
           alt={alt}
-          width={!fill ? width : undefined}
-          height={!fill ? height : undefined}
+          width={!fill ? (width || 800) : undefined}
+          height={!fill ? (height || 600) : undefined}
           fill={fill}
           priority={priority}
           className={`${fill ? 'object-contain' : 'w-full h-auto block'}`}
