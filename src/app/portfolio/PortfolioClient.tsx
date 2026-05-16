@@ -334,6 +334,7 @@ export default function PortfolioClient() {
                 src={item.image}
                 alt={`${seoAltMapping[item.category]} - لقطة ${idx + 1} من معرض أعمالنا`}
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div className="absolute inset-0 img-overlay" />
               <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

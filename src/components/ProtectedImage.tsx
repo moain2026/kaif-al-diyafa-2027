@@ -11,7 +11,8 @@ interface ProtectedImageProps {
   fill?: boolean;
   className?: string;
   priority?: boolean;
-  showWatermark?: boolean; // New prop to control watermark visibility
+  showWatermark?: boolean;
+  sizes?: string; // Added sizes prop for performance optimization
 }
 
 /**
@@ -38,7 +39,8 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
   fill = false,
   className = '',
   priority = false,
-  showWatermark = false, // Default to false as requested
+  showWatermark = false,
+  sizes,
 }) => {
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -64,6 +66,7 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
           priority={priority}
           className={`${fill ? 'object-contain' : 'w-full h-auto block'}`}
           draggable={false}
+          sizes={sizes}
         />
 
         {/* Watermark Layer - Strictly bound to the image above */}

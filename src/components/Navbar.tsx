@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
@@ -46,7 +46,7 @@ interface NavbarProps {
   setDeferredPrompt?: (prompt: BeforeInstallPromptEvent | null) => void;
 }
 
-export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProps) {
+function NavbarContent({ deferredPrompt, setDeferredPrompt }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
@@ -257,20 +257,10 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
                     <button 
                       onClick={handleInstallClick}
                       className="group relative overflow-hidden flex items-center justify-center gap-3 w-full px-6 py-4 rounded-2xl text-luxury-black transition-all duration-500 active:scale-[0.98]"
-                      style={{ 
-                        background: "var(--gradient-gold-matte)",
-                        fontWeight: 800,
-                        fontSize: "0.95rem",
-                        boxShadow: "0 10px 30px rgba(197, 160, 89, 0.3)"
-                      }}
+                      style={{ background: "var(--gradient-gold-matte)", fontWeight: 700 }}
                     >
-                      <span className="text-xl group-hover:rotate-12 transition-transform">📲</span>
-                      <span className="tracking-tight">تثبيت تطبيق الجوال الفاخر</span>
-                      
-                      {/* Shine Effect Animation Overlay */}
-                      <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine" />
+                      <span className="relative z-10">تثبيت التطبيق</span>
                     </button>
-                    <p className="text-center text-gold-matte/40 text-[10px] mt-3 font-medium">احصل على تجربة ضيافة ملكية متكاملة بضغطة زر</p>
                   </motion.div>
                 )}
               </div>
@@ -279,5 +269,13 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+export default function Navbar(props: NavbarProps) {
+  return (
+    <Suspense fallback={null}>
+      <NavbarContent {...props} />
+    </Suspense>
   );
 }

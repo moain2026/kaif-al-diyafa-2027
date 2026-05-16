@@ -75,7 +75,13 @@ const nextConfig = {
     return [
       {
         source: "/(.*)",
-        headers: securityHeaders,
+        headers: [
+          ...securityHeaders,
+          {
+            key: 'X-Robots-Tag',
+            value: process.env.VERCEL_ENV === 'production' ? 'all' : 'noindex, nofollow',
+          },
+        ],
       },
       {
         source: "/(.*)\\.(jpg|jpeg|png|gif|svg|webp|avif|ico|woff|woff2)",
