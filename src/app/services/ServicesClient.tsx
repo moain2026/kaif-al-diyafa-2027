@@ -27,7 +27,7 @@ const categories: ServiceCategory[] = [
   {
     key: "male", label: "الخدمات الرجالية", sublabel: "Male Hospitality", icon: "👨‍💼", color: "#B8860B",
     services: [
-      { id: "hosts", title: "مضيفون", subtitle: "Male Hosts", img: SERVICE_IMAGES.maleWaiter, description: "مضيفون محترفون مدربون على أعلى معايير الضيافة الدولية والأصالة العربية.", features: ["زي رسمي أنيق", "خبرة +5 سنوات", "لغات متعددة", "بروتوكول VIP"], outfits: [{ name: "حزام", img: OUTFIT_IMAGES.hizam, desc: "زي رسمي بحزام أنيق" }, { name: "دقلة", img: OUTFIT_IMAGES.dagla, desc: "دقلة سعودية أصيلة" }, { name: "دقلة وجنبية", img: OUTFIT_IMAGES.daglaJanbiya, desc: "دقلة مع جنبية تراثية" }, { name: "سديرية", img: OUTFIT_IMAGES.sideriya, desc: "سديرية أنيقة" }, { name: "مكاوي", img: OUTFIT_IMAGES.makkawi, desc: "زي مكاوي تراثي" }] },
+      { id: "hosts", title: "صبابين قهوة ومباشرين", subtitle: "Male Hosts & Servers", img: SERVICE_IMAGES.maleWaiter, description: "طاقم صبابين ومباشرين محترفين بزي فاخر، مدربون على أصول الضيافة السعودية وتقديم القهوة ببروتوكول VIP للمناسبات الرسمية والخاصة.", features: ["زي رسمي ملكي", "خبرة في القهوة السعودية", "مباشرين بزي موحد", "بروتوكول VIP"], outfits: [{ name: "حزام", img: OUTFIT_IMAGES.hizam, desc: "زي صبابين بحزام أنيق" }, { name: "دقلة", img: OUTFIT_IMAGES.dagla, desc: "دقلة صبابين سعودية أصيلة" }, { name: "دقلة وجنبية", img: OUTFIT_IMAGES.daglaJanbiya, desc: "دقلة مع جنبية تراثية فاخرة" }, { name: "سديرية", img: OUTFIT_IMAGES.sideriya, desc: "سديرية صبابين أنيقة" }, { name: "مكاوي", img: OUTFIT_IMAGES.makkawi, desc: "زي مباشرين مكاوي تراثي" }] },
       { 
         id: "zamzam", 
         title: "سقّاء زمزم", 
@@ -50,16 +50,16 @@ const categories: ServiceCategory[] = [
     services: [
       {
         id: "hostesses",
-        title: "مضيفات",
-        subtitle: "Female Hosts",
+        title: "صبابات زواجات ومباشرات",
+        subtitle: "Female Hosts & Servers",
         img: FEMALE_SERVICES_IMAGES.mainBg,
-        description: "مضيفات محترفات بمظهر راقٍ وخدمة استثنائية لمناسباتكم النسائية، مع تدريب عالي المستوى.",
-        features: ["مظهر أنيق وراقٍ", "خدمة احترافية", "تنسيق المناسبات", "استقبال VIP"],
+        description: "أفضل صبابات زواجات ومباشرات ضيافة في المملكة، طاقم نسائي محترف بزي موحد فاخر لخدمة مناسباتكم النسائية الراقية.",
+        features: ["صبابات بزي موحد", "مباشرات ضيافة VIP", "تنسيق استقبال فاخر", "خدمة ملكية"],
         outfits: [
-          { name: "عباءة فاخرة - 1", img: FEMALE_SERVICES_IMAGES.female1, desc: "عباءة مصممة خصيصاً بأناقة فائقة" },
-          { name: "عباءة فاخرة - 2", img: FEMALE_SERVICES_IMAGES.female2, desc: "عباءة راقية بتصميم مميز" },
-          { name: "عباءة فاخرة - 3", img: FEMALE_SERVICES_IMAGES.female3, desc: "زي فاخر للمناسبات الراقية" },
-          { name: "عباءة فاخرة - 4", img: FEMALE_SERVICES_IMAGES.female4, desc: "تصميم حديث مع لمسة تراثية" },
+          { name: "عباءة صبابات فاخرة - 1", img: FEMALE_SERVICES_IMAGES.female1, desc: "عباءة صبابات مصممة بأناقة فائقة" },
+          { name: "عباءة صبابات فاخرة - 2", img: FEMALE_SERVICES_IMAGES.female2, desc: "عباءة مباشرات راقية بتصميم مميز" },
+          { name: "عباءة صبابات فاخرة - 3", img: FEMALE_SERVICES_IMAGES.female3, desc: "زي صبابات فاخر للمناسبات الراقية" },
+          { name: "عباءة صبابات فاخرة - 4", img: FEMALE_SERVICES_IMAGES.female4, desc: "تصميم مباشرات حديث مع لمسة تراثية" },
         ],
       },
       {
@@ -97,7 +97,7 @@ const categories: ServiceCategory[] = [
       { id: "artist", title: "رسّام بورتريه", subtitle: "Portrait Artist", img: SERVICE_IMAGES.artist, description: "رسام بورتريه محترف يرسم لوحات حية لضيوفكم.", features: ["رسم حي سريع", "أنماط متنوعة", "هدايا تذكارية", "تجربة تفاعلية"], outfits: [] },
       { id: "folkband", title: "فرقة شعبية", subtitle: "Folk Band", img: SERVICE_IMAGES.folkband, description: "فرقة شعبية تضيف أجواء حماسية أصيلة لمناسباتكم.", features: ["عرض حي", "أغاني تراثية", "أجواء حماسية", "فقرات متنوعة"], outfits: [] },
       { id: "heritage-tent", title: "خيمة تراثية", subtitle: "Heritage Tent", img: SERVICE_IMAGES.heritageTent, description: "خيمة تراثية سعودية مجهزة بالكامل لإضافة لمسة أصالة.", features: ["تجهيز كامل", "ديكور تراثي", "إضاءة مميزة", "أحجام متعددة"], outfits: [] },
-      { id: "counter", title: "كاونتر ضيافة", subtitle: "Hospitality Counter", img: SERVICE_IMAGES.counter, description: "كاونتر ضيافة فاخر مجهز بالكامل.", features: ["تصميم أنيق", "تجهيزات كاملة", "أحجام متعددة", "توصيل وتركيب"], outfits: [] },
+      { id: "counter", title: "تجهيز طاولات استقبال", subtitle: "Hospitality Counter", img: SERVICE_IMAGES.counter, description: "تجهيز طاولات استقبال وكاونترات ضيافة فاخرة مجهزة بالكامل لخدمة ضيوفكم بأسلوب ملكي.", features: ["تصميم استقبال أنيق", "تجهيزات ضيافة كاملة", "تنسيق طاولات VIP", "توصيل وتركيب"], outfits: [] },
       { id: "photo-booth", title: "ركن التصوير", subtitle: "Photo Booth", img: SERVICE_IMAGES.photoBooth, description: "ركن تصوير احترافي لتوثيق لحظات مناسباتكم.", features: ["خلفيات متنوعة", "طباعة فورية", "إكسسوارات ممتعة", "صور رقمية"], outfits: [] },
       { id: "buffet", title: "بوفيه متكامل", subtitle: "Full Buffet", img: SERVICE_IMAGES.buffet, description: "تجهيز بوفيه متكامل بأطباق فاخرة ومتنوعة.", features: ["أطباق عالمية", "تقديم فاخر", "معدات حديثة", "فريق متخصص"], outfits: [] },
       { id: "mobile-table", title: "طاولة متنقلة", subtitle: "Mobile Table", img: SERVICE_IMAGES.mobileTable, description: "طاولة متنقلة فاخرة لتقديم المشروبات والحلويات.", features: ["تصميم أنيق", "حركة سهلة", "أحجام متعددة", "تخصيص كامل"], outfits: [] },

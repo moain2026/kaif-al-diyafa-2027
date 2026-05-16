@@ -114,6 +114,37 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Legacy WordPress Redirects
+      {
+        source: "/",
+        has: [{ type: "query", key: "page_id", value: "33" }],
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "query", key: "page_id", value: "1538" }],
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "query", key: "page_id", value: "1497" }],
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "query", key: "page_id", value: "1344" }],
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "query", key: "page_id", value: "1608" }],
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
