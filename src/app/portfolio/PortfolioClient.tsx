@@ -155,16 +155,13 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <div className="relative w-full h-full max-w-[92vw] max-h-[82vh] md:max-w-[78vw] md:max-h-[75vh]">
-              <ProtectedImage
-                src={item.image}
-                alt={`${seoAltMapping[item.category]} - عرض تفصيلي رقم ${index + 1}`}
-                fill
-                className="object-contain shadow-2xl select-none"
-                priority
-                showWatermark={true}
-              />
-            </div>
+            <ProtectedImage
+              src={item.image}
+              alt={`${seoAltMapping[item.category]} - عرض تفصيلي رقم ${index + 1}`}
+              className="max-w-full max-h-full w-auto h-auto object-contain shadow-2xl"
+              priority
+              showWatermark={true}
+            />
           </motion.div>
         </AnimatePresence>
       </div>
