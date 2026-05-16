@@ -153,7 +153,7 @@ function Lightbox({
               alt={`صورة ${index + 1}`}
               width={1200}
               height={800}
-              className="max-w-full max-h-full"
+              className="w-auto h-auto max-w-[95vw] max-h-[85vh] md:max-w-[85vw] md:max-h-[80vh] object-contain shadow-2xl"
               priority
               showWatermark={true}
             />
