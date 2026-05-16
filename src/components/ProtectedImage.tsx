@@ -62,7 +62,7 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
           height={!fill ? height : undefined}
           fill={fill}
           priority={priority}
-          className={`${fill ? 'object-cover' : 'w-full h-auto block'}`}
+          className={`${fill ? 'object-contain' : 'w-full h-auto block'}`}
           draggable={false}
         />
 
