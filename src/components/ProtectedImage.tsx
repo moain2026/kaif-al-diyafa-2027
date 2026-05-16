@@ -46,14 +46,14 @@ const ProtectedImage: React.FC<ProtectedImageProps> = ({
 
   return (
     <div 
-      className={`relative select-none ${fill ? 'w-full h-full' : 'inline-block w-full'} ${className}`}
+      className={`relative select-none ${fill ? 'w-full h-full' : 'inline-block'} ${className}`}
       onContextMenu={handleContextMenu}
     >
       {/* 
         Image Wrapper: 
         This div ensures the watermark is relative to the actual rendered image dimensions.
       */}
-      <div className={`relative w-full ${fill ? 'h-full' : 'h-auto'}`}>
+      <div className={`relative ${fill ? 'w-full h-full' : 'w-auto h-auto'}`}>
         {/* Main Image */}
         <Image
           src={src}
