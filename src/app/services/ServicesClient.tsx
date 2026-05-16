@@ -249,7 +249,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center gap-2 sm:gap-3">
-            {categories.map((cat) => (
+            {categories.map((cat, idx) => (
               <motion.button
                 key={cat.key}
                 onClick={() => onTabChange(idx)}
