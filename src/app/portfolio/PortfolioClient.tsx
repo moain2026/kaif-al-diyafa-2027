@@ -22,6 +22,13 @@ interface PortfolioItem {
   category: FilterType;
 }
 
+const seoAltMapping: Record<string, string> = {
+  all: "خدمات ضيافة فاخرة في السعودية - كيف الضيافة",
+  events: "تجهيز ضيافة فعاليات ومؤتمرات VIP - صبابين وقهوجية مناسبات",
+  weddings: "ضيافة زواجات فاخرة بالرياض - صبابات ومباشرات ضيافة نسائية",
+  equipment: "تأجير معدات ضيافة ملكية - دلال نحاسية وكاونترات استقبال"
+};
+
 const portfolioItems: PortfolioItem[] = [
   ...EVENT_IMAGES.map((img, i) => ({
     id: i + 1,
@@ -148,15 +155,16 @@ function Lightbox({
             onDragEnd={handleDragEnd}
             className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
           >
-            <ProtectedImage
-              src={item.image}
-              alt={`صورة ${index + 1}`}
-              width={1200}
-              height={800}
-              className="w-auto h-auto max-w-[95vw] max-h-[85vh] md:max-w-[85vw] md:max-h-[80vh] object-contain shadow-2xl"
-              priority
-              showWatermark={true}
-            />
+            <div className="relative w-full h-full max-w-[92vw] max-h-[82vh] md:max-w-[78vw] md:max-h-[75vh]">
+              <ProtectedImage
+                src={item.image}
+                alt={`${seoAltMapping[item.category]} - عرض تفصيلي رقم ${index + 1}`}
+                fill
+                className="object-contain shadow-2xl select-none"
+                priority
+                showWatermark={true}
+              />
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -324,7 +332,7 @@ export default function PortfolioClient() {
             >
               <ProtectedImage
                 src={item.image}
-                alt={`صورة ${idx + 1}`}
+                alt={`${seoAltMapping[item.category]} - لقطة ${idx + 1} من معرض أعمالنا`}
                 fill
                 className="transition-transform duration-700 group-hover:scale-110"
               />
