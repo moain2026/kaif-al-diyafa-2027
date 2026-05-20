@@ -109,23 +109,20 @@ export const PASTRY_IMAGES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// OFFERINGS — SNACKS (1 unique source image — repeated semantically)
-// Source: shrimp canapé / mini cone appetizers (savory snacks)
-// Future content team should add 9 more individual snack photos
+// OFFERINGS — SNACKS (10 unique high-quality images, Saudi SEO-named)
+// Each snack type has its own professional photo (1100px webp, ~80-135KB)
 // ═══════════════════════════════════════════════════════════════
 export const SNACKS_IMAGES = {
-  fingerFood: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  // Until more snack photos are provided, all keys point to the same hero image.
-  // Once individual product photos arrive, update each key independently.
-  miniPizza: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  nachos: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  potatoWedges: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  springRoll: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  chickenPops: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  croquette: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  miniBurger: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  cheeseStick: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
-  bruschetta: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  miniPizza: "/images/snacks/saudi-mini-margherita-pizza-luxury-catering-finger-food.webp",
+  nachos: "/images/snacks/saudi-loaded-nachos-cheese-jalapeno-vip-snacks.webp",
+  potatoWedges: "/images/snacks/saudi-crispy-golden-potato-wedges-rosemary-catering.webp",
+  springRoll: "/images/snacks/saudi-crispy-spring-rolls-sweet-chili-luxury-snacks.webp",
+  chickenPops: "/images/snacks/saudi-crispy-chicken-popcorn-bites-honey-mustard.webp",
+  croquette: "/images/snacks/saudi-golden-potato-cheese-croquettes-luxury-catering.webp",
+  fingerFood: "/images/snacks/saudi-gourmet-finger-food-assortment-canapes-vip.webp",
+  miniBurger: "/images/snacks/saudi-mini-beef-sliders-cheese-luxury-catering.webp",
+  cheeseStick: "/images/snacks/saudi-crispy-mozzarella-cheese-sticks-marinara-snacks.webp",
+  bruschetta: "/images/snacks/saudi-italian-bruschetta-tomato-basil-luxury-appetizer.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
