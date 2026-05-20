@@ -178,17 +178,125 @@ export const SERVING_EQUIPMENT_IMAGES = {
 // ═══════════════════════════════════════════════════════════════
 // EVENT IMAGES (82 photos)
 // ═══════════════════════════════════════════════════════════════
-export const EVENT_IMAGES = Array.from({ length: 82 }, (_, i) => `/images/events/event-${i + 1}.webp`);
+export const EVENT_IMAGES = [
+  "/images/events/saudi-event-vip-reception-luxury-catering-majlis-traditional-attire.webp",
+  "/images/events/ksa-event-qahwa-service-hospitality-staff-arabic-coffee-ceremony.webp",
+  "/images/events/formal-reception-indoor-event-saudi-hosts-luxury-catering.webp",
+  "/images/events/official-ceremony-saudi-hosts-traditional-attire-vip-reception.webp",
+  "/images/events/majlis-qahwa-service-saudi-event-camel-decor.webp",
+  "/images/events/saudi-event-vip-arabic-coffee-ceremony-camel-decor-indoor.webp",
+  "/images/events/corporate-event-hospitality-staff-formal-reception-saudi-hosts.webp",
+  "/images/events/conference-catering-saudi-hosts-vip-reception-dallah-albaraka.webp",
+  "/images/events/ksa-event-qahwa-service-corporate-event-tawkeel.webp",
+  "/images/events/luxury-catering-arabic-coffee-ceremony-gala-dinner-indoor.webp",
+  "/images/events/saudi-event-qahwa-service-hospitality-staff-exhibition-booth.webp",
+  "/images/events/ksa-event-arabic-coffee-ceremony-masked-host-exhibition.webp",
+  "/images/events/indoor-event-traditional-attire-ceremonial-coffee-female-guest.webp",
+  "/images/events/conference-catering-hospitality-staff-medical-college-exhibition.webp",
+  "/images/events/official-ceremony-hospitality-staff-umm-al-qura-exhibition.webp",
+  "/images/events/corporate-event-qahwa-service-luxury-catering-basma-emaar.webp",
+  "/images/events/luxury-catering-saudi-hosts-glory-of-luxury-indoor-event.webp",
+  "/images/events/ksa-event-vip-reception-arabic-coffee-flyadeal-corporate.webp",
+  "/images/events/government-event-hospitality-staff-ceremonial-coffee-ministry-transport.webp",
+  "/images/events/saudi-event-luxury-catering-hospitality-staff-saja-exhibition.webp",
+  "/images/events/saudi-event-vip-reception-bolt-exhibition-qahwa-service.webp",
+  "/images/events/ksa-event-corporate-event-takween-al-watan-ceremonial-coffee.webp",
+  "/images/events/exhibition-saudi-hosts-amak-minerals-arabic-coffee-ceremony.webp",
+  "/images/events/jeddah-event-formal-reception-private-aviation-qahwa-service.webp",
+  "/images/events/corporate-event-vip-reception-dallah-albaraka-ceremonial-coffee.webp",
+  "/images/events/government-event-official-ceremony-madinah-municipality-arabic-coffee.webp",
+  "/images/events/ksa-event-exhibition-hafil-pink-luxury-catering.webp",
+  "/images/events/vip-reception-corporate-event-aljar-marina-qahwa-service.webp",
+  "/images/events/exhibition-saudi-event-nayifat-financing-ceremonial-coffee.webp",
+  "/images/events/indoor-event-saudi-hosts-bisht-qahwa-service-traditional.webp",
+  "/images/events/saudi-event-vip-reception-aviation-booth-arabic-coffee-ceremony.webp",
+  "/images/events/corporate-event-formal-reception-umm-al-qura-university-saudi-hosts.webp",
+  "/images/events/exhibition-hospitality-rawahil-al-mashaer-arabic-coffee-ceremony.webp",
+  "/images/events/indoor-event-exhibition-york-booth-qahwa-service.webp",
+  "/images/events/conference-catering-saudi-electricity-company-dates-tray-luxury.webp",
+  "/images/events/corporate-event-vip-suzuki-showroom-arabic-coffee-ceremony.webp",
+  "/images/events/formal-reception-hospitality-staff-york-arabic-coffee-ceremony.webp",
+  "/images/events/majlis-traditional-attire-dates-tower-ceremonial-coffee-display.webp",
+  "/images/events/government-event-official-ceremony-saudi-electricity-luxury-catering.webp",
+  "/images/events/corporate-event-indoor-cybersecurity-awareness-ceremonial-coffee.webp",
+  "/images/events/saudi-event-vip-reception-makkah-halal-forum-coffee-lounge.webp",
+  "/images/events/corporate-event-saudi-host-qahwa-office-reception-traditional.webp",
+  "/images/events/qahwa-service-bon-cafe-arabic-coffee-ceremony-corporate.webp",
+  "/images/events/formal-reception-saudi-hosts-al-amjaad-office-traditional.webp",
+  "/images/events/luxury-catering-foot-locker-sneaker-host-ceremonial.webp",
+  "/images/events/official-ceremony-grand-opening-saudi-hosts-red-backdrop.webp",
+  "/images/events/exhibition-vip-reception-foot-locker-coffee-kiosk.webp",
+  "/images/events/government-event-official-ceremony-saudi-hosts-grand-opening.webp",
+  "/images/events/indoor-event-new-balance-foot-locker-coffee-booth.webp",
+  "/images/events/vip-reception-luxury-catering-menswear-boutique-host.webp",
+  "/images/events/saudi-event-vip-reception-suzuki-exhibition-arabic-coffee.webp",
+  "/images/events/saudi-event-vip-reception-luxury-retail-traditional-attire.webp",
+  "/images/events/saudi-event-corporate-al-safir-masked-hospitality.webp",
+  "/images/events/ksa-event-exhibition-luxury-catering-food-booth-dates-tray.webp",
+  "/images/events/riyadh-event-vip-reception-alinma-booth-ceremonial-coffee.webp",
+  "/images/events/saudi-event-conference-catering-bci-counter-ceremonial-coffee.webp",
+  "/images/events/jeddah-event-marble-hall-osus-alinsha-vip-reception.webp",
+  "/images/events/outdoor-event-nahda-park-arabic-coffee-formal-reception.webp",
+  "/images/events/indoor-event-luxury-catering-ceremonial-coffee-exhibition-reception.webp",
+  "/images/events/gala-dinner-vip-reception-royal-protocol-marble-luxury.webp",
+  "/images/events/saudi-event-hifawa-vip-traditional-attire-qahwa-service.webp",
+  "/images/events/ksa-event-exhibition-dallah-albarka-dates-tray-ceremonial.webp",
+  "/images/events/corporate-event-almana-medical-group-arabic-coffee-ceremony.webp",
+  "/images/events/expo-jimny-ksa-club-saudi-hosts-gift-presentation.webp",
+  "/images/events/government-event-ministry-of-media-official-ceremony.webp",
+  "/images/events/hotel-event-dallah-taibah-luxury-catering-qahwa-service.webp",
+  "/images/events/corporate-event-dallah-hajj-transport-ceremonial-coffee.webp",
+  "/images/events/exhibition-alrifadah-pilgrims-services-arabic-coffee-ceremony.webp",
+  "/images/events/marble-hall-makkah-hotel-towers-saudi-hosts-dates-tray.webp",
+  "/images/events/ksa-event-official-ceremony-turkish-pilgrims-office-luxury.webp",
+  "/images/events/saudi-event-vip-reception-arabic-coffee-masked-host-exhibition.webp",
+  "/images/events/saudi-event-formal-reception-makkah-themed-exhibition.webp",
+  "/images/events/saudi-event-conference-catering-dareen-travel-agency-indoor.webp",
+  "/images/events/ksa-event-exhibition-hospitality-staff-hajj-conference.webp",
+  "/images/events/saudi-hosts-ceremonial-coffee-expo-makkah-hotel-booth.webp",
+  "/images/events/vip-reception-luxury-catering-millennium-hotels-golden-dallah.webp",
+  "/images/events/corporate-event-exhibition-makkiyoon-traditional-attire-qahwa.webp",
+  "/images/events/outdoor-event-tourism-booth-expo-saudi-host-coffee-set.webp",
+  "/images/events/formal-reception-government-event-majad-booth-arabic-coffee.webp",
+  "/images/events/exhibition-hospitality-staff-almadina-hotel-resorts-saudi-event.webp",
+  "/images/events/royal-protocol-vip-reception-makkah-hotel-towers-majlis.webp",
+  "/images/events/ksa-event-luxury-catering-mcdc-conference-ceremonial-coffee.webp",
+];
 
 // ═══════════════════════════════════════════════════════════════
 // WEDDING IMAGES (18 photos)
 // ═══════════════════════════════════════════════════════════════
-export const WEDDING_IMAGES = Array.from({ length: 18 }, (_, i) => `/images/weddings/wedding-${i + 1}.webp`);
+export const WEDDING_IMAGES = [
+  "/images/weddings/saudi-wedding-male-host-coffee-vip-wedding-hall.webp",
+  "/images/weddings/saudi-wedding-male-host-dallah-dates-qahwa-station.webp",
+  "/images/weddings/arab-wedding-male-host-qahwa-station-vip-wedding.webp",
+  "/images/weddings/luxury-wedding-men-section-traditional-uniform-wedding-hall.webp",
+  "/images/weddings/saudi-wedding-qahwa-station-dallah-white-thobe.webp",
+  "/images/weddings/vip-wedding-traditional-uniform-dallah-wedding-hall.webp",
+  "/images/weddings/jeddah-wedding-men-section-traditional-uniform-luxury-wedding.webp",
+  "/images/weddings/riyadh-wedding-vip-wedding-hall-male-host.webp",
+  "/images/weddings/arab-wedding-men-section-wedding-decoration-qahwa-station.webp",
+  "/images/weddings/saudi-wedding-male-host-arabic-coffee-luxury-wedding.webp",
+  "/images/weddings/saudi-wedding-men-section-male-host-dallah-traditional.webp",
+  "/images/weddings/luxury-wedding-hall-male-hosts-dallah-gift-tray.webp",
+  "/images/weddings/saudi-wedding-traditional-uniform-male-hosts-white-thobe.webp",
+  "/images/weddings/wedding-coffee-male-host-dallah-tray-white-thobe.webp",
+  "/images/weddings/qahwa-station-male-host-dallah-wedding-hall-ceremony.webp",
+  "/images/weddings/saudi-wedding-vip-wedding-hall-host-dallah-flag.webp",
+  "/images/weddings/luxury-wedding-decoration-male-hosts-traditional-uniform.webp",
+  "/images/weddings/arab-wedding-hall-men-section-male-hosts-marble.webp",
+];
 
 // ═══════════════════════════════════════════════════════════════
 // DISTRIBUTION IMAGES (5 photos)
 // ═══════════════════════════════════════════════════════════════
-export const DISTRIBUTION_IMAGES = Array.from({ length: 5 }, (_, i) => `/images/distributions/dist-${i + 1}.webp`);
+export const DISTRIBUTION_IMAGES = [
+  "/images/distributions/saudi-luxury-palm-date-sweets-distribution.webp",
+  "/images/distributions/ksa-dates-arabic-sweets-gahwa-distribution.webp",
+  "/images/distributions/saudi-vip-majlis-dates-gahwa-hospitality.webp",
+  "/images/distributions/riyadh-luxury-hospitality-gift-tray-qahwa-ceremony.webp",
+  "/images/distributions/jeddah-vip-dates-dessert-gahwa-gift-tray.webp",
+];
 
 // ═══════════════════════════════════════════════════════════════
 // SERVICES — SAFARJIA
@@ -273,12 +381,36 @@ export const SERVICES_ARTISTIC = {
 // ═══════════════════════════════════════════════════════════════
 // EQUIPMENT IMAGES (21 photos)
 // ═══════════════════════════════════════════════════════════════
-export const EQUIPMENT_IMAGES = Array.from({ length: 28 }, (_, i) => `/images/equipment/equip-${i + 1}.webp`);
-
-// ═══════════════════════════════════════════════════════════════
-// PARTNER LOGOS (36 logos)
-// ═══════════════════════════════════════════════════════════════
-export const PARTNER_LOGOS = Array.from({ length: 36 }, (_, i) => `/images/partners/partner-${i + 1}.webp`);
+export const EQUIPMENT_IMAGES = [
+  "/images/equipment/saudi-luxury-ornate-tea-glass-golden-silver-hospitality.webp",
+  "/images/equipment/saudi-arabic-coffee-emblem-handled-mug-golden-hospitality.webp",
+  "/images/equipment/luxury-clear-ribbed-glass-cup-saucer-hospitality.webp",
+  "/images/equipment/saudi-silver-dallah-serveware-luxury-hospitality.webp",
+  "/images/equipment/luxury-clear-stemmed-goblet-glass-hospitality.webp",
+  "/images/equipment/saudi-golden-striped-tea-cup-saucer-hospitality.webp",
+  "/images/equipment/luxury-faceted-tea-cup-transparent-hospitality.webp",
+  "/images/equipment/saudi-clear-cup-saucer-golden-stripes-hospitality.webp",
+  "/images/equipment/royal-golden-dallah-coffee-pot-saudi-hospitality.webp",
+  "/images/equipment/saudi-luxury-gold-rimmed-emblem-coffee-pot.webp",
+  "/images/equipment/saudi-luxury-silver-dallah-arabic-coffee-equipment.webp",
+  "/images/equipment/arabic-coffee-gahwa-ornate-glass-cup-set-equipment.webp",
+  "/images/equipment/saudi-traditional-ribbed-glass-tea-cup-set.webp",
+  "/images/equipment/luxury-saudi-white-coffee-cup-saucer.webp",
+  "/images/equipment/saudi-gold-palm-gahwa-cups-set.webp",
+  "/images/equipment/vip-saudi-golden-dallah-dates-table.webp",
+  "/images/equipment/royal-saudi-gold-qahwa-dates-service.webp",
+  "/images/equipment/jeddah-luxury-ornate-tea-cup-saucer.webp",
+  "/images/equipment/saudi-hospitality-glass-tea-set-equipment.webp",
+  "/images/equipment/traditional-saudi-clear-glass-qahwa-cup.webp",
+  "/images/equipment/saudi-luxury-hospitality-white-porcelain-cup-saucer.webp",
+  "/images/equipment/saudi-arabic-coffee-vip-golden-cup-stand-majlis.webp",
+  "/images/equipment/ksa-luxury-qahwa-golden-glass-cup-stand-majlis.webp",
+  "/images/equipment/saudi-vip-hospitality-golden-coffee-cup-stand-event.webp",
+  "/images/equipment/riyadh-luxury-arabic-coffee-glass-cup-dessert-table.webp",
+  "/images/equipment/ksa-golden-buffet-tray-glass-cups-hospitality.webp",
+  "/images/equipment/jeddah-vip-majlis-golden-arabic-coffee-stand.webp",
+  "/images/equipment/saudi-ceremonial-golden-tray-white-cups-hospitality.webp",
+];
 
 // ═══════════════════════════════════════════════════════════════
 // CONVENIENCE SHORTCUTS — for quick access in components
