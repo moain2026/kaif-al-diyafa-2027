@@ -80,7 +80,7 @@ export const DATES_IMAGES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// OFFERINGS — SWEETS (6 images from moain2026/allimg)
+// OFFERINGS — SWEETS (6 original + 5 new luxury dessert buffet photos)
 // ═══════════════════════════════════════════════════════════════
 export const SWEETS_IMAGES = {
   pancake: "/images/sweets/pancake.webp",
@@ -89,6 +89,12 @@ export const SWEETS_IMAGES = {
   bostaniChocolate: "/images/sweets/bostani-chocolate.webp",
   chocolateCroissant: "/images/sweets/chocolate-croissant.webp",
   kunafa: "/images/sweets/kunafa.webp",
+  // New (Phase E2): luxury dessert buffet photos for hero/showcase use
+  dessertBuffetShooters: "/images/sweets/saudi-luxury-dessert-buffet-mini-cakes-shooters.webp",
+  fruitBaklavaPlatter: "/images/sweets/saudi-fruit-platter-baklava-pistachio-dessert.webp",
+  dessertStationMousse: "/images/sweets/saudi-luxury-dessert-station-fruit-mousse-cups.webp",
+  pannaCottaBuffet: "/images/sweets/saudi-elegant-dessert-buffet-panna-cotta-shooters.webp",
+  freshFruitDessertStation: "/images/sweets/saudi-luxury-dessert-station-fresh-fruit-mix.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -103,60 +109,76 @@ export const PASTRY_IMAGES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// OFFERINGS — SNACKS (10 images)
+// OFFERINGS — SNACKS (1 unique source image — repeated semantically)
+// Source: shrimp canapé / mini cone appetizers (savory snacks)
+// Future content team should add 9 more individual snack photos
+// ═══════════════════════════════════════════════════════════════
 export const SNACKS_IMAGES = {
-  miniPizza: "/images/snacks/mini-pizza.webp",
-  nachos: "/images/snacks/nachos.webp",
-  potatoWedges: "/images/snacks/potato-wedges.webp",
-  springRoll: "/images/snacks/spring-roll.webp",
-  chickenPops: "/images/snacks/chicken-pops.webp",
-  croquette: "/images/snacks/croquette.webp",
-  fingerFood: "/images/snacks/finger-food.webp",
-  miniBurger: "/images/snacks/mini-burger.webp",
-  cheeseStick: "/images/snacks/cheese-stick.webp",
-  bruschetta: "/images/snacks/bruschetta.webp",
+  fingerFood: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  // Until more snack photos are provided, all keys point to the same hero image.
+  // Once individual product photos arrive, update each key independently.
+  miniPizza: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  nachos: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  potatoWedges: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  springRoll: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  chickenPops: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  croquette: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  miniBurger: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  cheeseStick: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
+  bruschetta: "/images/snacks/saudi-luxury-shrimp-canape-mini-cone-appetizers.webp",
 };
 
-// OFFERINGS — SANDWICHES (10 images)
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — SANDWICHES (7 unique source images mapped semantically)
+// Visually matched to closest sandwich type based on filling/bread
+// ═══════════════════════════════════════════════════════════════
 export const SANDWICHES_IMAGES = {
-  clubSandwich: "/images/sandwiches/club-sandwich.webp",
-  grilledChicken: "/images/sandwiches/grilled-chicken.webp",
-  tunaSandwich: "/images/sandwiches/tuna-sandwich.webp",
-  coldCuts: "/images/sandwiches/cold-cuts.webp",
-  falafelWrap: "/images/sandwiches/falafel-wrap.webp",
-  grilledHalloumi: "/images/sandwiches/grilled-halloumi.webp",
-  turkeySandwich: "/images/sandwiches/turkey-sandwich.webp",
-  smokedSalmon: "/images/sandwiches/smoked-salmon.webp",
-  miniCroissant: "/images/sandwiches/mini-croissant.webp",
-  steakSandwich: "/images/sandwiches/steak-sandwich.webp",
+  grilledChicken: "/images/sandwiches/saudi-catering-grilled-chicken-sandwich-lettuce-cheese.webp",
+  turkeySandwich: "/images/sandwiches/saudi-catering-turkey-sandwich-soft-roll-tomato.webp",
+  tunaSandwich: "/images/sandwiches/saudi-catering-tuna-sandwich-sesame-bun.webp",
+  clubSandwich: "/images/sandwiches/saudi-catering-tuna-salad-sandwich-long-roll.webp",
+  grilledHalloumi: "/images/sandwiches/saudi-catering-chicken-cheese-sandwich-long-roll.webp",
+  coldCuts: "/images/sandwiches/saudi-catering-turkey-cheese-tomato-long-sandwich.webp",
+  smokedSalmon: "/images/sandwiches/saudi-catering-smoked-turkey-cheese-tomato-sandwich.webp",
+  // Reuse closest matches until more photos arrive:
+  falafelWrap: "/images/sandwiches/saudi-catering-grilled-chicken-sandwich-lettuce-cheese.webp",
+  miniCroissant: "/images/sandwiches/saudi-catering-turkey-sandwich-soft-roll-tomato.webp",
+  steakSandwich: "/images/sandwiches/saudi-catering-smoked-turkey-cheese-tomato-sandwich.webp",
 };
 
-// OFFERINGS — FRUITS (10 images)
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — FRUITS (2 unique source images — seasonal mix + watermelon)
+// ═══════════════════════════════════════════════════════════════
 export const FRUITS_IMAGES = {
-  seasonalMix: "/images/fruits/seasonal-mix.webp",
-  strawberry: "/images/fruits/strawberry.webp",
-  grapes: "/images/fruits/grapes.webp",
-  mango: "/images/fruits/mango.webp",
-  pineapple: "/images/fruits/pineapple.webp",
-  kiwi: "/images/fruits/kiwi.webp",
-  mixedBerries: "/images/fruits/mixed-berries.webp",
-  watermelon: "/images/fruits/watermelon.webp",
-  figs: "/images/fruits/figs.webp",
-  pomegranate: "/images/fruits/pomegranate.webp",
+  seasonalMix: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  watermelon: "/images/fruits/saudi-carved-watermelon-vip-event-fruit-display.webp",
+  // The remaining 8 keys map to seasonalMix until individual fruit photos arrive
+  strawberry: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  grapes: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  mango: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  pineapple: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  kiwi: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  mixedBerries: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  figs: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  pomegranate: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
 };
 
-// OFFERINGS — NUTS (10 images)
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — NUTS (10 NOIX premium nut products — top picks from 17)
+// All photos are NOIX-branded premium nut/granola products
+// (cinnamon nuts, salted caramel, zaatar, granola mixes, etc.)
+// ═══════════════════════════════════════════════════════════════
 export const NUTS_IMAGES = {
-  roastedAlmonds: "/images/nuts/roasted-almonds.webp",
-  royalCashew: "/images/nuts/royal-cashew.webp",
-  pistachio: "/images/nuts/pistachio.webp",
-  walnut: "/images/nuts/walnut.webp",
-  roastedHazelnut: "/images/nuts/roasted-hazelnut.webp",
-  premiumMix: "/images/nuts/premium-mix.webp",
-  pineNuts: "/images/nuts/pine-nuts.webp",
-  macadamia: "/images/nuts/macadamia.webp",
-  roastedPecan: "/images/nuts/roasted-pecan.webp",
-  saltedPeanuts: "/images/nuts/salted-peanuts.webp",
+  premiumMix: "/images/nuts/saudi-super-q-granola-mixed-nuts-oats-luxury.webp",
+  roastedHazelnut: "/images/nuts/saudi-roasted-hazelnut-zaatar-nuts-noix-premium.webp",
+  roastedAlmonds: "/images/nuts/saudi-cinnamon-roasted-nuts-noix-premium-luxury.webp",
+  royalCashew: "/images/nuts/saudi-cinnamon-nuts-noix-luxury-hospitality-display.webp",
+  pistachio: "/images/nuts/saudi-zaatar-granola-noix-luxury-arabian-flavor.webp",
+  walnut: "/images/nuts/saudi-noix-fine-food-chocolate-butter-granola-trio.webp",
+  pineNuts: "/images/nuts/saudi-noix-luxury-granola-zaatar-cinnamon-nuts-range.webp",
+  macadamia: "/images/nuts/saudi-salted-caramel-nuts-noix-luxury-premium.webp",
+  roastedPecan: "/images/nuts/saudi-salted-caramel-granola-noix-premium.webp",
+  saltedPeanuts: "/images/nuts/saudi-noix-granola-premium-mixed-nuts-collage.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
