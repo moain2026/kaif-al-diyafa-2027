@@ -95,6 +95,10 @@ export const SWEETS_IMAGES = {
   dessertStationMousse: "/images/sweets/saudi-luxury-dessert-station-fruit-mousse-cups.webp",
   pannaCottaBuffet: "/images/sweets/saudi-elegant-dessert-buffet-panna-cotta-shooters.webp",
   freshFruitDessertStation: "/images/sweets/saudi-luxury-dessert-station-fresh-fruit-mix.webp",
+  // New (client-supplied real photos, optimised to WebP): luxury dessert buffet shots
+  chocolateMousseBasbousaBuffet: "/images/sweets/saudi-luxury-dessert-buffet-chocolate-mousse-basbousa.webp",
+  baklavaKunafaFruitPlatter: "/images/sweets/saudi-traditional-baklava-kunafa-pistachio-fruit-platter.webp",
+  mangoPannaCottaRedVelvetStation: "/images/sweets/saudi-elegant-dessert-station-mango-panna-cotta-red-velvet.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
