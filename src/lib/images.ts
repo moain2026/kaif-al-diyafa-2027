@@ -126,7 +126,7 @@ export const SNACKS_IMAGES = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// OFFERINGS — SANDWICHES (7 unique source images mapped semantically)
+// OFFERINGS — SANDWICHES (7 unique source images, one per product)
 // Visually matched to closest sandwich type based on filling/bread
 // ═══════════════════════════════════════════════════════════════
 export const SANDWICHES_IMAGES = {
@@ -137,27 +137,23 @@ export const SANDWICHES_IMAGES = {
   grilledHalloumi: "/images/sandwiches/saudi-catering-chicken-cheese-sandwich-long-roll.webp",
   coldCuts: "/images/sandwiches/saudi-catering-turkey-cheese-tomato-long-sandwich.webp",
   smokedSalmon: "/images/sandwiches/saudi-catering-smoked-turkey-cheese-tomato-sandwich.webp",
-  // Reuse closest matches until more photos arrive:
-  falafelWrap: "/images/sandwiches/saudi-catering-grilled-chicken-sandwich-lettuce-cheese.webp",
-  miniCroissant: "/images/sandwiches/saudi-catering-turkey-sandwich-soft-roll-tomato.webp",
-  steakSandwich: "/images/sandwiches/saudi-catering-smoked-turkey-cheese-tomato-sandwich.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
-// OFFERINGS — FRUITS (2 unique source images — seasonal mix + watermelon)
+// OFFERINGS — FRUITS (10 unique source images, one per product)
+// Real, copyright-safe photos (Pexels / Wikimedia / PICRYL / Pixnio /
+// Freerange / Public-Domain). Optimised to WebP (~1200px wide, <250KB).
 // ═══════════════════════════════════════════════════════════════
 export const FRUITS_IMAGES = {
-  seasonalMix: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  strawberry: "/images/fruits/saudi-fresh-strawberries-luxury-hospitality-fruit.webp",
+  grapes: "/images/fruits/saudi-red-green-grapes-premium-catering-fruit.webp",
+  mango: "/images/fruits/saudi-fresh-mango-cubes-luxury-hospitality-fruit.webp",
+  pineapple: "/images/fruits/saudi-fresh-pineapple-slices-premium-catering-fruit.webp",
+  kiwi: "/images/fruits/saudi-fresh-sliced-kiwi-luxury-hospitality-fruit.webp",
+  mixedBerries: "/images/fruits/saudi-mixed-berries-bowl-premium-catering-fruit.webp",
   watermelon: "/images/fruits/saudi-carved-watermelon-vip-event-fruit-display.webp",
-  // The remaining 8 keys map to seasonalMix until individual fruit photos arrive
-  strawberry: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  grapes: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  mango: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  pineapple: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  kiwi: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  mixedBerries: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  figs: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
-  pomegranate: "/images/fruits/saudi-luxury-mixed-fruit-platter-hospitality.webp",
+  figs: "/images/fruits/saudi-fresh-figs-luxury-hospitality-fruit.webp",
+  pomegranate: "/images/fruits/saudi-fresh-pomegranate-premium-catering-fruit.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
