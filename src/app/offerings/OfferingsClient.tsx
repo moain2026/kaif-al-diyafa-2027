@@ -119,18 +119,14 @@ const categories: CategoryData[] = [
       { name: "دجاج مشوي",         description: "ساندوتش دجاج مشوي بالأعشاب",         img: SANDWICHES_IMAGES.grilledChicken },
       { name: "ساندوتش تونة",      description: "تونة طازجة بالخضروات",               img: SANDWICHES_IMAGES.tunaSandwich },
       { name: "لحم بارد",          description: "شرائح لحم بارد فاخرة",               img: SANDWICHES_IMAGES.coldCuts },
-      { name: "فلافل راب",         description: "فلافل مقرمشة بخبز التورتيلا",         img: SANDWICHES_IMAGES.falafelWrap },
       { name: "حلوم مشوي",         description: "جبن حلوم مشوي بالخضروات",            img: SANDWICHES_IMAGES.grilledHalloumi },
       { name: "ديك رومي",          description: "شرائح ديك رومي مدخنة",               img: SANDWICHES_IMAGES.turkeySandwich },
       { name: "سلمون مدخن",        description: "سلمون مدخن بالكريمة",                img: SANDWICHES_IMAGES.smokedSalmon },
-      { name: "ميني كرواسون",      description: "كرواسون صغير محشي متنوع",            img: SANDWICHES_IMAGES.miniCroissant },
-      { name: "ساندوتش ستيك",      description: "شرائح ستيك مشوية فاخرة",             img: SANDWICHES_IMAGES.steakSandwich },
     ],
   },
   {
     id: "fruits", label: "فواكه مشكلة", icon: "🍇", description: "فواكه طازجة مقطعة ومقدمة بأناقة",
     items: [
-      { name: "تشكيلة فواكه موسمية", description: "أجود الفواكه الموسمية المنتقاة",      img: FRUITS_IMAGES.seasonalMix },
       { name: "فراولة طازجة",       description: "فراولة حمراء طازجة ومنتقاة",          img: FRUITS_IMAGES.strawberry },
       { name: "عنب أحمر وأخضر",    description: "عنب فاخر بنوعيه",                    img: FRUITS_IMAGES.grapes },
       { name: "مانجو مقطعة",       description: "مانجو ناضجة مقطعة بأناقة",            img: FRUITS_IMAGES.mango },
