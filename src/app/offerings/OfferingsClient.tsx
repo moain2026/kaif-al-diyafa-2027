@@ -85,6 +85,9 @@ const categories: CategoryData[] = [
       { name: "شوكولاتة بستاني",        description: "بستاني الفاخرة بنكهات مميزة",           img: SWEETS_IMAGES.bostaniChocolate },
       { name: "كرواءسون شوكولاتة",       description: "كرواسون فرنسي محشو",                   img: SWEETS_IMAGES.chocolateCroissant },
       { name: "بان كيك",                description: "بان كيك طازج بالتوبينج",               img: SWEETS_IMAGES.pancake },
+      { name: "بوفيه حلى كاسات",         description: "حلى كاسات شوكولاتة وبسبوسة ومكعبات",    img: SWEETS_IMAGES.chocolateMousseBasbousaBuffet },
+      { name: "تشكيلة شرقية فاخرة",      description: "بقلاوة وكنافة بالفستق مع فواكه طازجة",   img: SWEETS_IMAGES.baklavaKunafaFruitPlatter },
+      { name: "ركن الحلويات الفاخر",     description: "كاسات مانجو وريد فيلفيت وبقلاوة أصابع",  img: SWEETS_IMAGES.mangoPannaCottaRedVelvetStation },
     ],
   },
   {
