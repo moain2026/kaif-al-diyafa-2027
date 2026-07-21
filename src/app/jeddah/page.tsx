@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, WA_NUMBER, CITIES, SERVICES } from "@/lib/seo-pages";
+import { JEDDAH_NEIGHBORHOODS } from "@/lib/jeddah-neighborhoods";
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -88,7 +89,7 @@ export default function JeddahPage() {
             <h2 className="text-[#C5A059] mb-4 font-tajawal" style={{ fontSize: "1.3rem", fontWeight: 700 }}>
               أحياء جدة التي نغطّيها
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {jeddah.neighborhoods.map((n) => (
                 <span
                   key={n}
@@ -97,6 +98,25 @@ export default function JeddahPage() {
                 >
                   {n}
                 </span>
+              ))}
+            </div>
+
+            {/* Specialized neighborhood pages */}
+            <h3 className="text-[#B8860B] mb-4" style={{ fontSize: "0.9rem", fontWeight: 700 }}>
+              صفحات متخصصة لأحياء جدة
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {JEDDAH_NEIGHBORHOODS.map((n) => (
+                <Link
+                  key={n.slug}
+                  href={`/jeddah/${n.slug}`}
+                  className="px-4 py-3 rounded-xl text-center text-xs group min-h-[44px] flex items-center justify-center"
+                  style={{ background: "rgba(184,134,11,0.04)", border: "1px solid rgba(184,134,11,0.12)" }}
+                >
+                  <span className="text-[#F5F5DC]/60 group-hover:text-[#D4A017] transition-colors" style={{ fontWeight: 600 }}>
+                    {n.name}
+                  </span>
+                </Link>
               ))}
             </div>
           </div>

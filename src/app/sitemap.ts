@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { CITIES, SITE_URL, getServiceCitySlugs } from "@/lib/seo-pages";
 import { BLOG_ARTICLES } from "@/lib/blog-data";
+import { JEDDAH_NEIGHBORHOODS } from "@/lib/jeddah-neighborhoods";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
@@ -39,7 +40,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  const allRoutes = [...staticRoutes, ...locationRoutes, ...serviceCityRoutes, ...blogRoutes];
+  // Jeddah neighborhood pages (6 pages)
+  const neighborhoodRoutes = JEDDAH_NEIGHBORHOODS.map((n) => ({
+    path: `/jeddah/${n.slug}`,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  }));
+
+  const allRoutes = [...staticRoutes, ...locationRoutes, ...serviceCityRoutes, ...blogRoutes, ...neighborhoodRoutes];
 
   return allRoutes.map((route) => ({
     url: `${SITE_URL}${route.path}`,
