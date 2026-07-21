@@ -25,9 +25,9 @@ const securityHeaders = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "img-src 'self' data: blob: https://images.unsplash.com https://via.placeholder.com https://*.unsplash.com https://raw.githubusercontent.com",
+      "img-src 'self' data: blob: https://images.unsplash.com https://*.unsplash.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "connect-src 'self' https://www.google-analytics.com https://wa.me",
+      "connect-src 'self' https://www.google-analytics.com",
       "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -53,16 +53,6 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "via.placeholder.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "raw.githubusercontent.com",
-        pathname: "/**",
-      },
     ],
     localPatterns: [
       {
@@ -83,7 +73,10 @@ const nextConfig = {
           ...securityHeaders,
           {
             key: 'X-Robots-Tag',
-            value: process.env.VERCEL_ENV === 'production' ? 'all' : 'noindex, nofollow',
+            // Default to 'all' in production unless explicitly a preview/deployment env
+            value: (process.env.VERCEL_ENV === 'production' || (process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV))
+              ? 'all'
+              : 'noindex, nofollow',
           },
         ],
       },
@@ -115,18 +108,10 @@ const nextConfig = {
         ],
       },
       // ISR cache for semi-static pages — improves TTFB and reduces origin load
+      // Note: /locations pages don't exist yet — ISR rules removed to avoid caching 404s.
+      // When location pages are built, re-add ISR for them here.
       {
-        source: "/(services|offerings|portfolio|about|locations)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=86400, stale-while-revalidate=3600",
-          },
-        ],
-      },
-      // ISR cache for location landing pages (highest-traffic SEO pages)
-      {
-        source: "/locations/:path*",
+        source: "/(services|offerings|portfolio|about)",
         headers: [
           {
             key: "Cache-Control",

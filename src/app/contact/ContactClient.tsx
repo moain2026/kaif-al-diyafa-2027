@@ -26,8 +26,15 @@ export default function ContactClient() {
 🎯 الخدمة: ${formData.service || "غير محدد"}
 📅 التاريخ: ${formData.date || "غير محدد"}
 💬 ${formData.message}`;
-    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank");
-    setSubmitted(true);
+    const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+    // Try opening WhatsApp in a new tab; detect popup blockers
+    const newWindow = window.open(waUrl, "_blank");
+    if (newWindow) {
+      setSubmitted(true);
+    } else {
+      // Popup blocked — redirect directly in same tab as fallback
+      window.location.href = waUrl;
+    }
   };
 
   if (submitted) {

@@ -2,6 +2,7 @@
 
 import { memo, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { MotionConfig } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
@@ -37,13 +38,15 @@ function ClientLayoutInner({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-[#F5F5DC]" dir="rtl">
-      <Navbar deferredPrompt={deferredPrompt} setDeferredPrompt={setDeferredPrompt} />
-      <main id="main-content">{children}</main>
-      <Footer />
-      <FloatingWhatsApp />
-      <CookieConsent />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen bg-[#0f0f0f] text-[#F5F5DC]" dir="rtl">
+        <Navbar deferredPrompt={deferredPrompt} setDeferredPrompt={setDeferredPrompt} />
+        <main id="main-content">{children}</main>
+        <Footer />
+        <FloatingWhatsApp />
+        <CookieConsent />
+      </div>
+    </MotionConfig>
   );
 }
 

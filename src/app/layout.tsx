@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Tajawal, Cairo } from "next/font/google";
 import "@/styles/globals.css";
 import {
@@ -7,11 +8,17 @@ import {
   generateOrganizationSchema,
 } from "@/lib/schema";
 
+// ClientLayout wraps Navbar+Footer+WhatsApp+CookieConsent.
+// Loaded in layout.tsx (not template.tsx) to avoid re-mounting chrome on every navigation.
+const ClientLayout = dynamic(() => import("@/components/ClientLayout"), {
+  ssr: true,
+});
+
 const SITE_URL = "https://keifaldiafa.com";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "700", "800", "900"],
+  weight: ["400", "700", "900"],
   display: "swap",
   variable: "--font-tajawal",
   preload: true,
@@ -19,7 +26,7 @@ const tajawal = Tajawal({
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["700", "800", "900"],
   display: "swap",
   variable: "--font-cairo",
   preload: true,
@@ -173,15 +180,17 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-luxury-black text-cream antialiased">
-        {/* Skip to main content - Accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:right-4 focus:z-[100] focus:px-6 focus:py-3 focus:rounded-full focus:text-[#0f0f0f] focus:font-bold focus:outline-none"
-          style={{ background: "linear-gradient(135deg, #B8860B, #D4A017)" }}
-        >
-          تخطي إلى المحتوى الرئيسي
-        </a>
-        {children}
+        <ClientLayout>
+          {/* Skip to main content - Accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:right-4 focus:z-[100] focus:px-6 focus:py-3 focus:rounded-full focus:text-[#0f0f0f] focus:font-bold focus:outline-none"
+            style={{ background: "linear-gradient(135deg, #B8860B, #D4A017)" }}
+          >
+            تخطي إلى المحتوى الرئيسي
+          </a>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
