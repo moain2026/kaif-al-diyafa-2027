@@ -377,7 +377,7 @@ export default function ServicesClient() {
       {/* SERVICES GRID */}
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[300px] sm:auto-rows-[350px] lg:auto-rows-[400px]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[300px] sm:auto-rows-[360px] lg:auto-rows-[400px]">
             {currentCategory.services.map((service) => (
               <motion.div
                 key={service.id}

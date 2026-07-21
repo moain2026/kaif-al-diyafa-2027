@@ -29,7 +29,7 @@ export default function AboutClient() {
       </section>
 
       {/* STORY + STATS */}
-      <section className="px-4 pb-20">
+      <section className="px-4 pb-20 overflow-x-clip">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
             <ImageWithFallback src={heroImg} alt="كيف الضيافة" className="w-full h-full object-cover" />
@@ -41,7 +41,7 @@ export default function AboutClient() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
                 { num: "+500", label: "مناسبة" },
-                { num: "8+", label: "سنوات خبرة" },
+                { num: "9+", label: "سنوات خبرة" },
                 { num: "+200", label: "عميل" },
                 { num: "100%", label: "رضا" },
               ].map((s, i) => (

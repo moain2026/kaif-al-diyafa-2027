@@ -197,7 +197,7 @@ export function PartnersMarquee() {
       <motion.p 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        className="text-[#F5F5DC]/30 text-[10px] sm:text-xs text-center mt-8 font-cairo tracking-wide"
+        className="text-[#F5F5DC]/45 text-xs sm:text-sm text-center mt-8 font-cairo tracking-wide"
       >
         يمكنك سحب الشريط يدوياً لاستكشاف المزيد من الشركاء
       </motion.p>
