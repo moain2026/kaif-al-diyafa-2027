@@ -90,8 +90,9 @@ export default function ContactClient() {
                 <input id="contact-email" name="email" type="email" autoComplete="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-[#0f0f0f] text-[#F5F5DC] text-sm placeholder-[#F5F5DC]/25" style={{ border: "1px solid rgba(184,134,11,0.15)" }} placeholder="email@example.com" dir="ltr" />
               </div>
               <div>
-                <label htmlFor="contact-date" className="block text-[#F5F5DC]/50 text-xs mb-2">تاريخ المناسبة</label>
+                <label htmlFor="contact-date" className="block text-[#F5F5DC]/50 text-xs mb-2">تاريخ المناسبة (ميلادي)</label>
                 <input id="contact-date" name="date" type="date" value={formData.date} onChange={(e) => setFormData({ ...formData, date: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-[#0f0f0f] text-[#F5F5DC] text-sm" style={{ border: "1px solid rgba(184,134,11,0.15)" }} />
+                <p className="text-[#F5F5DC]/30 text-xs mt-1">للتاريخ الهجري، اذكره في رسالتك</p>
               </div>
             </div>
             <div className="mb-4">

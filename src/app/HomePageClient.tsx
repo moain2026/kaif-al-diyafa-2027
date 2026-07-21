@@ -264,6 +264,74 @@ export function HomePageClient() {
           </div>
         </div>
       </section>
+
+      {/* PACKAGES — Guided pricing (PM rec #15: "تبدأ من...") */}
+      <section className="py-24 px-4 bg-luxury-black relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionHeader label="باقاتنا" title="باقات ضيافة لكل مناسبة" />
+          <p className="text-center text-[#F5F5DC]/50 text-sm mb-12 max-w-xl mx-auto">
+            باقات استرشادية — السعر النهائي يعتمد على عدد الضيوف والموقع ونوع الخدمة. استشارة مجانية وعرض سعر مخصص عبر واتساب.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "الباقة الفضية",
+                tagline: "للمناسبات الصغيرة والاستقبالات",
+                features: ["قهوجي + 2 صبابين", "قهوة سعودية + تمر", "طاولة استقبال كلاسيك", "تغطية حي واحد"],
+                featured: false,
+              },
+              {
+                name: "الباقة الذهبية",
+                tagline: "الأكثر طلباً للأعراس والحفلات",
+                features: ["قهوجي + 4 صبابين", "قهوة سعودية وتركية + شاي", "طاولة استقبال فاخرة", "طاقم بزي موحّد", "تغطية مدينة كاملة"],
+                featured: true,
+              },
+              {
+                name: "باقة VIP الملكية",
+                tagline: "للمحافل الرسمية والمؤتمرات",
+                features: ["فريق كامل قهوجية وصبابين", "قهوة + شاي + كرك + سحلب", "طاولة استقبال ملكية", "سقّاء زمزم + سوّاس تراثي", "تغطية أي منطقة في المملكة"],
+                featured: false,
+              },
+            ].map((pkg, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.15 }}
+                className={`card-luxury p-8 rounded-3xl relative ${pkg.featured ? "border-2" : ""}`}
+                style={pkg.featured ? { borderColor: "rgba(184,134,11,0.5)" } : {}}
+              >
+                {pkg.featured && (
+                  <div className="absolute -top-3 right-1/2 translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-[#0f0f0f]" style={{ background: "linear-gradient(135deg, #B8860B, #D4A017)" }}>
+                    الأكثر طلباً
+                  </div>
+                )}
+                <h3 className="text-xl font-cairo font-bold text-text-primary mb-2">{pkg.name}</h3>
+                <p className="text-[#F5F5DC]/50 text-xs mb-6">{pkg.tagline}</p>
+                <ul className="space-y-3 mb-8">
+                  {pkg.features.map((f, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-[#F5F5DC]/70">
+                      <span className="text-[#D4A017] mt-0.5">✦</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={`https://wa.me/966508252134?text=${encodeURIComponent(`مرحباً، أود الاستفسار عن ${pkg.name} - ${pkg.tagline}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center py-3 rounded-full text-sm min-h-[44px] flex items-center justify-center transition-transform hover:scale-[1.02] ${pkg.featured ? "gold-button" : ""}`}
+                  style={pkg.featured ? {} : { border: "1px solid rgba(184,134,11,0.3)", color: "#C5A059", fontWeight: 600 }}
+                >
+                  اطلب عرض سعر
+                </a>
+              </motion.div>
+            ))}
+          </div>
+          <p className="text-center text-[#F5F5DC]/30 text-xs mt-8">* الأسعار تقديرية وتُحدّد بعد الاستشارة</p>
+        </div>
+      </section>
     </div>
   );
 }
