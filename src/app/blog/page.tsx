@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { BLOG_ARTICLES, SITE_URL } from "@/lib/blog-data";
+import { BLOG_ARTICLES } from "@/lib/blog-data";
+import { SITE_URL } from "@/lib/seo-pages";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {

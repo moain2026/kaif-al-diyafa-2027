@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, WA_NUMBER, CITIES, SERVICES } from "@/lib/seo-pages";
 import { JEDDAH_NEIGHBORHOODS } from "@/lib/jeddah-neighborhoods";
-import { generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "كيف الضيافة في جدة | قهوجيين وصبابين قهوة | ضيافة فاخرة",
@@ -45,11 +45,8 @@ export default function JeddahPage() {
             },
             areaServed: jeddah.neighborhoods.map((n) => n),
             priceRange: "$$$$",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5",
-              reviewCount: "200",
-            },
+            // aggregateRating removed — fake ratings violate Google's spam policies.
+            // Re-add only when connected to real Google Business Profile API reviews.
           }),
         }}
       />

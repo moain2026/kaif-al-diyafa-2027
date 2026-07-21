@@ -19,7 +19,6 @@ export default function ReviewsPage() {
     { name: "تقييم الخدمة", url: `${SITE_URL}/reviews` },
   ]);
 
-  const googleMapsUrl = "https://www.google.com/maps";
   const googleReviewUrl = "https://www.google.com/search?q=keif+aldiafa+jeddah";
 
   return (
