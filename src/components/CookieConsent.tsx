@@ -4,6 +4,31 @@ import { useState, useEffect } from "react";
 
 const CONSENT_KEY = "keif-cookie-consent-v1";
 
+/**
+ * Reads cookie consent from localStorage.
+ * Returns true only if the user explicitly accepted.
+ * Analytics scripts should call this before loading.
+ */
+export function hasCookieConsent(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return parsed.accepted === true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Dispatches a custom event when consent state changes,
+ * so analytics loaders can react without polling.
+ */
+function notifyConsentChange(accepted: boolean) {
+  window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: { accepted } }));
+}
+
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
@@ -19,11 +44,13 @@ export default function CookieConsent() {
 
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ accepted: true, date: new Date().toISOString() }));
+    notifyConsentChange(true);
     setVisible(false);
   };
 
   const handleDecline = () => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ accepted: false, date: new Date().toISOString() }));
+    notifyConsentChange(false);
     setVisible(false);
   };
 

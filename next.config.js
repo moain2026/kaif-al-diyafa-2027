@@ -15,9 +15,10 @@ const securityHeaders = [
     value:
       "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
   },
-  // Cross-Origin isolation headers for enhanced security
+  // Cross-Origin-Opener-Policy for basic cross-origin isolation (safe for marketing sites)
+  // Note: COEP removed — it would break cross-origin images (Unsplash, GitHub raw) and future iframes (Google Maps).
+  // COOP alone provides opener isolation without resource-loading restrictions.
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-  { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
   {
     key: "Content-Security-Policy",
     value: [
