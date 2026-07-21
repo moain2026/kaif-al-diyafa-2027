@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_ARTICLES, SITE_URL, WA_NUMBER } from "@/lib/blog-data";
-import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
+import { BLOG_ARTICLES } from "@/lib/blog-data";
+import { SITE_URL, WA_NUMBER } from "@/lib/seo-pages";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 interface PageProps {
   params: { slug: string };

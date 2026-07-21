@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, WA_NUMBER, CITIES, SERVICES } from "@/lib/seo-pages";
-import { generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "كيف الضيافة في جدة | قهوجيين وصبابين قهوة | ضيافة فاخرة",
