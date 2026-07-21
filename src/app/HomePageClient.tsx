@@ -246,7 +246,7 @@ export function HomePageClient() {
                     <span key={j} className="text-[#D4A017]" style={{ fontSize: "1.1rem" }}>★</span>
                   ))}
                 </div>
-                <p className="text-[#F5F5DC]/70 text-sm leading-relaxed mb-6" style={{ lineHeight: 1.8 }}>"{t.text}"</p>
+                <p className="text-[#F5F5DC]/70 text-sm leading-relaxed mb-6" style={{ lineHeight: 1.8 }}>{`\u201C${t.text}\u201D`}</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-[#B8860B]/10">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #B8860B, #D4A017)" }}>
                     <span className="text-[#0f0f0f] font-bold text-sm">{t.name.charAt(0)}</span>
