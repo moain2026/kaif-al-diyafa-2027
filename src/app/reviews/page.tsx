@@ -30,7 +30,10 @@ export default function ReviewsPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ReviewAction",
-            target: `${SITE_URL}/reviews`,
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${SITE_URL}/reviews`,
+            },
             resultReview: {
               "@type": "Review",
               itemReviewed: {
@@ -112,7 +115,7 @@ export default function ReviewsPage() {
           <div className="grid grid-cols-3 gap-4 mt-12">
             {[
               { num: "+500", label: "مناسبة ناجحة" },
-              { num: "+200", label: "عميل سعيد" },
+              { num: "+10", label: "سنوات خبرة" },
               { num: "100%", label: "رضا العملاء" },
             ].map((stat, i) => (
               <div key={i} className="text-center p-4 rounded-2xl" style={{ background: "rgba(184,134,11,0.04)", border: "1px solid rgba(184,134,11,0.1)" }}>
