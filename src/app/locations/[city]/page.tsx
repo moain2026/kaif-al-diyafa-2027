@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CITIES, SERVICES, SITE_URL, WA_NUMBER } from "@/lib/seo-pages";
-import { generateBreadcrumbSchema, generateServiceSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema, generateServiceSchema, generateFAQSchema } from "@/lib/schema";
 
 interface PageProps {
   params: { city: string };
@@ -46,11 +46,20 @@ export default function LocationPage({ params }: PageProps) {
     })
   );
 
+  const faqSchema = generateFAQSchema(city.faqs);
+
   const waMsg = `مرحباً، أود الاستفسار عن خدمات الضيافة في ${city.name}.`;
+
+  const citySlugMap: Record<string, string> = {
+    "الرياض": "riyadh", "جدة": "jeddah", "مكة-المكرمة": "makkah",
+    "المدينة-المنورة": "madinah", "الدمام": "dammam", "الطائف": "taif",
+    "أبها": "abha", "ينبع": "yanbu",
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {serviceSchema.map((schema, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
@@ -74,19 +83,13 @@ export default function LocationPage({ params }: PageProps) {
               خدمات الضيافة الفاخرة في <span className="gold-gradient-text">{city.name}</span>
             </h1>
             <p className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">
-              قهوجيين وصبابين قهوة سعودية وطاقم مدرّب لتغطية فعاليات ومناسبات {city.name} بأعلى بروتوكول.
-              خبرة +10 سنوات و+500 مناسبة ناجحة في جميع أنحاء المملكة.
+              {city.cityIntro}
             </p>
           </div>
 
           {/* Services list */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {SERVICES.map((service) => {
-              const citySlugMap: Record<string, string> = {
-                "الرياض": "riyadh", "جدة": "jeddah", "مكة-المكرمة": "makkah",
-                "المدينة-المنورة": "madinah", "الدمام": "dammam", "الطائف": "taif",
-                "أبها": "abha", "ينبع": "yanbu",
-              };
               const serviceSlug = `${service.slug}-${citySlugMap[city.slug]}`;
               return (
                 <Link
@@ -103,6 +106,46 @@ export default function LocationPage({ params }: PageProps) {
                 </Link>
               );
             })}
+          </div>
+
+          {/* Neighborhoods — unique per city */}
+          <div className="mb-12">
+            <h2 className="text-[#C5A059] mb-4 font-tajawal" style={{ fontSize: "1.3rem", fontWeight: 700 }}>
+              أحياء {city.name} التي نغطّيها
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {city.neighborhoods.map((n) => (
+                <span
+                  key={n}
+                  className="px-3 py-1.5 rounded-full text-xs"
+                  style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.12)", color: "rgba(245,245,220,0.6)" }}
+                >
+                  {n}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* City-specific FAQ */}
+          <div className="mb-12">
+            <h2 className="text-[#C5A059] mb-6 font-tajawal" style={{ fontSize: "1.3rem", fontWeight: 700 }}>
+              أسئلة شائعة عن خدمات الضيافة في {city.name}
+            </h2>
+            <div className="space-y-4">
+              {city.faqs.map((faq, i) => (
+                <details
+                  key={i}
+                  className="rounded-2xl p-5 group"
+                  style={{ background: "rgba(15,15,15,0.6)", border: "1px solid rgba(184,134,11,0.1)" }}
+                >
+                  <summary className="text-[#F5F5DC] text-sm cursor-pointer font-semibold min-h-[44px] flex items-center" style={{ listStyle: "none" }}>
+                    {faq.question}
+                    <span className="text-[#B8860B] mr-auto transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-[#F5F5DC]/55 text-sm leading-relaxed mt-3">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
 
           {/* CTA */}

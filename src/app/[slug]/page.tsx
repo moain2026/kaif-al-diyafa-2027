@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CITIES, SERVICES, SITE_URL, WA_NUMBER, getServiceCitySlugs } from "@/lib/seo-pages";
-import { generateBreadcrumbSchema, generateServiceSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema, generateServiceSchema, generateFAQSchema } from "@/lib/schema";
 
 interface PageProps {
   params: { slug: string };
@@ -18,14 +18,15 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!match) return {};
 
   const { service, city } = match;
+  const citySlugEn = service.slug + "-" + city.nameEn.toLowerCase();
   return {
     title: service.titleTemplate.replace("{city}", city.name),
     description: service.descTemplate.replace("{city}", city.name),
-    alternates: { canonical: `${SITE_URL}/${service.slug}-${city.nameEn.toLowerCase()}` },
+    alternates: { canonical: `${SITE_URL}/${citySlugEn}` },
     openGraph: {
       title: service.titleTemplate.replace("{city}", city.name),
       description: service.descTemplate.replace("{city}", city.name),
-      url: `${SITE_URL}/${service.slug}-${city.nameEn.toLowerCase()}`,
+      url: `${SITE_URL}/${citySlugEn}`,
     },
   };
 }
@@ -55,9 +56,13 @@ export default function ServiceCityPage({ params }: PageProps) {
     url: `${SITE_URL}/${match.slug}`,
   });
 
+  // Combine service FAQs + city-specific FAQs (unique content per page)
+  const combinedFaqs = [...service.serviceFaqs, ...city.faqs];
+  const faqSchema = generateFAQSchema(combinedFaqs);
+
   const waMsg = `مرحباً، أود الاستفسار عن ${service.name} في ${city.name}.`;
 
-  // Related: other services in same city + same service in other cities
+  // Related links
   const otherServicesInCity = SERVICES.filter((s) => s.slug !== service.slug);
   const otherCitiesForService = CITIES.filter((c) => c.slug !== city.slug);
 
@@ -65,6 +70,7 @@ export default function ServiceCityPage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="min-h-screen bg-[#0f0f0f] px-4 py-20">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
@@ -78,7 +84,7 @@ export default function ServiceCityPage({ params }: PageProps) {
             <span className="text-[#B8860B]">{service.name}</span>
           </nav>
 
-          {/* Hero */}
+          {/* Hero — unique per city */}
           <div className="text-center mb-16">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>
               ✦ {service.name} ✦ {city.name} ✦
@@ -91,19 +97,43 @@ export default function ServiceCityPage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: "✦", title: "طاقم مدرّب", desc: "صبابين وقهوجيين محترفين بزيّ تراثي فاخر" },
-              { icon: "☕", title: "قهوة سعودية", desc: "قهوة عربية أصيلة + تمر وحلويات فاخرة" },
-              { icon: "📍", title: `تغطية ${city.name}`, desc: `نصل لموقعك في ${city.name} وجميع أحيائها` },
-            ].map((f, i) => (
-              <div key={i} className="card-luxury p-6 rounded-2xl text-center">
-                <div className="text-2xl mb-3">{f.icon}</div>
-                <h2 className="text-[#F5F5DC] text-sm mb-2" style={{ fontWeight: 700 }}>{f.title}</h2>
-                <p className="text-[#F5F5DC]/50 text-xs leading-relaxed">{f.desc}</p>
+          {/* City intro — unique content per city */}
+          <div className="rounded-2xl p-6 mb-12" style={{ background: "rgba(184,134,11,0.04)", border: "1px solid rgba(184,134,11,0.12)" }}>
+            <p className="text-[#F5F5DC]/70 text-sm leading-relaxed">
+              {city.cityIntro}
+            </p>
+          </div>
+
+          {/* Service-specific content sections */}
+          <div className="space-y-12 mb-12">
+            {service.sections.map((section, i) => (
+              <div key={i}>
+                <h2 className="text-[#C5A059] mb-4 font-tajawal" style={{ fontSize: "1.4rem", fontWeight: 700 }}>
+                  {section.title}
+                </h2>
+                <p className="text-[#F5F5DC]/60 text-sm leading-relaxed max-w-2xl">
+                  {section.content}
+                </p>
               </div>
             ))}
+          </div>
+
+          {/* City neighborhoods — unique per city */}
+          <div className="mb-12">
+            <h2 className="text-[#C5A059] mb-4 font-tajawal" style={{ fontSize: "1.3rem", fontWeight: 700 }}>
+              أحياء {city.name} التي نغطّيها
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {city.neighborhoods.map((n) => (
+                <span
+                  key={n}
+                  className="px-3 py-1.5 rounded-full text-xs"
+                  style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.12)", color: "rgba(245,245,220,0.6)" }}
+                >
+                  {n}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* CTA */}
@@ -124,6 +154,28 @@ export default function ServiceCityPage({ params }: PageProps) {
               <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" /></svg>
               احجز عبر واتساب
             </a>
+          </div>
+
+          {/* FAQ — combined service + city-specific (unique content per page) */}
+          <div className="mb-12">
+            <h2 className="text-[#C5A059] mb-6 font-tajawal" style={{ fontSize: "1.3rem", fontWeight: 700 }}>
+              أسئلة شائعة عن {service.name} في {city.name}
+            </h2>
+            <div className="space-y-4">
+              {combinedFaqs.map((faq, i) => (
+                <details
+                  key={i}
+                  className="rounded-2xl p-5 group"
+                  style={{ background: "rgba(15,15,15,0.6)", border: "1px solid rgba(184,134,11,0.1)" }}
+                >
+                  <summary className="text-[#F5F5DC] text-sm cursor-pointer font-semibold min-h-[44px] flex items-center" style={{ listStyle: "none" }}>
+                    {faq.question}
+                    <span className="text-[#B8860B] mr-auto transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-[#F5F5DC]/55 text-sm leading-relaxed mt-3">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
 
           {/* Internal links — SEO cross-linking */}
