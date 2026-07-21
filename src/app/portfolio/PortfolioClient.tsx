@@ -376,6 +376,36 @@ export default function PortfolioClient() {
         )}
       </div>
 
+      {/* CTA — convert browsing into action */}
+      <section className="px-4 py-20 mt-8">
+        <div className="max-w-3xl mx-auto text-center rounded-3xl p-8 sm:p-12" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.9), rgba(15,12,5,0.95))", border: "1px solid rgba(184,134,11,0.2)" }}>
+          <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ جاهزون لخدمتكم ✦</p>
+          <h2 className="text-[#F5F5DC] mb-4" style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 800 }}>أعجبك ما رأيت؟ احجز كيف الضيافة لمناسبتك</h2>
+          <p className="text-[#F5F5DC]/55 mb-8 text-sm leading-relaxed max-w-xl mx-auto">
+            +500 مناسبة ناجحة منذ 2016. استشارة مجانية وعرض سعر مخصص لمناسبتك خلال دقائق عبر واتساب.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={`https://wa.me/966508252134?text=${encodeURIComponent("مرحباً، رأيت أعمالكم وأود الاستفسار عن باقات الضيافة لمناسبتي.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-8 py-4 rounded-full text-white min-h-[44px] transition-transform hover:scale-[1.03]"
+              style={{ background: "linear-gradient(135deg, #1da851, #25D366)", fontWeight: 700, fontSize: "0.95rem", boxShadow: "0 6px 25px rgba(37,211,102,0.35)" }}
+            >
+              <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" /></svg>
+              احجز عبر واتساب
+            </a>
+            <a
+              href="/contact"
+              className="px-8 py-4 rounded-full min-h-[44px] transition-all text-sm"
+              style={{ border: "1px solid rgba(184,134,11,0.3)", color: "#C5A059", fontWeight: 600 }}
+            >
+              أو املأ نموذج التواصل
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Lightbox */}
       <AnimatePresence>
         {selectedIndex !== null && (
