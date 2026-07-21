@@ -44,11 +44,8 @@ export default function JeddahPage() {
             },
             areaServed: jeddah.neighborhoods.map((n) => n),
             priceRange: "$$$$",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5",
-              reviewCount: "200",
-            },
+            // aggregateRating removed — fake ratings violate Google's spam policies.
+            // Re-add only when connected to real Google Business Profile API reviews.
           }),
         }}
       />
