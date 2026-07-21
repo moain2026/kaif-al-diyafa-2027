@@ -125,7 +125,7 @@ export default function JeddahPage() {
             </h2>
             <div className="rounded-3xl overflow-hidden" style={{ border: "1px solid rgba(184,134,11,0.2)" }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3709.5!2d39.2!3d21.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDMwJzAwLjAiTiAzOcKwMTInMDAuMCJF!5e0!3m2!1sen!2ssa!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29763.2!2d39.1725!3d21.4858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c204b74c28d3e3%3A0x8e7c0e3b8b0b0b0b!2sJeddah%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1700000000000"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}

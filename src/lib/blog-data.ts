@@ -14,7 +14,7 @@ export interface BlogArticle {
 
 export const BLOG_ARTICLES: BlogArticle[] = [
   {
-    slug: "كم-تكلفة-قهوجيين-في-جدة",
+    slug: "coffee-servers-price-jeddah",
     title: "كم تكلفة قهوجيين في جدة؟ دليل الأسعار 2026",
     description: "دليل شامل لأسعار القهوجيين والصبابين في جدة — كم تكلفة القهوجي للحفل؟ ما العوامل المؤثرة؟ وكيف تحصل على أفضل عرض سعر.",
     category: "أسعار",
@@ -57,7 +57,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     ],
   },
   {
-    slug: "الفرق-بين-القهوجي-والمباشر-والصباب",
+    slug: "qahwaji-mubashir-sabbab-difference",
     title: "الفرق بين القهوجي والمباشر والصبّاب — دليل شامل",
     description: "ما الفرق بين القهوجي والمباشر والصبّاب في الضيافة السعودية؟ شرح مفصّل لكل دور ومتى تحتاج كل واحد.",
     category: "أدلة",
@@ -95,7 +95,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     ],
   },
   {
-    slug: "أفضل-قهوجيين-في-جدة-2026",
+    slug: "best-coffee-servers-jeddah-2026",
     title: "أفضل قهوجيين في جدة 2026 — كيف تختار؟",
     description: "دليل اختيار أفضل قهوجيين في جدة — معايير الجودة، الأسئلة التي يجب طرحها، وكيف تميّز الاحترافي عن العادي.",
     category: "أدلة",
