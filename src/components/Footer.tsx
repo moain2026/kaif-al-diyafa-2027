@@ -74,6 +74,24 @@ export default function Footer() {
                   مناطق التغطية
                 </Link>
               </li>
+              <li>
+                <Link href="/jeddah" className="text-[#F5F5DC]/50 text-sm hover:text-[#B8860B] transition-colors duration-200 flex items-center gap-2 group min-h-[36px]">
+                  <span className="w-3 h-px bg-[#B8860B]/30 group-hover:w-5 group-hover:bg-[#B8860B] transition-all duration-300" />
+                  كيف الضيافة في جدة
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-[#F5F5DC]/50 text-sm hover:text-[#B8860B] transition-colors duration-200 flex items-center gap-2 group min-h-[36px]">
+                  <span className="w-3 h-px bg-[#B8860B]/30 group-hover:w-5 group-hover:bg-[#B8860B] transition-all duration-300" />
+                  المدونة
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews" className="text-[#F5F5DC]/50 text-sm hover:text-[#B8860B] transition-colors duration-200 flex items-center gap-2 group min-h-[36px]">
+                  <span className="w-3 h-px bg-[#B8860B]/30 group-hover:w-5 group-hover:bg-[#B8860B] transition-all duration-300" />
+                  قيّم خدمتنا
+                </Link>
+              </li>
             </ul>
           </div>
 
