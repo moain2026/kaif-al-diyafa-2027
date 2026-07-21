@@ -50,12 +50,6 @@ export default function LocationPage({ params }: PageProps) {
 
   const waMsg = `مرحباً، أود الاستفسار عن خدمات الضيافة في ${city.name}.`;
 
-  const citySlugMap: Record<string, string> = {
-    "الرياض": "riyadh", "جدة": "jeddah", "مكة-المكرمة": "makkah",
-    "المدينة-المنورة": "madinah", "الدمام": "dammam", "الطائف": "taif",
-    "أبها": "abha", "ينبع": "yanbu",
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -90,7 +84,7 @@ export default function LocationPage({ params }: PageProps) {
           {/* Services list */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {SERVICES.map((service) => {
-              const serviceSlug = `${service.slug}-${citySlugMap[city.slug]}`;
+              const serviceSlug = `${service.slug}-${city.slug}`;
               return (
                 <Link
                   key={service.slug}

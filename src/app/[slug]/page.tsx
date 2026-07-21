@@ -18,15 +18,15 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!match) return {};
 
   const { service, city } = match;
-  const citySlugEn = service.slug + "-" + city.nameEn.toLowerCase();
+  const pageSlug = `${service.slug}-${city.slug}`;
   return {
     title: service.titleTemplate.replace("{city}", city.name),
     description: service.descTemplate.replace("{city}", city.name),
-    alternates: { canonical: `${SITE_URL}/${citySlugEn}` },
+    alternates: { canonical: `${SITE_URL}/${pageSlug}` },
     openGraph: {
       title: service.titleTemplate.replace("{city}", city.name),
       description: service.descTemplate.replace("{city}", city.name),
-      url: `${SITE_URL}/${citySlugEn}`,
+      url: `${SITE_URL}/${pageSlug}`,
     },
   };
 }
@@ -37,11 +37,6 @@ export default function ServiceCityPage({ params }: PageProps) {
   if (!match) notFound();
 
   const { service, city } = match;
-  const citySlugMap: Record<string, string> = {
-    "الرياض": "riyadh", "جدة": "jeddah", "مكة-المكرمة": "makkah",
-    "المدينة-المنورة": "madinah", "الدمام": "dammam", "الطائف": "taif",
-    "أبها": "abha", "ينبع": "yanbu",
-  };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "الرئيسية", url: SITE_URL },
@@ -188,7 +183,7 @@ export default function ServiceCityPage({ params }: PageProps) {
                 {otherServicesInCity.map((s) => (
                   <Link
                     key={s.slug}
-                    href={`/${s.slug}-${citySlugMap[city.slug]}`}
+                    href={`/${s.slug}-${city.slug}`}
                     className="block text-[#F5F5DC]/60 text-sm hover:text-[#D4A017] transition-colors min-h-[36px]"
                   >
                     ✦ {s.name} {city.name}
@@ -204,7 +199,7 @@ export default function ServiceCityPage({ params }: PageProps) {
                 {otherCitiesForService.map((c) => (
                   <Link
                     key={c.slug}
-                    href={`/${service.slug}-${citySlugMap[c.slug]}`}
+                    href={`/${service.slug}-${c.slug}`}
                     className="block text-[#F5F5DC]/60 text-sm hover:text-[#D4A017] transition-colors min-h-[36px]"
                   >
                     ✦ {service.name} {c.name}
