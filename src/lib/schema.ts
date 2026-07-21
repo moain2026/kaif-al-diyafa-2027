@@ -3,7 +3,7 @@
 const SITE_URL = "https://keifaldiafa.com";
 const SITE_NAME = "كيف الضيافة";
 const PHONE = "+966508252134";
-const EMAIL = "keifaldiafa@gmail.com";
+const EMAIL = "info@keifaldiafa.com";
 
 export function generateOrganizationSchema() {
   return {

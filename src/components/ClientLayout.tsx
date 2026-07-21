@@ -4,6 +4,7 @@ import { memo, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 
 const FloatingWhatsApp = dynamic(() => import("@/components/FloatingWhatsApp"), {
   ssr: false,
@@ -41,6 +42,7 @@ function ClientLayoutInner({ children }: { children: React.ReactNode }) {
       <main id="main-content">{children}</main>
       <Footer />
       <FloatingWhatsApp />
+      <CookieConsent />
     </div>
   );
 }

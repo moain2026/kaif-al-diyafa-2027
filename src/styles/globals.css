@@ -142,3 +142,42 @@ h2 { font-weight: 800; }
 /* Hide scrollbar for category nav */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══════════════════════════════════════════════════
+   Reduced Motion — Respect user accessibility preference
+   Disables all animations and transitions for users who
+   have requested reduced motion in their OS/browser.
+   ═══════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Ensure contact form is always visible regardless of JS animation state */
+  .contact-form {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Remove pulse/glow animations */
+  .whatsapp-pulse,
+  .gold-shine-text {
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Progressive Enhancement — Contact Form
+   Form is visible by default; JS enhances with animation.
+   The .js-enhanced class is added by the ClientLayout
+   when JS is active, enabling animation effects.
+   ═══════════════════════════════════════════════════ */
+.contact-form {
+  opacity: 1;
+  transform: none;
+}

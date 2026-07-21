@@ -6,7 +6,7 @@ const securityHeaders = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
-  { key: "X-XSS-Protection", value: "1; mode=block" },
+  // X-XSS-Protection removed — deprecated and can introduce vulnerabilities in old browsers; CSP is the modern replacement
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "origin-when-cross-origin" },
@@ -15,11 +15,14 @@ const securityHeaders = [
     value:
       "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
   },
+  // Cross-Origin isolation headers for enhanced security
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
   {
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: blob: https://images.unsplash.com https://via.placeholder.com https://*.unsplash.com https://raw.githubusercontent.com",
       "font-src 'self' https://fonts.gstatic.com data:",
@@ -107,6 +110,16 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // ISR cache for semi-static pages — improves TTFB and reduces origin load
+      {
+        source: "/(services|offerings|portfolio|about|locations)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=3600",
           },
         ],
       },
