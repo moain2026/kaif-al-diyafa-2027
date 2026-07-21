@@ -327,9 +327,11 @@ function ServiceCard({ service, onClick }: { service: ServiceItem; onClick: () =
       <div className="absolute inset-0 img-overlay" />
       <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[#B8860B]" style={{ fontSize: "0.65rem", background: "rgba(10,8,2,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(184,134,11,0.3)", letterSpacing: "0.05em" }}>{service.subtitle}</div>
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <h3 className="text-[#F5F5DC]" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{service.title}</h3>
-        <p className="text-[#F5F5DC]/90 text-xs mt-1.5 line-clamp-2 leading-relaxed font-medium">{service.description}</p>
+      {/* تدرّج غامق قوي خلف النص — يمنع تداخل النص مع تفاصيل الصورة */}
+      <div className="absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(10,8,2,0.96) 0%, rgba(10,8,2,0.85) 40%, transparent 100%)" }} />
+      <div className="absolute bottom-0 left-0 right-0 p-4 pt-8">
+        <h3 className="text-[#F5F5DC] line-clamp-1" style={{ fontSize: "1.05rem", fontWeight: 700, textShadow: "0 2px 8px rgba(0,0,0,0.6)" }}>{service.title}</h3>
+        <p className="text-[#F5F5DC]/90 text-xs mt-1.5 line-clamp-2 leading-relaxed font-medium" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}>{service.description}</p>
       </div>
     </div>
   );

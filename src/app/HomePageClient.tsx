@@ -4,6 +4,17 @@ import { useRef, lazy, Suspense } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { HERO_IMG } from "@/lib/images";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { SpotlightCard } from "@/components/SpotlightCard";
+import { MagneticButton } from "@/components/MagneticButton";
+
+// إحصائيات الثقة (Social proof متحرك)
+const stats = [
+  { value: 500, suffix: "+", label: "مناسبة ناجحة" },
+  { value: 200, suffix: "+", label: "عميل يثق بنا" },
+  { value: 9, suffix: "+", label: "سنوات خبرة" },
+  { value: 100, suffix: "%", label: "رضا العملاء" },
+];
 
 const PartnersMarquee = lazy(() =>
   import("@/components/PartnersMarquee").then((m) => ({ default: m.PartnersMarquee }))
@@ -89,6 +100,9 @@ export function HomePageClient() {
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-deep/40 to-luxury-rich" />
         <div className="absolute inset-0 bg-gradient-to-r from-luxury-black/60 via-transparent to-transparent" />
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(197,160,89,0.1) 0%, transparent 70%)" }} />
+        {/* Gradient mesh glows — عمق سينمائي فاخر */}
+        <div className="mesh-glow gold-strong" style={{ width: 600, height: 600, top: "-15%", right: "8%" }} />
+        <div className="mesh-glow gold-soft" style={{ width: 500, height: 500, bottom: "-10%", left: "5%" }} />
         <Particles />
         
         <motion.div 
@@ -171,7 +185,7 @@ export function HomePageClient() {
               transition={{ duration: 0.7, delay: 0.8 }}
               className="max-w-2xl mx-auto w-full px-4"
             >
-              <p className="text-text-primary/90 mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-light">
+              <p className="text-text-primary mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-normal" style={{ textShadow: "0 1px 10px rgba(0,0,0,0.5)" }}>
                 نبتكر تجارب ضيافة استثنائية تلبي تطلعات النخبة، مع أفضل طاقم صبابين وصبابات زواجات ومباشرين بزي فاخر لفعاليات الشركات والمحافل الحكومية والخاصة.
               </p>
               
@@ -185,9 +199,11 @@ export function HomePageClient() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href={`https://wa.me/${WA}`} target="_blank" className="gold-button w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest">
-                  احجز الآن
-                </Link>
+                <MagneticButton className="w-full sm:w-auto" strength={14}>
+                  <Link href={`https://wa.me/${WA}`} target="_blank" className="gold-button cta-shimmer block w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest text-center">
+                    احجز الآن
+                  </Link>
+                </MagneticButton>
                 <Link href="services" className="w-full sm:w-auto px-10 py-4 rounded-full text-sm tracking-widest border border-gold-matte/30 text-gold-matte hover:bg-gold-matte/10 transition-all">
                   اكتشف خدماتنا
                 </Link>
@@ -195,6 +211,38 @@ export function HomePageClient() {
             </motion.div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* STATS — Social proof متحرك (يعالج الفراغ تحت الهيرو + يقوي الثقة) */}
+      <section className="relative py-20 px-4 bg-luxury-deep overflow-hidden">
+        <div className="mesh-glow gold-soft" style={{ width: 500, height: 500, top: "-30%", right: "5%" }} />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="text-center"
+              >
+                <div
+                  className="font-cairo gold-shine-text"
+                  style={{ fontSize: "clamp(2.4rem, 6vw, 3.6rem)", fontWeight: 900, lineHeight: 1 }}
+                >
+                  <AnimatedCounter value={s.value} suffix={s.suffix} />
+                </div>
+                <div className="mt-3 text-text-secondary text-sm sm:text-base tracking-wide">{s.label}</div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="divider-diamond mt-14">
+            <div className="line bg-gradient-to-l from-transparent to-gold-matte/40" />
+            <div className="dot" />
+            <div className="line bg-gradient-to-r from-transparent to-gold-matte/40" />
+          </div>
+        </div>
       </section>
 
       {/* PARTNERS */}
@@ -211,12 +259,14 @@ export function HomePageClient() {
           <SectionHeader label="لماذا نحن" title="ضيافة مناسبات VIP نصنع فيها الفرق" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyCards.map((card, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-8 rounded-3xl group">
-                <div className="w-14 h-14 rounded-2xl bg-gold-matte/10 flex items-center justify-center text-gold-matte mb-6 group-hover:bg-gold-matte group-hover:text-luxury-black transition-all duration-500">
-                  {card.icon}
-                </div>
-                <h3 className="text-xl font-cairo font-bold text-text-primary mb-3">{card.title}</h3>
-                <p className="text-text-secondary leading-relaxed text-sm">{card.desc}</p>
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+                <SpotlightCard className="card-luxury lift-gold p-8 rounded-3xl h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-gold-matte/10 flex items-center justify-center text-gold-matte mb-6 group-hover:bg-gold-matte group-hover:text-luxury-black transition-all duration-500">
+                    {card.icon}
+                  </div>
+                  <h3 className="text-xl font-cairo font-bold text-text-primary mb-3">{card.title}</h3>
+                  <p className="text-text-secondary leading-relaxed text-sm">{card.desc}</p>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>

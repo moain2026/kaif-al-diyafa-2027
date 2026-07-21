@@ -11,6 +11,11 @@ const FloatingWhatsApp = dynamic(() => import("@/components/FloatingWhatsApp"), 
   ssr: false,
 });
 
+// طبقات التأثيرات الفاخرة (grain + cursor spotlight) — عميل فقط، لا تؤثر على SSR/LCP
+const LuxuryFX = dynamic(() => import("@/components/LuxuryFX"), {
+  ssr: false,
+});
+
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
   readonly userChoice: Promise<{
@@ -45,6 +50,7 @@ function ClientLayoutInner({ children }: { children: React.ReactNode }) {
         <Footer />
         <FloatingWhatsApp />
         <CookieConsent />
+        <LuxuryFX />
       </div>
     </MotionConfig>
   );

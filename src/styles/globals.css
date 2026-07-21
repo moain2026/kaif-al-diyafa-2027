@@ -181,3 +181,144 @@ h2 { font-weight: 800; }
   opacity: 1;
   transform: none;
 }
+
+/* ═══════════════════════════════════════════════════
+   ✦ LUXURY UPGRADE 2026 — طبقة الفخامة العالمية
+   إضافات: gradient mesh · section dividers · spotlight
+   · gold shimmer CTA · hover lifts · image zoom
+   كلها transform/opacity-only لحماية LCP/CLS
+   ═══════════════════════════════════════════════════ */
+
+/* ── Gradient Mesh (بقع ذهبية مموّهة للخلفيات) ── */
+.mesh-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+.mesh-glow.gold-strong { background: rgba(197, 160, 89, 0.15); }
+.mesh-glow.gold-soft   { background: rgba(197, 160, 89, 0.08); }
+
+/* ── Section Divider (معيّن ذهبي) ── */
+.divider-diamond {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.divider-diamond .line {
+  height: 1px;
+  flex: 1;
+}
+.divider-diamond .dot {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: var(--gold-matte);
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.6);
+}
+
+/* ── Gold Shimmer CTA (لمعة تمر على الزر عند hover) ── */
+.cta-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.cta-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+.cta-shimmer:hover::before {
+  left: 130%;
+}
+
+/* ── Hover Lift (رفع مع ظل ذهبي — لمسة البراند) ── */
+.lift-gold {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.lift-gold:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px -15px rgba(197, 160, 89, 0.25);
+}
+
+/* ── Image Zoom on Hover ── */
+.zoom-wrap { overflow: hidden; }
+.zoom-wrap img,
+.zoom-wrap .zoom-target {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.zoom-wrap:hover img,
+.zoom-wrap:hover .zoom-target {
+  transform: scale(1.06);
+}
+
+/* ── Animated Underline (روابط أنيقة) ── */
+.underline-gold {
+  position: relative;
+}
+.underline-gold::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--gradient-gold-matte);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.underline-gold:hover::after {
+  width: 100%;
+}
+
+/* ── Marquee (احتياطي CSS للنصوص المتحركة) ── */
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to left, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to left, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-shimmer::before,
+  .lift-gold,
+  .zoom-wrap img,
+  .zoom-wrap .zoom-target { transition: none !important; }
+  .mesh-glow { filter: blur(120px); }
+}
+
+/* ── Shimmer Placeholder (خلفية تحميل أنيقة للصور بدل الرمادي الجامد) ── */
+.shimmer-bg {
+  background: linear-gradient(
+    100deg,
+    #1a1a1a 30%,
+    #242424 50%,
+    #1a1a1a 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 1.8s ease-in-out infinite;
+}
+@keyframes shimmerMove {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-bg { animation: none; background: #1a1a1a; }
+}
