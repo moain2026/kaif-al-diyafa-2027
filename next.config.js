@@ -108,10 +108,18 @@ const nextConfig = {
         ],
       },
       // ISR cache for semi-static pages — improves TTFB and reduces origin load
-      // Note: /locations pages don't exist yet — ISR rules removed to avoid caching 404s.
-      // When location pages are built, re-add ISR for them here.
       {
         source: "/(services|offerings|portfolio|about)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=3600",
+          },
+        ],
+      },
+      // ISR for location and service-city SEO pages
+      {
+        source: "/locations/:path*",
         headers: [
           {
             key: "Cache-Control",
