@@ -142,6 +142,15 @@ export default function RootLayout({
       className={`scroll-smooth ${tajawal.variable} ${cairo.variable}`}
     >
       <head>
+        {/* Progressive enhancement: ensure all content is visible without JS.
+            Framer Motion sets opacity:0 via inline styles for animation;
+            this noscript block overrides that when JS is disabled. */}
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: `
+            * { opacity: 1 !important; transform: none !important; }
+          ` }} />
+        </style>
+        </noscript>
         {/* Organization Schema */}
         <script
           type="application/ld+json"

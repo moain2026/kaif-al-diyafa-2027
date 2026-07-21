@@ -124,6 +124,26 @@ const nextConfig = {
           },
         ],
       },
+      // ISR cache for location landing pages (highest-traffic SEO pages)
+      {
+        source: "/locations/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=3600",
+          },
+        ],
+      },
+      // Shorter ISR for homepage (content may change more frequently)
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=3600, stale-while-revalidate=300",
+          },
+        ],
+      },
     ];
   },
 
