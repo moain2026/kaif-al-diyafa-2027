@@ -149,7 +149,6 @@ export default function RootLayout({
           <style dangerouslySetInnerHTML={{ __html: `
             * { opacity: 1 !important; transform: none !important; }
           ` }} />
-        </style>
         </noscript>
         {/* Organization Schema */}
         <script
