@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JEDDAH_NEIGHBORHOODS } from "@/lib/jeddah-neighborhoods";
 import { SITE_URL, WA_NUMBER, SERVICES } from "@/lib/seo-pages";
-import { generateBreadcrumbSchema, generateFAQSchema, generateServiceSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 
 interface PageProps {
   params: { neighborhood: string };
